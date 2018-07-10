@@ -4264,10 +4264,16 @@ footer.uk-light a {
   color: #999;
 }
 footer.bottom {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background-color: #222222;
+}
+@media (min-width: 768px) {
+  footer.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #222222;
+  }
 }
 .footer-area {
   padding-top: 30px;

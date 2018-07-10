@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Welcome to JIYUN.ME">
+
+        <title>JIYUN.ME | 404 Error</title>
+        
+        <link href="images/favicon.png" rel="shortcut icon">
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/uikit.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/uikit-width-ex.min.css" rel="s2tylesheet" type="text/css" media="all" />
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/responsive.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+
+    </head>
+
+    <body class="content loading">
+
+        <!-- NavBar Start -->
+        <div class="tw-preloader">
+            <div data-uk-spinner></div>
+        </div>
+
+        <div class="header-container tw-header tw-header-minimal tw-header-transparent uk-light">
+
+            <nav class="uk-navbar-container" data-uk-navbar>
+                <div class="uk-navbar-left">
+                    <div class="tw-logo">
+                        <h3 class="site-name">
+                            <a href="https://jiyun.me">JIYUN.ME</a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="uk-navbar-right">
+                    <div class="tw-header-meta">
+                        <div class="mobile-menu" data-uk-toggle="target: #mobile-menu-push"><i class="ion-navicon-round"></i><i class="uk-light uk-close uk-icon" data-uk-close></i></div>
+                    </div>
+                </div>
+            </nav>
+
+            <div id="mobile-menu-push" data-uk-offcanvas="mode: slide; overlay: false; flip: true">
+                <div class="uk-offcanvas-bar">
+
+                    <div class="header-container tw-header tw-header-sidebar uk-light uk-height-viewport">
+
+                        <div class="tw-header-top">
+                            <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                                <li><a href="https://jiyun.me">HOME</a></li>
+                                <li class="uk-parent">
+                                    <a href="#">Works</a>
+                                    <ul class="uk-nav-sub">
+                                        <li><a href="#">Webnovel-live</a></li>
+                                        <li><a href="#">The Chamber</a></li>
+                                        <li><a href="#">SG-Market</a></li>
+                                        <li><a href="#">음대생메이커</a></li>
+                                    </ul>
+                                </li>
+                                <li class="uk-parent">
+                                    <a href="#">Blog</a>
+                                    <ul class="uk-nav-sub">
+                                        <li><a href="https://jiyun.me/blog/01-WebRTC-Intro">WebRTC 개요</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- NavBar End -->
+
+        <!-- Main CLI Start -->
+        <div class="cli">
+            <div class="cli-header">
+                <a class="dot" href="#"></a>
+                <a class="dot" href="#"></a>
+                <a class="dot" href="#"></a>
+                <span>Something went wrong :(</span>
+            </div>
+
+            <div class="cli-body" ng-click="focusTextarea()">
+
+                <section class="paragraph" id="404">
+                    <h2>404 ERROR</h2>
+                    <p class="error">Something went wrong!</p>
+                    <p><span class="guide">Go back to the <a href="https://jiyun.me">main page</a></span></p>
+
+                </section>
+
+            </div>
+        </div>
+        <!-- Main CLI End -->
+
+        <!-- Footer Start -->
+        <footer class="uk-section uk-padding-remove-vertical uk-light bottom">
+            <div class="footer-area footer-small">
+                <div class="uk-container">
+                    <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>
+                        <div class="tw-element tw-socials tw-no-bg with-hover">
+                            <a href="https://www.facebook.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-facebook"></i></a>
+                            <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
+                        </div>
+                        <div class="uk-text-center copyright">
+                            © JIYUN.ME
+                        </div>
+                        <div class="uk-text-right">
+                            <a href="" data-uk-scroll>Top &nbsp;&nbsp;<i class="ion-ios-arrow-up"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+        <script src="js/jquery-3.2.0.min.js"></script>
+        <script src="js/jquery.easypiechart.min.js"></script>
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script src="js/isotope.pkgd.min.js"></script>
+        <script src="js/theme.js"></script>
+
+        <!-- CLI Window -->
+        <script>
+            // jQuery Text Typer plugin
+            (function(e){"use strict";e.fn.textTyper=function(t){var n={typingClass:"typing",beforeAnimation:function(){},afterAnimation:function(){},speed:10,nextLineDelay:400,startsFrom:0,repeatAnimation:false,repeatDelay:4e3,repeatTimes:1,cursorHtml:'<span class="cursor">|</span>'},r=e.extend({},n,t);this.each(function(){var t=e(this),n=1,i="typingCursor";var s=t,o=s.length,u=[];while(o--){u[o]=e.trim(e(s[o]).html());e(s[o]).html("")}t.init=function(e){var n=r.beforeAnimation;if(n)n();t.animate(0)};t.animate=function(o){var a=s[o],f=r.typingClass,l=r.startsFrom;e(a).addClass(f);var c=setInterval(function(){var f=r.cursorHtml;f=e("<div>").append(e(f).addClass(i)).html();e(a).html(u[o].substr(0,l)+f);l++;if(u[o].length<l){clearInterval(c);o++;if(s[o]){setTimeout(function(){e(a).html(u[o-1]);t.animate(o)},r.nextLineDelay)}else{e(a).find("."+i).remove();if(r.repeatAnimation&&(r.repeatTimes==0||n<r.repeatTimes)){setTimeout(function(){t.animate(0);n++},r.repeatDelay)}else{var h=r.afterAnimation;if(h)h()}}}},r.speed)};t.init()});return this}})(jQuery)
+
+            $(document).ready(function() {
+                // autofocus
+                $('.cli-body').click(function() {
+                    $('.cli-input').focus();
+                });
+
+                // setup
+                $('.cli-control').hide();
+                $('#404').addClass('open');
+                $('#404').textTyper({
+                    speed:20,
+                    afterAnimation:function(){
+                        $('.cli-control').fadeIn();
+                        $('input[type="text"]').focus();
+                        $('input[type="text"]').val('');
+                    }
+                });
+            });
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-96635380-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+
+    </body>
+
+</html>
