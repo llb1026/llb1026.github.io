@@ -1,154 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Welcome to JIYUN.ME">
-
+        <link rel="shortcut icon" href="images/favicon.png"> <!-- From Flaticon.com -->
+        
         <title>JIYUN.ME</title>
         
-        <link href="images/favicon.png" rel="shortcut icon">
-        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/uikit.min.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/uikit-width-ex.min.css" rel="s2tylesheet" type="text/css" media="all" />
+        <link href="css/uikit-width-ex.min.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/responsive.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/animations.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/responsive.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
+        <!-- Typed.js cursor CSS -->
+        <style>
+        	@keyframes blink{
+			    0% { opacity:1; }
+			    50% { opacity:0; }
+			    100% { opacity:1; }
+			}
+			@-webkit-keyframes blink{
+			    0% { opacity:1; }
+			    50% { opacity:0; }
+			    100% { opacity:1; }
+			}
+			@-moz-keyframes blink{
+			    0% { opacity:1; }
+			    50% { opacity:0; }
+			    100% { opacity:1; }
+			}
+
+			.cursor {
+			    animation: blink 0.7s infinite;
+			    font-family: 'Inconsolata', monospace;
+			    font-size: 48px;
+			}
+        </style>
+        
     </head>
-
-    <body class="content loading">
+    <body class="loading">
 
         <!-- NavBar Start -->
         <div class="tw-preloader">
             <div data-uk-spinner></div>
         </div>
-
-        <div class="header-container tw-header tw-header-minimal tw-header-transparent uk-light">
-
-            <nav class="uk-navbar-container" data-uk-navbar>
+        <div class="header-container tw-header tw-header-transparent uk-light">
+            <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
                 <div class="uk-navbar-left">
                     <div class="tw-logo">
                         <h3 class="site-name">
-                            <a href="https://jiyun.me">JIYUN.ME</a>
+                            <a href="index">JIYUN.ME</a>
                         </h3>
                     </div>
                 </div>
+                
+                <div class="uk-navbar-center">
+                    <ul class="tw-main-menu uk-visible@m">
+                        <li class="menu-item">
+                            <a href="index">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="about">About</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="works">Works</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="blog">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="uk-navbar-right">
                     <div class="tw-header-meta">
-                        <div class="mobile-menu" data-uk-toggle="target: #mobile-menu-push"><i class="ion-navicon-round"></i><i class="uk-light uk-close uk-icon" data-uk-close></i></div>
+                        <a class="mobile-menu uk-navbar-toggle uk-hidden@m" href="#" data-uk-toggle="target: #mobile-menu-modal"><i class="ion-navicon-round"></i></a>
                     </div>
                 </div>
-            </nav>
 
-            <div id="mobile-menu-push" data-uk-offcanvas="mode: slide; overlay: false; flip: true">
-                <div class="uk-offcanvas-bar">
-
-                    <div class="header-container tw-header tw-header-sidebar uk-light uk-height-viewport">
-
-                        <div class="tw-header-top">
-                            <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
-                                <li><a href="https://jiyun.me">HOME</a></li>
-                                <li class="uk-parent">
-                                    <a href="#">Works</a>
-                                    <ul class="uk-nav-sub">
-                                        <li><a href="#">Webnovel-live</a></li>
-                                        <li><a href="#">The Chamber</a></li>
-                                        <li><a href="#">SG-Market</a></li>
-                                        <li><a href="#">음대생메이커</a></li>
-                                    </ul>
+                <div id="mobile-menu-modal" class="uk-modal-full" data-uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-full" type="button" data-uk-close></button>
+                        <div class="uk-light uk-height-viewport tw-mobile-modal uk-flex uk-flex-middle uk-flex-center" data-uk-scrollspy="target:>ul>li,>div>a; cls:uk-animation-slide-bottom-medium; delay: 150;">
+                            <ul class="uk-nav-default" data-uk-nav>
+                                <li class="uk-nav-default">
+                                    <a href="index">Home</a>
                                 </li>
-                                <li class="uk-parent">
-                                    <a href="#">Blog</a>
-                                    <ul class="uk-nav-sub">
-                                        <li><a href="https://jiyun.me/blog/01-WebRTC-Intro">WebRTC 개요</a></li>
-                                    </ul>
+                                <li class="uk-nav-default">
+                                    <a href="about">About</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="works">Works</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="blog">Blog</a>
                                 </li>
                             </ul>
+
+                            <div class="tw-socials tw-socials-minimal">
+                                <a href="https://www.facebook.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-facebook"></i></a>
+                                <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
+                            </div>
+
                         </div>
-
                     </div>
-
                 </div>
-            </div>
 
+            </nav>
         </div>
         <!-- NavBar End -->
 
-        <!-- Main CLI Start -->
-        <div class="cli">
-            <div class="cli-header">
-                <a class="dot" href="#"></a>
-                <a class="dot" href="#"></a>
-                <a class="dot" href="#"></a>
-                <span>Welcome ;)</span>
-            </div>
+        <!-- Main Header Start -->
+        <div class="main-container">
+            <section class="tw-slider tw-slider-fullscreen uk-light" data-uk-height-viewport="offset-top: true">
+                <div class="owl-theme">
 
-            <div class="cli-body" ng-click="focusTextarea()">
-
-                <section class="paragraph" id="home">
-                    <h2>Hi, this is JIYUN LEE.</h2>
-                    <p>This is my portfolio webpage.</p>
-                    <p><span class="guide">Type 'help' + <kbd>Enter</kbd> -- for available commands.</span></p>
-
-                </section>
-
-                <section class="paragraph" id="about">
-                    <h2><span>&raquo; About</span></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dictum sapien purus, sed luctus tellus dictum ut. Aliquam porttitor libero eu orci fringilla posuere.</p>
-                    <p>Nullam sit amet nisi efficitur, elementum diam eget, convallis lorem. Ut rhoncus, massa a tincidunt accumsan, purus magna eleifend erat, non scelerisque diam leo ut dui.</p>
-                    <p>Phasellus sit amet feugiat nisl. Nulla facilisi. Suspendisse at felis sed risus gravida tincidunt. Nam et lorem imperdiet, dapibus urna quis, dignissim ligula. Proin id mi at orci imperdiet interdum id ac urna. Donec maximus nulla sit amet aliquet elementum.</p>
-                </section>
-
-                <section class="paragraph" id="works">
-                    <h2><span>&raquo; Works</span></h2>
-                    <p>Suspendisse tristique augue eu sapien porta, a suscipit eros auctor. Fusce tincidunt sem eu leo sagittis, et lacinia nulla tincidunt. </p>
-                    <ul>
-                    	<li>Webnovel-live</li>
-                    	<li>The Chamber</li>
-                    	<li>SG-Market</li>
-                    	<li>음대생메이커</li>
-                    </ul>
-                </section>
-
-                <section class="paragraph" id="blog">
-                    <h2><span>&raquo; Blog</span></h2>
-                    <p>Quisque commodo auctor diam, vel egestas elit vulputate et. Morbi ante libero, mollis vel enim ac, efficitur varius justo. </p>
-                    <ul>
-                    	<li>WebRTC 개요</li>
-                    </ul>
-                </section>
-
-                <section class="paragraph" id="error">
-                    <p>Command not found!<p> 
-                    <p><span>Type 'help' + <kbd>Enter</kbd> -- for available commands.</span></p>
-                </section>
-
-                <section class="paragraph" id="help">
-                    <h2><span>&raquo; Help?</span></h2>
-                    <p><span>Type [command] + <kbd>Enter</kbd></span></p>
-                    <ul>
-	                    <li>'home' -- Go back to the first greeting</li>
-	                    <li>'about' -- Introduction</li>
-	                    <li>'works' -- What I've done</li>
-	                    <li>'blog' -- Tech blog</li>
-	                    <li>'help' -- displays this list</li>
-                    </ul>
-                </section>
-
-                <div class="cli-control">
-                    <span class="dollar left">$</span>
-                    <input type="text" class="cli-input right" name="cli-input" autofocus>
+                    <div class="slider-item" data-overlay="0.4" style="background-color: #151515; background-image: url(images/background/bg1.jpg);"
+                        data-uk-height-viewport="offset-top: true">
+                        <div class="slider-content">
+                            <div class="tw-element uk-text-center tw-heading full" data-uk-scrollspy="target: > *; cls:uk-animation-slide-bottom-medium; delay: 400;">
+                                <h4 class="tw-sub-title"> </h4>
+                                <div class="typing-animation">
+                                	<span id="quote" style="font-family: 'Inconsolata', monospace; font-size: 48px;"></span>
+                                </div>
+                                <h1><br></h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
+            </section>
         </div>
-        <!-- Main CLI End -->
+        <!-- Main Header End -->
 
         <!-- Footer Start -->
-        <footer class="uk-section uk-padding-remove-vertical uk-light bottom">
+        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
             <div class="footer-area footer-small">
                 <div class="uk-container">
                     <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>
@@ -168,76 +158,431 @@
         </footer>
         <!-- Footer End -->
 
-        <script src="js/jquery-3.2.0.min.js"></script>
-        <script src="js/jquery.easypiechart.min.js"></script>
+    	<script src="js/jquery-3.2.0.min.js"></script>
+    	<script src="js/jquery.easypiechart.min.js"></script>
+        
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
         <script src="js/isotope.pkgd.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
         <script src="js/theme.js"></script>
 
-        <!-- CLI Window -->
+        <!-- Typed.js -->
         <script>
-            // jQuery Text Typer plugin
-            (function(e){"use strict";e.fn.textTyper=function(t){var n={typingClass:"typing",beforeAnimation:function(){},afterAnimation:function(){},speed:10,nextLineDelay:400,startsFrom:0,repeatAnimation:false,repeatDelay:4e3,repeatTimes:1,cursorHtml:'<span class="cursor">|</span>'},r=e.extend({},n,t);this.each(function(){var t=e(this),n=1,i="typingCursor";var s=t,o=s.length,u=[];while(o--){u[o]=e.trim(e(s[o]).html());e(s[o]).html("")}t.init=function(e){var n=r.beforeAnimation;if(n)n();t.animate(0)};t.animate=function(o){var a=s[o],f=r.typingClass,l=r.startsFrom;e(a).addClass(f);var c=setInterval(function(){var f=r.cursorHtml;f=e("<div>").append(e(f).addClass(i)).html();e(a).html(u[o].substr(0,l)+f);l++;if(u[o].length<l){clearInterval(c);o++;if(s[o]){setTimeout(function(){e(a).html(u[o-1]);t.animate(o)},r.nextLineDelay)}else{e(a).find("."+i).remove();if(r.repeatAnimation&&(r.repeatTimes==0||n<r.repeatTimes)){setTimeout(function(){t.animate(0);n++},r.repeatDelay)}else{var h=r.afterAnimation;if(h)h()}}}},r.speed)};t.init()});return this}})(jQuery)
+			! function($) {
 
-            $(document).ready(function() {
-                // autofocus
-                $('.cli-body').click(function() {
-                    $('.cli-input').focus();
-                });
+			    "use strict";
 
-                // setup
-                $('.cli-control').hide();
-                $('#home').addClass('open');
-                $('#home').textTyper({
-                    speed:20,
-                    afterAnimation:function(){
-                        $('.cli-control').fadeIn();
-                        $('input[type="text"]').focus();
-                        $('input[type="text"]').val('');
-                    }
-                });
+			    var Typed = function(el, options) {
 
-                // get array of section ids, that exist in DOM
-                var sectionArray = [];
-                // We are using <section> here, you can use <div> or <article> if you want
-                $('section').each( function(i,e) {
-                    sectionArray.push(e.id);
-                });
+			        // chosen element to manipulate text
+			        this.el = $(el);
 
-                // cli-control Input
-                $('input[type="text"]').keyup(function(e){
+			        // options
+			        this.options = $.extend({}, $.fn.typed.defaults, options);
 
-                    // if ENTER key pressed
-                    if(e.which == 13){
+			        // attribute to type into
+			        this.isInput = this.el.is('input');
+			        this.attr = this.options.attr;
 
-                        $('.cli-control').hide();
-                        var destination = $('input[type="text"]').val();
+			        // show cursor
+			        this.showCursor = this.isInput ? false : this.options.showCursor;
 
-                        // Display section with id == destination and hide all others
-                        $('section[id="' + destination + '"]').addClass('open').siblings().removeClass('open');
+			        // text content of element
+			        this.elContent = this.attr ? this.el.attr(this.attr) : this.el.text()
 
-                        // If destination does not match our array of section ids, display error section
-                        if($.inArray(destination, sectionArray) == -1){
-                            $('#error').addClass('open');
-                            $('#error').siblings().removeClass('open');
-                        }
+			        // html or plain text
+			        this.contentType = this.options.contentType;
 
-                        // All sections with class .open init textTyper
-                        $('.open').textTyper({
-                            speed:20,
-                            afterAnimation:function(){
-                                $('.cli-control').fadeIn();
-                                $('input[type="text"]').focus();
-                                $('input[type="text"]').val('');
-                            }
-                        });
+			        // typing speed
+			        this.typeSpeed = this.options.typeSpeed;
 
-                    }
+			        // add a delay before typing starts
+			        this.startDelay = this.options.startDelay;
 
-                });
+			        // backspacing speed
+			        this.backSpeed = this.options.backSpeed;
 
-            });
+			        // amount of time to wait before backspacing
+			        this.backDelay = this.options.backDelay;
+
+			        // div containing strings
+			        this.stringsElement = this.options.stringsElement;
+
+			        // input strings of text
+			        this.strings = this.options.strings;
+
+			        // character number position of current string
+			        this.strPos = 0;
+
+			        // current array position
+			        this.arrayPos = 0;
+
+			        // number to stop backspacing on.
+			        // default 0, can change depending on how many chars
+			        // you want to remove at the time
+			        this.stopNum = 0;
+
+			        // Looping logic
+			        this.loop = this.options.loop;
+			        this.loopCount = this.options.loopCount;
+			        this.curLoop = 0;
+
+			        // for stopping
+			        this.stop = false;
+
+			        // custom cursor
+			        this.cursorChar = this.options.cursorChar;
+
+			        // shuffle the strings
+			        this.shuffle = this.options.shuffle;
+			        // the order of strings
+			        this.sequence = [];
+
+			        // All systems go!
+			        this.build();
+			    };
+
+			    Typed.prototype = {
+
+			        constructor: Typed
+
+			        ,
+			        init: function() {
+			            // begin the loop w/ first current string (global self.strings)
+			            // current string will be passed as an argument each time after this
+			            var self = this;
+			            self.timeout = setTimeout(function() {
+			                for (var i=0;i<self.strings.length;++i) self.sequence[i]=i;
+
+			                // shuffle the array if true
+			                if(self.shuffle) self.sequence = self.shuffleArray(self.sequence);
+
+			                // Start typing
+			                self.typewrite(self.strings[self.sequence[self.arrayPos]], self.strPos);
+			            }, self.startDelay);
+			        }
+
+			        ,
+			        build: function() {
+			            var self = this;
+			            // Insert cursor
+			            if (this.showCursor === true) {
+			                this.cursor = $("<span class=\"typed-cursor\">" + this.cursorChar + "</span>");
+			                this.el.after(this.cursor);
+			            }
+			            if (this.stringsElement) {
+			                self.strings = [];
+			                this.stringsElement.hide();
+			                var strings = this.stringsElement.find('p');
+			                $.each(strings, function(key, value){
+			                    self.strings.push($(value).html());
+			                });
+			            }
+			            this.init();
+			        }
+
+			        // pass current string state to each function, types 1 char per call
+			        ,
+			        typewrite: function(curString, curStrPos) {
+			            // exit when stopped
+			            if (this.stop === true) {
+			                return;
+			            }
+
+			            // varying values for setTimeout during typing
+			            // can't be global since number changes each time loop is executed
+			            var humanize = Math.round(Math.random() * (100 - 30)) + this.typeSpeed;
+			            var self = this;
+
+			            // ------------- optional ------------- //
+			            // backpaces a certain string faster
+			            // ------------------------------------ //
+			            // if (self.arrayPos == 1){
+			            //  self.backDelay = 50;
+			            // }
+			            // else{ self.backDelay = 500; }
+
+			            // contain typing function in a timeout humanize'd delay
+			            self.timeout = setTimeout(function() {
+			                // check for an escape character before a pause value
+			                // format: \^\d+ .. eg: ^1000 .. should be able to print the ^ too using ^^
+			                // single ^ are removed from string
+			                var charPause = 0;
+			                var substr = curString.substr(curStrPos);
+			                if (substr.charAt(0) === '^') {
+			                    var skip = 1; // skip atleast 1
+			                    if (/^\^\d+/.test(substr)) {
+			                        substr = /\d+/.exec(substr)[0];
+			                        skip += substr.length;
+			                        charPause = parseInt(substr);
+			                    }
+
+			                    // strip out the escape character and pause value so they're not printed
+			                    curString = curString.substring(0, curStrPos) + curString.substring(curStrPos + skip);
+			                }
+
+			                if (self.contentType === 'html') {
+			                    // skip over html tags while typing
+			                    var curChar = curString.substr(curStrPos).charAt(0)
+			                    if (curChar === '<' || curChar === '&') {
+			                        var tag = '';
+			                        var endTag = '';
+			                        if (curChar === '<') {
+			                            endTag = '>'
+			                        } else {
+			                            endTag = ';'
+			                        }
+			                        while (curString.substr(curStrPos).charAt(0) !== endTag) {
+			                            tag += curString.substr(curStrPos).charAt(0);
+			                            curStrPos++;
+			                        }
+			                        curStrPos++;
+			                        tag += endTag;
+			                    }
+			                }
+
+			                // timeout for any pause after a character
+			                self.timeout = setTimeout(function() {
+			                    if (curStrPos === curString.length) {
+			                        // fires callback function
+			                        self.options.onStringTyped(self.arrayPos);
+
+			                        // is this the final string
+			                        if (self.arrayPos === self.strings.length - 1) {
+			                            // animation that occurs on the last typed string
+			                            self.options.callback();
+
+			                            self.curLoop++;
+
+			                            // quit if we wont loop back
+			                            if (self.loop === false || self.curLoop === self.loopCount)
+			                                return;
+			                        }
+
+			                        self.timeout = setTimeout(function() {
+			                            self.backspace(curString, curStrPos);
+			                        }, self.backDelay);
+			                    } else {
+
+			                        /* call before functions if applicable */
+			                        if (curStrPos === 0)
+			                            self.options.preStringTyped(self.arrayPos);
+
+			                        // start typing each new char into existing string
+			                        // curString: arg, self.el.html: original text inside element
+			                        var nextString = curString.substr(0, curStrPos + 1);
+			                        if (self.attr) {
+			                            self.el.attr(self.attr, nextString);
+			                        } else {
+			                            if (self.isInput) {
+			                                self.el.val(nextString);
+			                            } else if (self.contentType === 'html') {
+			                                self.el.html(nextString);
+			                            } else {
+			                                self.el.text(nextString);
+			                            }
+			                        }
+
+			                        // add characters one by one
+			                        curStrPos++;
+			                        // loop the function
+			                        self.typewrite(curString, curStrPos);
+			                    }
+			                    // end of character pause
+			                }, charPause);
+
+			                // humanized value for typing
+			            }, humanize);
+
+			        }
+
+			        ,
+			        backspace: function(curString, curStrPos) {
+			            // exit when stopped
+			            if (this.stop === true) {
+			                return;
+			            }
+
+			            // varying values for setTimeout during typing
+			            // can't be global since number changes each time loop is executed
+			            var humanize = Math.round(Math.random() * (100 - 30)) + this.backSpeed;
+			            var self = this;
+
+			            self.timeout = setTimeout(function() {
+
+			                // ----- this part is optional ----- //
+			                // check string array position
+			                // on the first string, only delete one word
+			                // the stopNum actually represents the amount of chars to
+			                // keep in the current string. In my case it's 14.
+			                // if (self.arrayPos == 1){
+			                //  self.stopNum = 14;
+			                // }
+			                //every other time, delete the whole typed string
+			                // else{
+			                //  self.stopNum = 0;
+			                // }
+
+			                if (self.contentType === 'html') {
+			                    // skip over html tags while backspacing
+			                    if (curString.substr(curStrPos).charAt(0) === '>') {
+			                        var tag = '';
+			                        while (curString.substr(curStrPos).charAt(0) !== '<') {
+			                            tag -= curString.substr(curStrPos).charAt(0);
+			                            curStrPos--;
+			                        }
+			                        curStrPos--;
+			                        tag += '<';
+			                    }
+			                }
+
+			                // ----- continue important stuff ----- //
+			                // replace text with base text + typed characters
+			                var nextString = curString.substr(0, curStrPos);
+			                if (self.attr) {
+			                    self.el.attr(self.attr, nextString);
+			                } else {
+			                    if (self.isInput) {
+			                        self.el.val(nextString);
+			                    } else if (self.contentType === 'html') {
+			                        self.el.html(nextString);
+			                    } else {
+			                        self.el.text(nextString);
+			                    }
+			                }
+
+			                // if the number (id of character in current string) is
+			                // less than the stop number, keep going
+			                if (curStrPos > self.stopNum) {
+			                    // subtract characters one by one
+			                    curStrPos--;
+			                    // loop the function
+			                    self.backspace(curString, curStrPos);
+			                }
+			                // if the stop number has been reached, increase
+			                // array position to next string
+			                else if (curStrPos <= self.stopNum) {
+			                    self.arrayPos++;
+
+			                    if (self.arrayPos === self.strings.length) {
+			                        self.arrayPos = 0;
+
+			                        // Shuffle sequence again
+			                        if(self.shuffle) self.sequence = self.shuffleArray(self.sequence);
+
+			                        self.init();
+			                    } else
+			                        self.typewrite(self.strings[self.sequence[self.arrayPos]], curStrPos);
+			                }
+
+			                // humanized value for typing
+			            }, humanize);
+
+			        }
+			        /**
+			         * Shuffles the numbers in the given array.
+			         * @param {Array} array
+			         * @returns {Array}
+			         */
+			        ,shuffleArray: function(array) {
+			            var tmp, current, top = array.length;
+			            if(top) while(--top) {
+			                current = Math.floor(Math.random() * (top + 1));
+			                tmp = array[current];
+			                array[current] = array[top];
+			                array[top] = tmp;
+			            }
+			            return array;
+			        }
+
+			        // Reset and rebuild the element
+			        ,
+			        reset: function() {
+			            var self = this;
+			            clearInterval(self.timeout);
+			            var id = this.el.attr('id');
+			            this.el.after('<span id="' + id + '"/>')
+			            this.el.remove();
+			            if (typeof this.cursor !== 'undefined') {
+			                this.cursor.remove();
+			            }
+			            // Send the callback
+			            self.options.resetCallback();
+			        }
+
+			    };
+
+			    $.fn.typed = function(option) {
+			        return this.each(function() {
+			            var $this = $(this),
+			                data = $this.data('typed'),
+			                options = typeof option == 'object' && option;
+			            if (!data) $this.data('typed', (data = new Typed(this, options)));
+			            if (typeof option == 'string') data[option]();
+			        });
+			    };
+
+			    $.fn.typed.defaults = {
+			        strings: ["These are the default values...", "You know what you should do?", "Use your own!", "Have a great day!"],
+			        stringsElement: null,
+			        // typing speed
+			        typeSpeed: 0,
+			        // time before typing starts
+			        startDelay: 0,
+			        // backspacing speed
+			        backSpeed: 0,
+			        // shuffle the strings
+			        shuffle: false,
+			        // time before backspacing
+			        backDelay: 500,
+			        // loop
+			        loop: false,
+			        // false = infinite
+			        loopCount: false,
+			        // show cursor
+			        showCursor: true,
+			        // character for cursor
+			        cursorChar: "<span class='cursor'>|</span>",
+			        // attribute to type (null == text)
+			        attr: null,
+			        // either html or text
+			        contentType: 'html',
+			        // call when done callback function
+			        callback: function() {},
+			        // starting callback function before each string
+			        preStringTyped: function() {},
+			        //callback for every typed string
+			        onStringTyped: function() {},
+			        // callback for reset
+			        resetCallback: function() {}
+			    };
+
+
+			}(window.jQuery);
+
+			/*
+			* rwdImageMaps jQuery plugin v1.5
+			*
+			* Allows image maps to be used in a responsive design by recalculating the area coordinates to match the actual image size on load and window.resize
+			*
+			* Copyright (c) 2013 Matt Stow
+			* https://github.com/stowball/jQuery-rwdImageMaps
+			* http://mattstow.com
+			* Licensed under the MIT license
+			*/
+			;(function(a){a.fn.rwdImageMaps=function(){var c=this;var b=function(){c.each(function(){if(typeof(a(this).attr("usemap"))=="undefined"){return}var e=this,d=a(e);a("<img />").load(function(){var g="width",m="height",n=d.attr(g),j=d.attr(m);if(!n||!j){var o=new Image();o.src=d.attr("src");if(!n){n=o.width}if(!j){j=o.height}}var f=d.width()/100,k=d.height()/100,i=d.attr("usemap").replace("#",""),l="coords";a('map[name="'+i+'"]').find("area").each(function(){var r=a(this);if(!r.data(l)){r.data(l,r.attr(l))}var q=r.data(l).split(","),p=new Array(q.length);for(var h=0;h<p.length;++h){if(h%2===0){p[h]=parseInt(((q[h]/n)*100)*f)}else{p[h]=parseInt(((q[h]/j)*100)*k)}}r.attr(l,p.toString())})}).attr("src",d.attr("src"))})};a(window).resize(b).trigger("resize");return this}})(jQuery);
+
+
+			  $(function(){
+			      $("#quote").typed({
+			        strings: ['Hiiii', 'Hello.^1000 <br>This is Jiyun.'],
+			        typeSpeed: 50,
+			        backSpeed: 0,
+			        startDelay: 1000,
+			        loop: false,
+			      });
+			  });
         </script>
 
         <!-- Google Analytics -->
@@ -251,7 +596,5 @@
           ga('send', 'pageview');
 
         </script>
-
     </body>
-
 </html>

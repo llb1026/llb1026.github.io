@@ -32,68 +32,55 @@
         <div class="tw-preloader">
             <div data-uk-spinner></div>
         </div>
-        <div class="header-container tw-header">
-            <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
+        
+        <div class="header-container tw-header tw-header-minimal tw-header-transparent uk-dark">
+
+            <nav class="uk-navbar-container" data-uk-navbar>
                 <div class="uk-navbar-left">
                     <div class="tw-logo">
                         <h3 class="site-name">
-                            <a href="../index">JIYUN.ME</a>
+                            <a href="https://jiyun.me">JIYUN.ME</a>
                         </h3>
                     </div>
                 </div>
-        
-                <div class="uk-navbar-center">
-                    <ul class="tw-main-menu uk-visible@m">
-                        <li class="menu-item">
-                            <a href="../index">Home</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="../about">About</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="../works">Works</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="../blog">Blog</a>
-                        </li>
-                    </ul>
-                </div>
-
                 <div class="uk-navbar-right">
                     <div class="tw-header-meta">
-                        <a class="mobile-menu uk-navbar-toggle uk-hidden@m" href="#" data-uk-toggle="target: #mobile-menu-modal"><i class="ion-navicon-round"></i></a>
+                        <div class="mobile-menu" data-uk-toggle="target: #mobile-menu-push"><i class="ion-navicon-round"></i><i class="uk-dark uk-close uk-icon" data-uk-close></i></div>
                     </div>
                 </div>
+            </nav>
 
-                <div id="mobile-menu-modal" class="uk-modal-full" data-uk-modal>
-                    <div class="uk-modal-dialog">
-                        <button class="uk-modal-close-full" type="button" data-uk-close></button>
-                        <div class="uk-light uk-height-viewport tw-mobile-modal uk-flex uk-flex-middle uk-flex-center" data-uk-scrollspy="target:>ul>li,>div>a; cls:uk-animation-slide-bottom-medium; delay: 150;">
-                            <ul class="uk-nav-default" data-uk-nav>
-                                <li class="uk-nav-default">
-                                    <a href="../index">Home</a>
+            <div id="mobile-menu-push" data-uk-offcanvas="mode: slide; overlay: false; flip: true">
+                <div class="uk-offcanvas-bar">
+
+                    <div class="header-container tw-header tw-header-sidebar uk-dark uk-height-viewport">
+
+                        <div class="tw-header-top">
+                            <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                                <li><a href="https://jiyun.me">HOME</a></li>
+                                <li class="uk-parent">
+                                    <a href="#">Works</a>
+                                    <ul class="uk-nav-sub">
+                                        <li><a href="#">Webnovel-live</a></li>
+                                        <li><a href="#">The Chamber</a></li>
+                                        <li><a href="#">SG-Market</a></li>
+                                        <li><a href="#">음대생메이커</a></li>
+                                    </ul>
                                 </li>
-                                <li class="uk-nav-default">
-                                    <a href="../about">About</a>
-                                </li>
-                                <li class="uk-nav-default">
-                                    <a href="../works">Works</a>
-                                </li>
-                                <li class="uk-nav-default">
-                                    <a href="../blog">Blog</a>
+                                <li class="uk-parent">
+                                    <a href="#">Blog</a>
+                                    <ul class="uk-nav-sub">
+                                        <li><a href="https://jiyun.me/blog/01-WebRTC-Intro">WebRTC 개요</a></li>
+                                    </ul>
                                 </li>
                             </ul>
-
-                            <div class="tw-socials tw-socials-minimal">
-                                <a href="https://www.facebook.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-facebook"></i></a>
-                                <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
 
-            </nav>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         <!-- NavBar End -->
         
@@ -130,7 +117,7 @@
                                         <!-- Image Slide End -->
 
                                     	<h3>1. WebRTC 소개</h3>
-                                            <p>WebRTC에서 RTC는 실시간 통신<sup>Real Time Communication</sup>의 약자로, 이름에서 알 수 있듯이 WebRTC는 <span class="tw-element tw-highlight" data-uk-scrollspy="cls:uk-animation-fade; delay: 200">브라우저 간의 오디오, 비디오, 데이터의 실시간 P2P 커뮤니케이션을 가능하게 해주는 오픈소스 프로젝트</span>입니다. 현재 Chrome, Firefox, Opera 브라우저에서 가능하며 Edge에서는 조금 다른 형태의 ORTC를 지원하고 있습니다. 아직 Safari에서는 지원하고 있지 않습니다.</p>
+                                            <p>WebRTC에서 RTC는 실시간 통신<sup>Real Time Communication</sup>의 약자로, 이름에서 알 수 있듯이 WebRTC는 <span class="tw-element tw-highlight" data-uk-scrollspy="cls:uk-animation-fade; delay: 200">별도의 플러그인이나 프로그램 설치 없이 브라우저 간의 오디오, 비디오, 데이터의 실시간 P2P 커뮤니케이션을 가능하게 해주는 오픈소스 프로젝트</span>입니다. 현재 Chrome, Firefox, Opera 브라우저에서 가능하며 Edge에서는 조금 다른 형태의 ORTC를 지원하고 있습니다. 아직 Safari에서는 지원하고 있지 않습니다.</p>
                                         <br>
 
                                         <h3>2. 시그널링<sup>Signalling</sup></h3>
