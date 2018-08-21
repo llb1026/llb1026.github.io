@@ -1,213 +1,289 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Document title -->
-    <title>DEMO</title>
-    <!-- Stylesheets & Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
-    <link href="css/plugins.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>DEMO</title>
+
 </head>
 
-<body>
+<body class="stretched">
 
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
 
-        <!-- Header -->
-        <header id="header" class="header-transparent header-fullwidth">
-            <div id="header-wrap">
-                <div class="container">
-                    <!--Logo-->
-                    <div id="logo">
-                        <a href="index" class="logo" data-dark-logo="images/logo.png">
-                            <img src="images/logo.png" alt="Polo Logo">
-                        </a>
-                    </div>
-                    <!--End: Logo-->
+			<div id="header-wrap">
 
-                    <!--Navigation Resposnive Trigger-->
-                    <div id="mainMenu-trigger">
-                        <button class="lines-button x"> <span class="lines"></span> </button>
-                    </div>
-                    <!--end: Navigation Resposnive Trigger-->
+				<div class="container clearfix">
 
-                    <!--Navigation-->
-                    <div id="mainMenu" class="light">
-                        <div class="container">
-                            <nav>
-                                <ul>
-                                    <li><a href="portfolio">Portfolio</a></li>
-                                    <li><a class="btn btn-light btn-outline btn-rounded btn-primary text-small" href="contact">견적문의</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!--end: Navigation-->
-                </div>
-            </div>
-        </header>
-        <!-- end: Header -->
-        
-        <!-- SECTION IMAGE FULLSCREEN -->
-		<section class="fullscreen background-overlay-light" data-vide-bg="video/create/create" data-vide-options="position: 0% 50%">
-            <div class="container-fluid">
-                <div class="container-fullscreen">
-                    <div class="text-middle text-center" data-animation="fadeIn">
-                        <h2 class="text-medium m-t-0">영상제작사 중개 네트워크</h2>
-                        <h3 class="m-b-0">관련 설명이 들어갑니다 <br/> 예상 2~3줄</h3>
-                        <br /><br />
-                        <a class="btn btn-dark btn-outline text-small" href="contact">견적문의</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-		<!-- end: SECTION IMAGE FULLSCREEN -->
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+					
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="assets/image/logo/logo-dark.png"><img src="assets/image/logo/logo.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="assets/image/logo/logo-dark@2x.png"><img src="assets/image/logo/logo@2x.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
 
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu" class="style-4">
 
-		<!-- About us -->
-        <section class="p-b-0">
-            <div class="container">
-                <div class="heading heading-center m-b-40" data-animation="fadeInUp">
-                    <h2 class="text-bold">저희는 이런 일을 합니다.</h2>
-                    <span class="lead">클라이언트의 니즈에 맞춰 최적의 영상사를 찾아줍니다.</span>
-                </div>
-                <div class="row" data-animation="fadeInUp">
-                    <div class="col-md-12">
-                        <img class="img-responsive" src="images/responsive-wireframe-1.jpg" alt="Welcome to POLO">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end: About us -->
+						<ul>
+							<li><a href="portfolio.html"><div>Portfolio</div></a></li>
+							<li class="ask"><a href="contact.html"><div>문의하기</div></a></li>
+						</ul>
 
-        <!-- Text Boxes -->
-        <section class="no-padding equalize" data-equalize-item=".text-box">
-            <div class="row col-no-margin">
-                <!--Box 1-->
-                <div class="col-md-3" style="background-color: #e8e8e8;">
-                    <div class="text-box hover-effect text-dark">
-                        <a href="#"> <i class="fa fa-diamond"></i>
-                            <h3 class="text-bold">품질관리</h3>
-                            <p>확실한 포트폴리오와 리뷰를 통해 검증된 제작사와 작업하세요.</p>
-                        </a>
-                    </div>
-                </div>
-                <!--End: Box 1-->
-                <!--Box 2-->
-                <div class="col-md-3" style="background-color: #d6d6d6;">
-                    <div class="text-box hover-effect text-dark">
-                        <a href="#"> <i class="fa fa-cubes"></i>
-                            <h3 class="text-bold">간편한 프로세스</h3>
-                            <p>비렉트에서 계약에서 결제, 협업까지 필요한 모든 솔루션을 제공합니다.</p>
-                        </a>
-                    </div>
-                </div>
-                <!--End: Box 2-->
-                <!--Box 3-->
-                <div class="col-md-3" style="background-color: #c4c4c4;">
-                    <div class="text-box hover-effect text-dark">
-                        <a href="#"> <i class="fa fa-money"></i>
-                            <h3 class="text-bold">합리적인 비용</h3>
-                            <p>비렉트는 표준화된 투명한 가격 정책을 적용하고 있습니다.</p>
-                        </a>
-                    </div>
-                </div>
-                <!--End: Box 3-->
-                <!--Box 4-->
-                <div class="col-md-3" style="background-color: #adadad;">
-                    <div class="text-box hover-effect text-dark">
-                        <a href="#"> <i class="fa fa-clock-o"></i>
-                            <h3 class="text-bold">빠른 제작</h3>
-                            <p>비렉트 고유의 마켓플레이스를 통해 제작 기간을 단축하세요.</p>
-                        </a>
-                    </div>
-                </div>
-                <!--End: Box 4-->
-            </div>
-        </section>
-        <!-- end: Text Boxes -->
+					</nav><!-- #primary-menu end -->
 
-        <!-- CLIENTS -->
-        <section class="p-t-80">
-            <div class="container">
-                <div class="heading heading-center m-b-40" data-animation="fadeInUp">
-                    <h2 class="text-bold">이런 분들과 함께 합니다.</h2>
-                    <span class="lead">Our awesome clients we've had the pleasure to work with! </span>
-                </div>
-                <div class="carousel clients-carousel" data-items="6">
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/1.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/2.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/3.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/4.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/5.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/6.png"> </a>
-                    </div>
-                    <div>
-                        <a href="#"><img alt="" src="images/clients/7.png"> </a>
-                    </div>
-                </div>
-            </div>
+				</div>
 
-        </section>
-        <!-- end: CLIENTS -->
+			</div>
 
-		<!-- PARALLAX -->
-		<section class="p-t-80 p-b-40" data-parallax-image="images/pattern.png">
-            <div class="container">
-                <div class="heading heading-center m-b-40" data-animation="fadeInUp">
-                    <h2 class="text-bold">여러운 영상 제작, <br />쉽게 도와드리겠습니다.</h2>
-                    <span class="lead">Consectetur adipiscing elit. amam ipsum dolor sit amet.</span>
-                    <br /><br /><br />
-                    <a class="btn btn-dark btn-outline text-small" href="contact">견적문의</a>
-                </div>
-            </div>
-        </section>
-		<!-- end: PARALLAX -->
+		</header><!-- #header end -->
 
-		<!-- FOOTER -->
-        <footer class="footer-light" id="footer">
-            <div class="copyright-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <img src="images/logo.png" alt="Logo Footer">
-                        </div>
-                        <div class="col-xs-6 col-md-offset-6 col-md-3 text-right" style="padding-top: 1em"> 컨택포인트 내용 <br />전화번호 / 메일 / 주소 <br />사업자 등록 번호
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- end: FOOTER -->
+		<!-- Page Title
+		============================================= -->
 
-    </div>
-    <!-- end: Wrapper -->
+		<section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
 
-    <!-- Go to top button -->
-    <a id="goToTop"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a>
-    <!--Plugins-->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.js"></script>
+			<div class="slider-parallax-inner">
 
-    <!--Template functions-->
-    <script src="js/functions.js"></script>
+				<div class="swiper-container swiper-parent">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide dark">
+							<div class="container clearfix">
+								<div class="slider-caption slider-caption-center">
+									<h2 data-animate="fadeIn">국내 최고의 영상 전문가들의 네트워크</h2>
+									<p data-animate="fadeIn" data-delay="400">당신의 생각에 초점을 맞춘 영상 전문가들의 다양한 실무 경험으로<br />최고의 솔루션을 제안합니다.</p>
+									<br /><br />
+									<a data-animate="fadeIn" data-delay="1000" href="#" class="button button-rounded button-reveal button-xlarge button-white button-light tright"><i class="icon-line-arrow-right"></i><span>견적문의</span></a>
+								</div>
+							</div>
+							<div class="video-wrap">
+								<video poster="assets/video/create.jpg" preload="auto" loop autoplay muted>
+									<source src='assets/video/create.mp4' type='video/mp4' />
+									<source src='assets/video/create.webm' type='video/webm' />
+								</video>
+								<div class="video-overlay" style="background-color: rgba(150, 150, 150, 0.45);"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<!-- Start: Service Introduction -->
+				<div class="container clearfix">
+
+					<div class="heading-block center">
+						<h2>서비스 소개</h2>
+					</div>
+
+					<div class="col_full">
+
+						<img data-animate="fadeIn" class="aligncenter" src="assets/image/macbook.png">
+
+					</div>
+
+					<div class="col_one_third nobottommargin">
+
+						<div class="feature-box fbox-plain">
+							<div class="fbox-icon">
+								<a href="#"><i class="i-alt">1.</i></a>
+							</div>
+							<h4>원하는 모든 것을 현업 최고의 전문가와 함께 만들어 나갑니다.</h4>
+						</div>
+
+					</div>
+
+					<div class="col_one_third nobottommargin">
+
+						<div class="feature-box fbox-plain">
+							<div class="fbox-icon">
+								<a href="#"><i class="i-alt">2.</i></a>
+							</div>
+							<h4>당신의 생각을 현실로 만들어 줄 전문가와 함께해보세요.</h4>
+						</div>
+
+					</div>
+
+					<div class="col_one_third nobottommargin col_last">
+
+						<div class="feature-box fbox-plain">
+							<div class="fbox-icon">
+								<a href="#"><i class="i-alt">3.</i></a>
+							</div>
+							<h4>다양한 분야의 전문 프로덕션과 기획으로 최상의 결과물을 제공합니다.</h4>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- End: Service Introduction -->
+
+				<div class="clear"></div>
+
+				<!-- Start: Service Strength -->
+				<div class="section parallax nobottommargin nobottomborder" style="background-color: #F5F5F5" data-stellar-background-ratio="0.3">
+
+					<div class="container clearfix">
+
+						<div class="heading-block center">
+							<h2>서비스 장점</h2>
+						</div>
+
+						<div class="col_one_third">
+							<div class="feature-box fbox-large fbox-outline fbox-dark fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i class="icon-screen i-alt"></i></a>
+								</div>
+								<h3>검증된 프로덕션</h3>
+								<p>다양한 분야에 특화되었고 수많은 포트폴리오를 보유한 프로덕션이 전담하여 제작합니다.</p>
+							</div>
+						</div>
+
+						<div class="col_one_third">
+							<div class="feature-box fbox-large fbox-outline fbox-dark fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i class="icon-clock i-alt"></i></a>
+								</div>
+								<h3>간편화된 프로세스</h3>
+								<p>영상제작사와 직접 커뮤니케이션을 통해 많은 시간과 비용을 절감할 수 있습니다.</p>
+							</div>
+						</div>
+
+						<div class="col_one_third col_last">
+							<div class="feature-box fbox-large fbox-outline fbox-dark fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i class="icon-thumbs-up i-alt"></i></a>
+								</div>
+								<h3>최상의 서비스</h3>
+								<p>예산 대비 최적의 결과를 이끌어 낼 수 있습니다.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End: Service Strength -->
+
+				<div class="clear"></div>
+
+				<!-- Start: Clients -->
+				<div class="section notopborder topmargin-sm bottommargin-sm noborder nobg">
+
+					<div class="container clearfix">
+
+						<div class="heading-block center">
+							<h2>저희는 이런 분들과 함께 합니다</h2>
+						</div>
+
+						<div id="oc-clients" class="section nobgcolor notopmargin owl-carousel owl-carousel-full image-carousel footer-stick carousel-widget" data-margin="80" data-loop="true" data-nav="true" data-autoplay="5000" data-pagi="false" data-items-xxs="2" data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/1.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/2.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/3.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/4.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/5.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/6.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/7.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/8.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/9.png" alt="Clients"></a></div>
+							<div class="oc-item"><a href="#"><img src="assets/image/clients/10.png" alt="Clients"></a></div>
+
+						</div>
+					</div>
+				</div>
+				<!-- End: Clients -->
+
+				<!-- Start: Final Promotion -->
+				<div class="section parallax notopmargin nobottommargin noborder" style="background: url('assets/image/parallax/blur2.jpg');">
+
+					<div class="container clearfix">
+
+						<div class="center" data-animate="fadeInUp">
+							<h2>당신은 클릭만 하세요<br />당신의 상상 그대로 구현됩니다.</h2>
+							<p>가능할까? 라는 생각이 가능하게 됩니다.</p>
+							<a href="#" class="button button-border button-border-thin button-rounded button-large noleftmargin nobottommargin">서비스 소개 PDF</a>
+							<a href="contact.html" class="button button-border button-border-thin button-rounded button-large noleftmargin nobottommargin">견적문의</a>
+						</div>
+
+					</div>
+				</div>
+				<!-- End: Final Promotion -->
+
+			</div>
+
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark" style="background: url('assets/image/parallax/footer-bg.jpg');">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						<img src="assets/image/logo/footer-logo.png" alt="" class="footer-logo">
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="copyrights-menu copyright-links fright clearfix">
+							전화번호 / 메일 / 주소<br />사업자등록번호
+						</div>
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="js/functions.js"></script>
 
 </body>
-
 </html>

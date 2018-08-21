@@ -1,172 +1,269 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Document title -->
-    <title>DEMO</title>
-    <!-- Stylesheets & Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
-    <link href="css/plugins.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+	
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<link rel="stylesheet" href="css/datepicker.css" type="text/css" />
+	<link rel="stylesheet" href="css/radio-checkbox.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>DEMO</title>
+
 </head>
 
-<body>
+<body class="stretched">
 
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
 
-        <!-- Header -->
-        <header id="header" class="header-transparent header-fullwidth">
-            <div id="header-wrap">
-                <div class="container">
-                    <!--Logo-->
-                    <div id="logo">
-                        <a href="index" class="logo" data-dark-logo="images/logo.png">
-                            <img src="images/logo.png" alt="Polo Logo">
-                        </a>
-                    </div>
-                    <!--End: Logo-->
+			<div id="header-wrap">
 
-                    <!--Navigation Resposnive Trigger-->
-                    <div id="mainMenu-trigger">
-                        <button class="lines-button x"> <span class="lines"></span> </button>
-                    </div>
-                    <!--end: Navigation Resposnive Trigger-->
+				<div class="container clearfix">
 
-                    <!--Navigation-->
-                    <div id="mainMenu" class="light">
-                        <div class="container">
-                            <nav>
-                                <ul>
-                                    <li><a href="portfolio">Portfolio</a></li>
-                                    <li><a class="btn btn-light btn-outline btn-rounded btn-primary text-small" href="contact">견적문의</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!--end: Navigation-->
-                </div>
-            </div>
-        </header>
-        <!-- end: Header -->
-        
-        <!-- Page title -->
-        <section class="background-overlay-light" id="page-title" data-parallax-image="images/meeting.jpg">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="text-medium">영상제작, 쉽고 빠르게 도와드리겠습니다</h2>
-                </div>
-            </div>
-        </section>
-        <!-- end: Page title -->
-        
-        <!-- CONTENT -->
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="m-t-30">
-                            <form class="widget-contact-form" action="include/contact-form.php" role="form" method="post">
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="corp">회사명</label>
-                                        <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="회사명을 입력해주세요">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="name">이름</label>
-                                        <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="이름을 입력해주세요">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="phone">연락처</label>
-                                        <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="연락처를 입력해주세요">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="email">이메일</label>
-                                        <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="이메일을 입력해주세요">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="message">영상 내용을 알려주세요</label>
-                                    <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="영상 내용을 입력해주세요"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <label for="money">예상 제작 예산을 알려주세요</label>
-                                        <input type="number" name="widget-contact-form-money" class="form-control required" placeholder="숫자만 입력해주세요">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <label for="date">영상 제작 시한을 알려주세요</label>
-                                        <div class="radio">
-                                            <label style="margin-right: 1em"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 정해진 기한 없음 </label>
-                                            <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 정해진 기한 있음&nbsp;&nbsp;
-                                                <input type="date"> 
-                                            </label>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn btn-default" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
-                            </form>
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="text-center" style="padding: 3em 0 0 3em">
-                                <blockquote class="blockquote-color text-light">
-                                    <p>The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it.</p>
-                                    <small>by <cite>Albert Einstein</cite></small>
-                                </blockquote>
-                                <h4 class="p-t-20">기타 문의사항은 아래 주소로 연락 바랍니다.</h4>
-                                <div class="col-md-6 col-md-offset-4 text-left">
-                                    <ul class="list-icon">
-                                        <li><i class="fa fa-phone"></i> (123) 456-7890 </li>
-                                        <li><i class="fa fa-envelope"></i> <a href="mailto:first.last@example.com">first.last@example.com</a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+					
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="assets/image/logo/logo-dark.png"><img src="assets/image/logo/logo.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="assets/image/logo/logo-dark@2x.png"><img src="assets/image/logo/logo@2x.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
 
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end: CONTENT -->
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu" class="style-4">
 
-		<!-- FOOTER -->
-        <footer class="footer-light" id="footer">
-            <div class="copyright-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <img src="images/logo.png" alt="Logo Footer">
-                        </div>
-                        <div class="col-xs-6 col-md-offset-6 col-md-3 text-right" style="padding-top: 1em"> 컨택포인트 내용 <br />전화번호 / 메일 / 주소 <br />사업자 등록 번호
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- end: FOOTER -->
+						<ul>
+							<li><a href="portfolio.html"><div>Portfolio</div></a></li>
+							<li class="ask"><a href="contact.html"><div>문의하기</div></a></li>
+						</ul>
 
-    </div>
-    <!-- end: Wrapper -->
+					</nav><!-- #primary-menu end -->
 
-    <!-- Go to top button -->
-    <a id="goToTop"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a>
-    <!--Plugins-->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.js"></script>
+				</div>
 
-    <!--Template functions-->
-    <script src="js/functions.js"></script>
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+
+		<section id="page-title" class="page-title-parallax page-title-dark page-title-custom" style="background-image: url('assets/image/parallax/9.jpg'); " data-stellar-background-ratio="0.2">
+
+			<div class="container clearfix center">
+				<h1>영상제작, 함께하면 어렵지 않아요</h1>
+				<span>당신의 생각 그대로, VIDEON</span>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Contact Form
+					============================================= -->
+					<div class="col_half">
+
+						<div class="fancy-title">
+							<h3>정보를 알려주세요</h3>
+						</div>
+
+						<div class="contact-widget">
+
+							<div class="contact-form-result"></div>
+
+							<form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php" method="post">
+
+								<div class="form-process"></div>
+
+								<div class="col_half">
+									<label for="template-contactform-name">회사명 <small>*</small></label>
+									<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+								</div>
+
+								<div class="col_half col_last">
+									<label for="template-contactform-name">이름 <small>*</small></label>
+									<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+								</div>
+
+								<div class="clear"></div>
+
+								<div class="col_half">
+									<label for="template-contactform-phone">연락처<small>*</small></label>
+									<input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control required" />
+								</div>
+
+								<div class="col_half col_last">
+									<label for="template-contactform-email">이메일 <small>*</small></label>
+									<input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+								</div>
+
+								<div class="clear"></div>
+
+								<div class="col_full">
+									<label for="template-contactform-message">영상 내용을 알려주세요<small>*</small></label>
+									<textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+								</div>
+
+								<div class="col_full">
+									<label for="template-contactform-subject">예상 제작 예산을 알려주세요<small>*</small></label>
+									<input type="text" id="template-contactform-subject" name="template-contactform-subject" value="" class="required sm-form-control" />
+								</div>
+
+								<div class="input-daterange travel-date-group">
+									<div class="col_two_third">
+										<label for="">영상 제작 시한을 알려주세요</label>
+										<div class="input-group">
+											<input type="text" value="" class="sm-form-control tleft default" placeholder="MM/DD/YYYY">
+											<span class="input-group-addon" style="padding: 9px 12px;"><i class="icon-calendar2"></i></span>
+										</div>
+									</div>
+									<div class="date_checkbox">
+										<input id="checkbox-10" class="checkbox-style" name="checkbox-10" type="checkbox">
+										<label for="checkbox-10" class="checkbox-style-3-label">정해진 기한 없음</label>
+									</div>
+								</div>
+
+								<div class="col_full hidden">
+									<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+								</div>
+
+								<div class="col_full">
+									<button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">메일 전송</button>
+								</div>
+
+							</form>
+						</div>
+
+					</div><!-- Contact Form End -->
+
+					<!-- Contact Info
+					============================================= -->
+					<div class="col_half col_last">
+						<div class="fancy-title">
+							<h3>&nbsp;</h3>
+						</div>
+
+						<div class="row">
+							<blockquote class="quote">
+								<p>언제나 최고의 성과물로 증명하는 000(이름)이 되겠습니다 이용해 주셔서 감사합니다.</p>
+							</blockquote>
+						</div>
+
+						<div class="row clear-bottommargin">
+
+							<div class="col_half">
+								<div class="feature-box fbox-effect">
+									<div class="fbox-icon">
+										<a href="#"><i class="icon-phone3 i-alt"></i></a>
+									</div>
+									<h3>Phone</h3>
+									<p>02-000-0000</p>
+								</div>
+							</div>
+
+							<div class="col_half col_last">
+								<div class="feature-box fbox-effect">
+									<div class="fbox-icon">
+										<a href="#"><i class="icon-envelope i-alt"></i></a>
+									</div>
+									<h3>Mail</h3>
+									<p>test@text.com</p>
+								</div>
+							</div>
+	
+						</div>
+
+					</div><!-- Contact Info End -->
+
+					<div class="clear"></div>
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark" style="background: url('assets/image/parallax/footer-bg.jpg');">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						<img src="assets/image/logo/footer-logo.png" alt="" class="footer-logo">
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="copyrights-menu copyright-links fright clearfix">
+							전화번호 / 메일 / 주소<br />사업자등록번호
+						</div>
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+
+	<!-- Date & Time Picker JS -->
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/datepicker.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('.travel-date-group .default').datepicker({
+				autoclose: true,
+				startDate: "today",
+			});
+
+		});
+
+	</script>
 
 </body>
-
 </html>
