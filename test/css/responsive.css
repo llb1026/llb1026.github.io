@@ -267,8 +267,8 @@
 	}
 
 	.postcontent,
-	.postcontent.bothsidebar,
-	.sidebar {
+	.postcontent.bothsidebar {
+	/* .sidebar { */
 		width: 100%;
 		margin-right: 0;
 		float: none !important;
@@ -276,6 +276,9 @@
 		padding-bottom: 40px;
 		border-bottom: 1px solid #EEE;
 	}
+
+	#sidebar { display: none !important; }
+	#sidebar-widgets-wrap { display: none !important; visibility: hidden !important }
 
 	.sidebar.col_last {
 		float: none;
@@ -612,7 +615,7 @@
 		position: absolute;
 		top: 0;
 		left: auto;
-		right: 15px;
+		right: 20px;
 		margin: 40px 0;
 		-webkit-transition: margin .4s ease;
 		-o-transition: margin .4s ease;
@@ -665,7 +668,7 @@
 
 	#top-search form input { font-size: 24px; }
 
-	#side-panel-trigger { right: 71px; }
+	/* #side-panel-trigger { right: 71px; } */
 
 	#top-account {
 		margin: 33px 0 32px;
@@ -1093,9 +1096,12 @@
 	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid),
 	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid) .swiper-slide { height: 400px !important; }
 
+	.sidebar,
 	.sidebar-widgets-wrap {
-		position: relative;
-		margin: 0 -38px -40px 0;
+		/* position: relative;
+		margin: 0 -38px -40px 0; */
+		display: none;
+		visibility: hidden;
 	}
 
 	.sidebar-widgets-wrap .widget {
@@ -1137,6 +1143,14 @@
 	h4 { font-size: 16px; }
 
 	.one-page-arrow { display: none !important; }
+
+	.sidebar,
+	.sidebar-widgets-wrap {
+		/* position: relative;
+		margin: 0 -38px -40px 0; */
+		display: none;
+		visibility: hidden;
+	}
 
 	#top-bar { height: auto; }
 
@@ -1202,9 +1216,9 @@
 	.col_four_fifth,
 	.col_one_sixth,
 	.col_five_sixth {
-		width: 100%;
-		margin-right: 0;
-		float: none;
+		width: 100% !important;
+		margin-right: 0 !important;
+		float: none !important;
 		margin-bottom: 50px !important;
 	}
 
@@ -1624,6 +1638,10 @@
 
 }
 
+@media (min-width: 992px) {
+	#side-panel-trigger { visibility: hidden; }
+}
+
 @media (max-width: 479px) {
 
 	.container,
@@ -1640,7 +1658,8 @@
 
 	#top-search form input { padding-right: 30px; }
 
-	#side-panel-trigger { right: 43px; }
+	/* #side-panel-trigger { right: 43px; } */
+	#side-panel-trigger { right: 20px; }
 
 	#top-account { right: 43px; }
 
