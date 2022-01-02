@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 2
 layout: post
 title: "de r geist, de r zeit"
 subtitle: "Independent Art Brand Website"
@@ -14,7 +14,7 @@ main-img: img/dergeistderzeit.png
 team: "1인 개발"
 tools: "HTML5, CSS3, JavaScript, AWS S3"
 date: "2017.04.29 - Current"
-link: http://dergeistderzeit.com/
+link: "http://dergeistderzeit.com/"
 carousels:
   - images: 
     - image: /projects/dergeistderzeit/img/dergeistderzeit-1.png

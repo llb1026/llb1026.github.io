@@ -1,0 +1,15 @@
+[
+null,
+{"id":1,"expanded":false,"name":"주인공의 방","order":1,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":2,"expanded":false,"name":"교실","order":2,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":3,"expanded":false,"name":"복도","order":3,"parentId":0,"scrollX":544,"scrollY":362.5},
+{"id":4,"expanded":true,"name":"주인공의 연습실","order":4,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":5,"expanded":false,"name":"레슨실","order":5,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":6,"expanded":true,"name":"박혜임교수 자택","order":6,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":7,"expanded":false,"name":"유현제교수 자택","order":7,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":8,"expanded":false,"name":"무대 대기실","order":8,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":9,"expanded":false,"name":"무대","order":9,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":10,"expanded":true,"name":"서한얼의 연습실","order":10,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":11,"expanded":true,"name":"변예지의 연습실","order":11,"parentId":0,"scrollX":424,"scrollY":323.5},
+{"id":12,"expanded":false,"name":"임나현의 연습실","order":12,"parentId":0,"scrollX":424,"scrollY":323.5}
+]

@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 3
 layout: post
 title: "음대생메이커"
 subtitle: "RPG Maker Web Game"
@@ -14,7 +14,7 @@ main-img: img/umme.png
 team: "1인 개발"
 tools: "JavaScript, RPG Maker MV"
 date: "2017.01.30 - 04.06"
-link: https://jiyun.me/game/
+link: "https://jiyun.me/game/"
 carousels:
   - images: 
     - image: /projects/umme/img/umme.png

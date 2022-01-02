@@ -1,0 +1,133 @@
+I"E<!-- Header Start -->
+<section class="uk-section uk-text-center uk-flex uk-flex-middle uk-flex-center uk-light uk-background-cover uk-background-top-center" data-overlay="0.3" style="background-color: #151515; background-image: url(/assets/img/bg6.jpg); height: 500px;">
+    <div class="tw-page-title-container tw-element">
+        <h1 class="tw-page-title uk-text-uppercase">Blog</h1>
+    </div>
+</section>
+<!-- Header End -->
+
+<section class="uk-section-normal">
+    <div class="uk-container uk-container-xsmall">
+        <div class="tw-element tw-portfolio tw-isotope-container" id="list" data-isotope-item=".portfolio-item">
+            <div class="tw-portfolio-filter uk-text-center uk-text-uppercase">
+                <ul class="uk-list">
+                    <li><span data-filter="*">All</span></li>
+                    <li><span data-filter=".tech-notes">Tech Notes</span></li>
+                    <li><span data-filter=".book-summary">Book Summary</span></li>
+                    <!-- <li><span data-filter=".etc">Etc</span></li> -->
+                </ul>
+            </div>
+            
+            <div class="isotope-container tw-element tw-blog minimal-blog" data-uk-scrollspy="target: &gt; .portfolio-item; cls:uk-animation-slide-bottom-small; delay: 300;">
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/mapstruct-intro/">Mapstruct를 써야 하는 이유</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>자주 쓰는 @Mapping 사용법 정리</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/transaction-and-lock/">트랜잭션 &amp; 락</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>@Version을 써봅시다!</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item book-summary">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Book Summary</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-microservice/">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>이건 샘플이야</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/spring-cloud-netflix/">Spring Cloud Netflix 간단정리</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/webrtc-intro/">WebRTC 개요</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>웹브라우저간의 실시간 통신을 가능하게 하는 WebRTC에 대한 간단한 정리</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                <div class="grid-sizer"></div>
+            </div>
+        </div>
+    </div>
+</section>
+:ET

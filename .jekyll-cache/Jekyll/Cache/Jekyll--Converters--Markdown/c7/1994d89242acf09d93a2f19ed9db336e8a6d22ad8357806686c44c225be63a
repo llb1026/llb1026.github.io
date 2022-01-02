@@ -1,0 +1,8 @@
+I"²<!-- Header Start -->
+<section class="uk-section uk-text-center uk-flex uk-flex-middle uk-flex-center uk-light uk-background-cover uk-background-top-center" data-overlay="0.3" style="background-color: #151515; background-image: url(/assets/img/bg3.jpg); height: 500px;">
+    <div class="tw-page-title-container tw-element">
+        <h1 class="tw-page-title uk-text-uppercase">Guest Book</h1>
+    </div>
+</section>
+<!-- Header End -->
+:ET
