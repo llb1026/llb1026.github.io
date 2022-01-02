@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<div class="main-container">
+
+    {% if page.projects == true %}
+        {% include projects-content.html %}
+    {% else if page.blog == true %}
+        {% include blog-content.html %}
+    {% endif %}
+    
+</div>
+

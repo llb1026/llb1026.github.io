@@ -1,0 +1,23 @@
+<section class="uk-section-small uk-light uk-section-small uk-background-cover" data-overlay="0.5" style="background-color: #000; opacity: 0.7; border-top: 1px solid rgba(255, 255, 255, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+    <div class="uk-container uk-container-small">
+        <div class="uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
+            <div>
+                <div class="tw-element tw-box">
+                    <h4><span class="label-emoji">&#x1F4AA;</span>&nbsp; Skill sets</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="uk-section-small uk-light" style="opacity: 0.8;">
+    <div class="uk-container uk-container-small">
+        <div data-uk-grid>
+            <div class="uk-margin-top">
+                {% for skill in site.data.skill-set %}
+                <a class="uk-button uk-button-default uk-button-radius uk-margin-bottom">{{ skill.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

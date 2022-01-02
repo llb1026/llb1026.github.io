@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>트랜잭션 & 락</title>
+        
+    <!-- Post info -->
+
+    <meta property="og:site_name" content="JIYUN.ME">
+    <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="http://localhost:4000/blog/transaction-and-lock/" />
+    
+    <meta property="og:image" content="http://localhost:4000/blog/transaction-and-lock/img/transaction-001.jpeg">
+
+    <!-- title -->
+    <meta property="og:title" content="JIYUN.ME | 트랜잭션 & 락">
+    
+    <!-- description -->
+    <meta property="og:description" content="# 16. 트랜잭션과 락, 2차 캐시 ## 사전지식 트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야 한다..."/>
+        
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/uikit.min.css">
+    <link rel="stylesheet" href="/assets/css/uikit-width-ex.min.css">
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/js/prettify/skins/github2.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CLora:400,400i%7CShadows+Into+Light:400" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://jiyun.me/assets/img/favicon.ico">
+    
+</head>
+
+    
+    <body class="loading">
+        
+
+        <!-- NavBar Start -->
+        <div class="tw-preloader">
+            <div data-uk-spinner></div>
+        </div>
+
+        
+        <div class="header-container tw-header uk-dark">
+        
+        
+            <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
+
+                <!-- NavBar Left Logo Start -->
+                <div class="uk-navbar-left">
+                    <div class="tw-logo">
+                        <h3 class="site-name">
+                            <a href="/">JIYUN.ME</a>
+                        </h3>
+                    </div>
+                </div>
+                <!-- NavBar Left Logo End -->
+
+                <!-- NavBar Center Menu Start -->
+                <div class="uk-navbar-center">
+                    <ul class="tw-main-menu uk-visible@m">
+                        <li class="menu-item">
+                            <a href="/"  class="normal"  class="active">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/projects"  >Projects</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/blog"  class="active" >Blog</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/guestbook"  >Guestbook</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- NavBar Center Menu End -->
+
+                <!-- NavBar Right Menu Icon Start -->
+                <div class="uk-navbar-right">
+                    <div class="tw-header-meta">
+                        <a class="mobile-menu uk-navbar-toggle uk-hidden@m" href="#" data-uk-toggle="target: #mobile-menu-modal"><i class="ion-navicon-round"></i></a>
+                    </div>
+                </div>
+                <!-- NavBar Right Menu Icon End -->
+
+                <!-- NavBar Right Menu List Start -->
+                <div id="mobile-menu-modal" class="uk-modal-full" data-uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-full" type="button" data-uk-close></button>
+                        <div class="uk-light uk-height-viewport tw-mobile-modal uk-flex uk-flex-middle uk-flex-center" data-uk-scrollspy="target:>ul>li,>div>a; cls:uk-animation-slide-bottom-medium; delay: 150;">
+                            <ul class="uk-nav-default" data-uk-nav>
+                                <li class="uk-nav-default">
+                                    <a href="/"  class="normal"  class="active">Home</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="/projects"  >Projects</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="/blog"  class="active" >Blog</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="/guestbook"  >Guestbook</a>
+                                </li>
+                            </ul>
+
+                            <div class="tw-socials tw-socials-minimal">
+                                <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/jiyun-lee-b19a02153" target="_blank"><i class="uk-icon-button tw-margin fa fa-linkedin"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- NavBar Right Menu List End -->
+
+            </nav>
+        </div>
+        <!-- NavBar End -->
+    
+        <!-- Content Start -->
+        <main>
+            <div class="main-container">
+
+    
+        <section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
+    <div class="uk-container uk-container-small">
+        <div data-uk-grid>
+            <div class="content-area uk-width-expand">
+
+                <article class="single post">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>tech-notes</p>
+                        </div>
+                        <h2 class="entry-title post-title">
+                            <a href="#">트랜잭션 & 락</a>
+                        </h2>
+                        <div class="entry-date tw-meta">
+                            <span>@Version을 써봅시다!</span>
+                        </div>
+
+                        <!-- Blog Content Start -->
+                        <div class="post-article">
+
+                            <!-- Title Image Start -->
+                            <div class="entry-media uk-padding-small">
+                                <div class="tw-thumbnail" data-uk-lightbox>
+                                    <img src="img/transaction-001.jpeg" alt="" />
+                                    <div class="image-overlay">
+                                        <a href="img/transaction-001.jpeg"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Title Image End -->
+
+                            <!-- Scroll Spy TOC Start -->
+                            <div class="toc">
+                                <a href="#">&lt;맨 위로&gt;</a>
+                                <ul><li><a href="#16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</a><ul><li><a href="#사전지식">사전지식</a></li><li><a href="#트랜잭션과-격리-수준">트랜잭션과 격리 수준</a></li><li><a href="#낙관적-lock과-비관적-lock">낙관적 Lock과 비관적 Lock</a></li><li><a href="#version-소개">@Version 소개</a></li><li><a href="#2차-캐시">2차 캐시</a></li><li><a href="#appendix">Appendix</a></li></ul></li></ul>
+                            </div>
+                            <!-- Scroll Spy TOC End -->
+
+                            <h1 id="16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</h1>
+
+<h2 id="사전지식">사전지식</h2>
+<p>트랜잭션은 Atomicity(<em>원자성</em>), Consistency(<em>일관성</em>), Isolation(<em>독립성</em>), Durability(<em>지속성</em>)을 보장해야 한다.</p>
+
+<ul>
+  <li>원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야 한다 → 트랜잭션 안의 작업들이 부분적으로 실행되다가 중단되지 않는 것을 보장한다는 의미로, 예를 들어 ‘이체’라는 하나의 트랜잭션 안에서 송금만 성공하고 입금은 실패할 수 없어야 한다</li>
+  <li>일관성: 트랜잭션이 실행을 성공적으로 완료하면 언제나 일관성 있는 DB 상태를 유지해야 한다 → DB에서 정한 무결성 제약 조건을 항상 만족해야 하며, 예를 들어 무결성 제약이 ‘모든 계좌는 잔고가 있어야 한다’ 라면 이를 위반하는 트랜잭션은 중단된다</li>
+  <li>독립성: 동시에 실행되는 트랜잭션들이 서로의 연산 작업에 영향을 미치지 않도록 격리하는 것으로, 동시성과 관련된 성능 이슈로 인해 격리 수준을 별도로 설정해줄 수 있다 → 예를 들어 가장 엄격한 격리 수준(SERIALIZABLE)이 설정되어 있다면, ‘이체’ 트랜잭션이 진행되는 동안 다른 트랜잭션들(‘잔고 조회’, ‘출금’ 등)은 잔고 데이터에 접근할 수 없어 ‘이체’가 끝날 때까지 계속 기다려야 한다 (동시성X)</li>
+  <li>지속성: 트랜잭션이 성공적으로 끝나면 그 결과가 영원히 반영되어야 한다 → 중간에 시스템에 장애가 발생해도 DB 로그에 남은 트랜잭션들을 가지고 와서 장애 발생 전으로 되돌릴 수 있다 (트랜잭션은 로그에 모든 내역이 남은 후여야 commit 상태라고 할 수 있다)</li>
+</ul>
+
+<hr />
+
+<h2 id="트랜잭션과-격리-수준">트랜잭션과 격리 수준</h2>
+<p>격리 수준(Isolation level)은 동시에 여러 트랜잭션이 처리될 때 특정 트랜잭션이 다른 트랜잭션에서 변경/조회하고 있는 데이터를 볼 수 있도록 허용할지 말지를 결정하는 것이다.
+일반적으로 격리 수준과 동시성은 반비례 관계이다.</p>
+
+<ol>
+  <li>==READ UNCOMMITED==
+    <ul>
+      <li>하나의 트랜잭션에서 작업중인 변경 내용이 commit/rollback 되지 않은 상태에서도 다른 트랜잭션에서 보여진다 → DIRTY READ</li>
+      <li>데이터 정합성에 문제가 많아 RDBMS 표준에서는 격리 수준으로 인정하지 않고 있다</li>
+    </ul>
+  </li>
+  <li>==READ COMMITTED==
+    <ul>
+      <li>하나의 트랜잭션에서 작업중인 변경 내용이 commit/rollback 완료된 경우에만 다른 트랜잭션에서 보여진다</li>
+      <li>아직 commit/rollback 전이라면, 다른 트랜잭션은 undo[^REDO 영역에는 수행했던 모든 작업들이 순차적으로 기록되고, UNDO 영역에는 각 데이터 변경 작업이 일어나기 이전의 데이터들이 담긴다. DB에 장애가 발생했을 때에는 REDO를 사용해 복구하고, 작업 단위로 롤백하고자 할 때에는 UNDO를 사용한다.] 영역에 백업된 기존 값을 참조한다</li>
+      <li>Oracle DBMS에서 디폴트 격리 수준이다 (Shared Lock[^Exclusive Lock(= Write Lock)은 하나의 트랜잭션에서 데이터 변경 작업을 수행할 시 트랜잭션이 완료될 때까지 다른 트랜잭션이 해당 데이터를 읽고 쓰지 못하게 하고, Shared Lock(= Read Lock)은 트랜잭션이 완료될 때까지 다른 트랜잭션이 해당 데이터를 읽을 수만 있게 한다. 하나의 데이터에 Exclusive Lock이 걸리면 다른 트랜잭션이 해당 데이터에 또다른 Exclusive Lock이나 Shared Lock을 걸 수 없으나, 데이터에 Shared Lock이 걸리면 다른 트잭션은 해당 데이터에 또다른 Shared Lock을 걸 수 있다. 그러나 Shared Lock이 걸린 데이터에 Exclusive Lock을 거는 것은 불가능하다.] 사용)</li>
+      <li>하나의 트랜잭션에서 데이터를 조회중인데 다른 트랜잭션이 해당 데이터를 변경하고 commit하면 다시 해당 데이터를 조회했을 때 변경된 값이 조회되므로 데이터 정합성이 깨진다. 예를 들어, 앱에서 이체를 위해 계좌 잔고를 조회하는 도중 ATM으로 돈을 전부 이체했는데 앱에서는 여전히 이체가 가능한 문제가 발생한다 → NON-REPEATABLE READ[^REPEATABLE READ는 하나의 트랜잭션 안에서 동일한 SELECT문을 실행했을 때 항상 같은 결과를 가져오는 경우이다.]</li>
+      <li>NON-REPEATABLE READ는 하나의 트랜잭션에서 동일한 쿼리를 두 번 이상 실행했을 때 다른 결과값이 조회되는 경우로, DIRTY READ에 비해 비교적 발생할 확률이 적다</li>
+    </ul>
+  </li>
+  <li>==REPEATABLE READ==
+    <ul>
+      <li>READ COMMITTED와 달리, commit한 데이터만 접근할 수 있어 하나의 트랜잭션에서 한 번 조회한 데이터에 대해 여러 번 같은 조회 쿼리를 날려도 동일한 결과값이 나온다 → NON-REPEATABLE READ 발생하지 않음</li>
+      <li>READ COMMITTED와의 또다른 차이는 UNDO 영역에 기록된 이전 변경내역을 몇번째 이전 버전까지 찾아 들어가는지에 있음 → 데이터를 변경중인 트랜잭션 안에서 변경이 많아지고 종료되지 않으면 UNDO 영역이 무한정으로 커질 수 있고, 이로 인해 성능이 떨어질 수 있다</li>
+      <li>MySQL InnoDB에서 디폴트 격리 수준이다</li>
+      <li>Binary Log를 가진 MySQL DB에서는 최소 REPEATABLE READ 이상의 격리 수준을 사용해야 한다</li>
+      <li><code class="language-plaintext highlighter-rouge">SELECT ~ FOR UPDATE</code> 쿼리의 경우, 다른 트랜잭션에서 commit 하기 전에 수행한 변경 작업에 의해 데이터들이 보였다가 안보였다가 할 수 있다 → PHANTOM READ</li>
+      <li>PHANTOM READ는 UNDO 영역에 Lock을 걸 수 없으므로 트랜잭션 시작 전의 데이터가 아니라 UNDO 영역에 기록된 변경된 레코드 버전을 읽어오기 때문에 발생한다</li>
+    </ul>
+  </li>
+  <li>==SERIALIZABLE==
+    <ul>
+      <li>가장 엄격한 트랜잭션 격리 수준으로, 데이터 변경뿐만 아니라 조회 작업에도 Shared Lock이 필요하며 다른 트랜잭션이 해당 데이터를 변경할 수 없다</li>
+      <li>한 트랜잭션에서 읽고 쓰는 데이터를 다른 트랜잭션에서는 절대 접근할 수 없다 → 동시성 처리 성능 저하</li>
+    </ul>
+  </li>
+</ol>
+
+<p>격리 수준에 따라 발생하는 문제점들들을 다시 정리하면 다음과 같다.</p>
+
+<ul>
+  <li>==DIRTY READ==: 하나의 트랜잭션에서 변경된 데이터가 commit되기 이전에도 다른 트랜잭션에서 변경된 데이터에 접근할 수 있는 문제</li>
+  <li>==NON-REPEATABLE READ==: 하나의 트랜잭션에서 변경중인 데이터에 대해 Shared Lock을 획득한 다른 트랜잭션이 같은 조회 쿼리를 두 번 수행했는데 그 사이에 해당 데이터가 변경되어 처음 조회 결과값과 다른 결과값이 나올 수 있는 문제</li>
+  <li>==PHANTOM READ==: 하나의 트랜잭션에서 변경중인 데이터에 대해 Shared Lock을 획득한 다른 트랜잭션이 같은 쿼리를 두 번 수행했는데 그 사이에 신규로 삽입된 데이터에 의해 첫번째에서는 없던 데이터가 두번째에서 조회되는 문제</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">격리 수준</th>
+      <th style="text-align: center">DIRTY READ</th>
+      <th style="text-align: center">NON-REPEATABLE READ</th>
+      <th style="text-align: center">PHANTOM READ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">READ UNCOMMITTED</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">READ COMMITTED</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">REPEATABLE READ</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SERIALIZABLE</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="낙관적-lock과-비관적-lock">낙관적 Lock과 비관적 Lock</h2>
+<ul>
+  <li>낙관적 Lock
+    <ul>
+      <li>트랜잭션이 충돌 없이 수행될 것이라 가정하고, DB에서 제공하는 Lock이 아니라 JPA(어플리케이션)에서 제공하는 버전 관리 기능을 사용한다</li>
+      <li>예를 들어, 앱에서 이체하기 위해 잔고를 조회하는 중에도 ATM에서 전액 출금을 할 수 있으며, 출금이 진행된 이후에도 앱에서 동일한 트랜잭션으로 이체를 시도할 경우 어플리케이션 단에서 Exception을 발생시킬 수 있다</li>
+    </ul>
+  </li>
+  <li>비관적 Lock
+    <ul>
+      <li>트랜잭션에 충돌이 일어날 것을 가정하고 DB단에서 우선 Lock을 거는 방식으로, 대표적으로 <code class="language-plaintext highlighter-rouge">SELECT FOR UPDATE</code> 구문이 있다</li>
+      <li>그러나 SECOND LOST UPDATES 문제가 발생할 수 있다</li>
+      <li>예를 들어, 두 사람이 동시에 하나의 글을 수정할 때 마지막으로 수정완료 버튼을 누른 사람의 수정사항만 남고 먼저 수정완료한 사람의 데이터는 사라진다</li>
+      <li>SECOND LOST UPDATES 문제는 DB 트랜잭션의 범위를 넘어서므로, 다음과 같이 3가지 선택방법으로 해결해야 한다
+        <ol>
+          <li>마지막 commit만 인정 (default)</li>
+          <li>최초 commit만 인정</li>
+          <li>충돌하는 갱신 내용 병합</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="version-소개">@Version 소개</h2>
+<p>Entity에 <code class="language-plaintext highlighter-rouge">@Version</code> 어노테이션을 붙이면 Entity를 수정할 때마다 버전이 하나씩 자동으로 증가한다. 그래서 Entity를 수정할 때의 버전과 수정완료할 때의 버전이 다르면 Exception이 발생한다 (디폴트로 최초 commit만 인정)</p>
+
+<p><code class="language-plaintext highlighter-rouge">@Version</code>으로 추가한 버전 관리 필드는 JPA가 직접 관리하며, 임의로 수정할 수 없다.</p>
+
+<p>버전 값을 강제로 증가시키거나, 버전 관리 필드를 무시하는 Bulk 연산의 경우 JPA에서 제공하는 Lock을 사용해야 한다.</p>
+
+<p>JPA Lock의 종류는 아래와 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Lock Mode</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">낙관적 Lock</td>
+      <td style="text-align: left">OPTIMISTIC</td>
+      <td style="text-align: left">낙관적 Lock을 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">낙관적 Lock</td>
+      <td style="text-align: left">OPTIMISTIC_FORCE_INCREMENT</td>
+      <td style="text-align: left">낙관적 Lock을 사용하며 버전 정보를 강제로 증가</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 Lock</td>
+      <td style="text-align: left">PESSIMISTIC_READ</td>
+      <td style="text-align: left">비관적 Lock, Shared Lock을 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 Lock</td>
+      <td style="text-align: left">PESSIMISTIC_WRITE</td>
+      <td style="text-align: left">비관적 Lock, Exclusive Lock을 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">비관적 Lock</td>
+      <td style="text-align: left">PESSIMISTIC_FORCE_INCREMENT</td>
+      <td style="text-align: left">비관적 Lock을 사용하며 버전 정보를 강제로 증가</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">NONE</td>
+      <td style="text-align: left">Lock을 걸지 않는다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">READ</td>
+      <td style="text-align: left">OPTIMISTIC과 동일</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">기타</td>
+      <td style="text-align: left">WRITE</td>
+      <td style="text-align: left">OPTIMISTIC_FORCE_INCREMENT와 동일</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>JPA를 사용할 때에는 READ COMMITTED 격리 수준 + 낙관적 버전 관리를 적용하는 것이 일반적이다</p>
+</blockquote>
+
+<hr />
+
+<h2 id="2차-캐시">2차 캐시</h2>
+
+<hr />
+
+<div class="carousel__holder">
+    <div id="carousel0" class="carousel">
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0a" checked="checked" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0b" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0c" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0d" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0e" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0f" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0g" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0h" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0i" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0j" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0k" />
+        
+          <input class="carousel__activator" type="radio" name="carousel0" id="0l" />
+        
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0l"></label>
+              <label class="carousel__control carousel__control--forward" for="0b"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0a"></label>
+              <label class="carousel__control carousel__control--forward" for="0c"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0b"></label>
+              <label class="carousel__control carousel__control--forward" for="0d"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0c"></label>
+              <label class="carousel__control carousel__control--forward" for="0e"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0d"></label>
+              <label class="carousel__control carousel__control--forward" for="0f"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0e"></label>
+              <label class="carousel__control carousel__control--forward" for="0g"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0f"></label>
+              <label class="carousel__control carousel__control--forward" for="0h"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0g"></label>
+              <label class="carousel__control carousel__control--forward" for="0i"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0h"></label>
+              <label class="carousel__control carousel__control--forward" for="0j"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0i"></label>
+              <label class="carousel__control carousel__control--forward" for="0k"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0j"></label>
+              <label class="carousel__control carousel__control--forward" for="0l"></label>
+          </div>
+        
+          
+          
+          
+          
+          <div class="carousel__controls">
+              <label class="carousel__control carousel__control--backward" for="0k"></label>
+              <label class="carousel__control carousel__control--forward" for="0a"></label>
+          </div>
+        
+        <div class="carousel__track">
+          <!-- <ul> -->
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-001.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-002.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-003.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-004.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-005.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-006.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-007.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-008.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-009.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-010.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-011.jpeg');"></li>
+            
+            <li class="carousel__slide" style="background-image: url('/blog/transaction-and-lock/img/transaction-012.jpeg');"></li>
+            
+          <!-- </ul> -->
+        </div>
+        <div class="carousel__indicators">
+            
+              <label class="carousel__indicator" for="0a"></label>
+            
+              <label class="carousel__indicator" for="0b"></label>
+            
+              <label class="carousel__indicator" for="0c"></label>
+            
+              <label class="carousel__indicator" for="0d"></label>
+            
+              <label class="carousel__indicator" for="0e"></label>
+            
+              <label class="carousel__indicator" for="0f"></label>
+            
+              <label class="carousel__indicator" for="0g"></label>
+            
+              <label class="carousel__indicator" for="0h"></label>
+            
+              <label class="carousel__indicator" for="0i"></label>
+            
+              <label class="carousel__indicator" for="0j"></label>
+            
+              <label class="carousel__indicator" for="0k"></label>
+            
+              <label class="carousel__indicator" for="0l"></label>
+            
+        </div>
+    </div>
+</div>
+
+<style>
+.carousel__holder {width: 100%; position: relative; padding-bottom: 55%; margin: 1rem 0 1rem;}
+.carousel {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
+  padding: 0;
+}
+.carousel__controls,
+.carousel__activator {
+  display: none;
+}
+
+.carousel__activator:nth-of-type(1):checked ~ .carousel__track {
+  -webkit-transform: translateX(-000%);
+          transform: translateX(-000%);
+}
+.carousel__activator:nth-of-type(1):checked ~ .carousel__slide:nth-of-type(1) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(1):checked ~ .carousel__controls:nth-of-type(1) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(1):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(1) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(2):checked ~ .carousel__track {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+.carousel__activator:nth-of-type(2):checked ~ .carousel__slide:nth-of-type(2) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(2):checked ~ .carousel__controls:nth-of-type(2) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(2):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(2) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(3):checked ~ .carousel__track {
+  -webkit-transform: translateX(-200%);
+          transform: translateX(-200%);
+}
+.carousel__activator:nth-of-type(3):checked ~ .carousel__slide:nth-of-type(3) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(3):checked ~ .carousel__controls:nth-of-type(3) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(3):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(3) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(4):checked ~ .carousel__track {
+  -webkit-transform: translateX(-300%);
+          transform: translateX(-300%);
+}
+.carousel__activator:nth-of-type(4):checked ~ .carousel__slide:nth-of-type(4) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(4):checked ~ .carousel__controls:nth-of-type(4) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(4):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(4) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(5):checked ~ .carousel__track {
+  -webkit-transform: translateX(-400%);
+          transform: translateX(-400%);
+}
+.carousel__activator:nth-of-type(5):checked ~ .carousel__slide:nth-of-type(5) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(5):checked ~ .carousel__controls:nth-of-type(5) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(5):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(5) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(6):checked ~ .carousel__track {
+  -webkit-transform: translateX(-500%);
+          transform: translateX(-500%);
+}
+.carousel__activator:nth-of-type(6):checked ~ .carousel__slide:nth-of-type(6) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(6):checked ~ .carousel__controls:nth-of-type(6) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(6):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(6) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(7):checked ~ .carousel__track {
+  -webkit-transform: translateX(-600%);
+          transform: translateX(-600%);
+}
+.carousel__activator:nth-of-type(7):checked ~ .carousel__slide:nth-of-type(7) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(7):checked ~ .carousel__controls:nth-of-type(7) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(7):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(7) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(8):checked ~ .carousel__track {
+  -webkit-transform: translateX(-700%);
+          transform: translateX(-700%);
+}
+.carousel__activator:nth-of-type(8):checked ~ .carousel__slide:nth-of-type(8) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(8):checked ~ .carousel__controls:nth-of-type(8) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(8):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(8) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(9):checked ~ .carousel__track {
+  -webkit-transform: translateX(-800%);
+          transform: translateX(-800%);
+}
+.carousel__activator:nth-of-type(9):checked ~ .carousel__slide:nth-of-type(9) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(9):checked ~ .carousel__controls:nth-of-type(9) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(9):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(9) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(10):checked ~ .carousel__track {
+  -webkit-transform: translateX(-900%);
+          transform: translateX(-900%);
+}
+.carousel__activator:nth-of-type(10):checked ~ .carousel__slide:nth-of-type(10) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(10):checked ~ .carousel__controls:nth-of-type(10) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(10):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(10) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(11):checked ~ .carousel__track {
+  -webkit-transform: translateX(-1000%);
+          transform: translateX(-1000%);
+}
+.carousel__activator:nth-of-type(11):checked ~ .carousel__slide:nth-of-type(11) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(11):checked ~ .carousel__controls:nth-of-type(11) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(11):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(11) {
+  opacity: 1;
+}
+
+.carousel__activator:nth-of-type(12):checked ~ .carousel__track {
+  -webkit-transform: translateX(-1100%);
+          transform: translateX(-1100%);
+}
+.carousel__activator:nth-of-type(12):checked ~ .carousel__slide:nth-of-type(12) {
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.carousel__activator:nth-of-type(12):checked ~ .carousel__controls:nth-of-type(12) {
+  display: block;
+  opacity: 1;
+}
+.carousel__activator:nth-of-type(12):checked ~ .carousel__indicators .carousel__indicator:nth-of-type(12) {
+  opacity: 1;
+}
+
+
+.carousel__control {
+  height: 30px;
+  width: 30px;
+  margin-top: -15px;
+  top: 50%;
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  border-width: 5px 5px 0 0;
+  border-style: solid;
+  border-color: #dfdfdf;
+  opacity: 0.35;
+  /* opacity: 0.75; */
+  outline: 0;
+  z-index: 3;
+}
+.carousel__control:hover {
+  opacity: 0.75;
+}
+.carousel__control--backward {
+  left: 20px;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.carousel__control--forward {
+  right: 20px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.carousel__indicators {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+.carousel__indicator {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  display: inline-block;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.35;
+  margin: 0 2.5px 0 2.5px;
+}
+.carousel__indicator:hover {
+  opacity: 0.75;
+}
+.carousel__track {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: 10px 0;
+  transition: -webkit-transform 0.5s ease 0s;
+  transition: transform 0.5s ease 0s;
+  transition: transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s;
+}
+.carousel__track .carousel__slide {
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.carousel__track .carousel__slide:nth-of-type(1) {
+  -webkit-transform: translateX(000%);
+          transform: translateX(000%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(2) {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(3) {
+  -webkit-transform: translateX(200%);
+          transform: translateX(200%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(4) {
+  -webkit-transform: translateX(300%);
+          transform: translateX(300%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(5) {
+  -webkit-transform: translateX(400%);
+          transform: translateX(400%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(6) {
+  -webkit-transform: translateX(500%);
+          transform: translateX(500%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(7) {
+  -webkit-transform: translateX(600%);
+          transform: translateX(600%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(8) {
+  -webkit-transform: translateX(700%);
+          transform: translateX(700%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(9) {
+  -webkit-transform: translateX(800%);
+          transform: translateX(800%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(10) {
+  -webkit-transform: translateX(900%);
+          transform: translateX(900%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(11) {
+  -webkit-transform: translateX(1000%);
+          transform: translateX(1000%);
+}
+
+.carousel__track .carousel__slide:nth-of-type(12) {
+  -webkit-transform: translateX(1100%);
+          transform: translateX(1100%);
+}
+
+
+.carousel--scale .carousel__slide {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+.carousel__slide {
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+}
+.carousel__slide .overlay {height: 100%;}
+.carousel--thumb .carousel__indicator {
+  height: 30px;
+  width: 30px;
+}
+.carousel__indicator {
+  background-color: #fafafa;
+}
+
+.carousel__slide:nth-of-type(1),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(1) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(2),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(2) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(3),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(3) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(4),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(4) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(5),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(5) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(6),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(6) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(7),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(7) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(8),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(8) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(9),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(9) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(10),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(10) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(11),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(11) {
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel__slide:nth-of-type(12),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(12) {
+  background-size: cover;
+  background-position: center;
+}
+
+</style>
+
+<script>
+  function isVisible(el) {
+        while (el) {
+            if (el === document) {
+                return true;
+            }
+
+            var $style = window.getComputedStyle(el, null);
+
+            if (!el) {
+                return false;
+            } else if (!$style) {
+                return false;
+            } else if ($style.display === 'none') {
+                return false;
+            } else if ($style.visibility === 'hidden') {
+                return false;
+            } else if (+$style.opacity === 0) {
+                return false;
+            } else if (($style.display === 'block' || $style.display === 'inline-block') &&
+                $style.height === '0px' && $style.overflow === 'hidden') {
+                return false;
+            } else {
+                return $style.position === 'fixed' || isVisible(el.parentNode);
+            }
+        }
+  }
+  
+  setInterval(function(){
+    var j=0;
+    var elements = document.querySelectorAll('#carousel0 .carousel__control--forward');
+    for(i=(elements.length - 1);i>-1;i--) {
+      if(isVisible(elements[i])) j=i;
+    }
+    elements[j].click();
+  },20000);
+  
+</script>
+
+<blockquote>
+  <p>사내 스터디에서 발표했던 장표</p>
+</blockquote>
+
+<hr />
+
+<h2 id="appendix">Appendix</h2>
+<ul>
+  <li><a href="https://ko.wikipedia.org/wiki/ACID">위키백과 ACID</a></li>
+  <li><a href="https://hyunki1019.tistory.com/111">MySQL Isolation Level 종류 및 특징</a></li>
+  <li><a href="https://nesoy.github.io/articles/2019-05/Database-Transaction-isolation">트랜잭션의 격리 수준이란</a></li>
+</ul>
+
+
+                        </div>
+                        <!-- Blog Content Start -->
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pagination Start -->
+<section class="uk-section uk-section-small">
+    <div class="uk-container uk-container-small">
+        <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            <div class="nav-prev tw-meta">
+                <!-- <a href="4">
+                    <i class="ion-ios-arrow-left"></i>
+                    <span>Prev</span>
+                </a> -->
+            </div>
+            <div class="nav-link">
+                <a href="/blog">
+                    <i class="ion-grid"></i>
+                </a>
+            </div>
+            <div class="nav-next tw-meta">
+                <!-- <a href="">
+                    <span>Next</span>
+                    <i class="ion-ios-arrow-right"></i>
+                </a> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Pagination End -->
+
+
+<script>
+    function getTOCNodes(master) {
+        var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+        var tocNodes = nodes.filter(function(elem) {
+            return elem.tagName == "A";
+        });
+        return tocNodes;
+    }
+    function getHeaderNodes(master) {
+        var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+        var headerNodes = nodes.filter(function(elem) {
+            return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3";
+        });
+        return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+        if (window.scrollY >= articleY - 60) {
+            toc.style.cssText = "position: fixed; top: 60px;";
+        }
+        else {
+            toc.style.cssText = "";
+        }
+    
+        var current = headerNodes.filter(function(header) {
+            var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+            return window.scrollY >= headerY - 200;
+        });
+  
+        if (current.length > 0) {
+            current = current[current.length-1];
+    
+            var currentA = tocNodes.filter(function(tocNode) {
+                return tocNode.innerHTML == current.innerHTML;
+            })
+            
+            currentA = currentA[0];
+            if (currentA) {
+                if (before == undefined) before = currentA;
+        
+                if (before != currentA) {
+                    before.classList.remove("toc-active");
+                    before = currentA;
+                }
+        
+                currentA.classList.add("toc-active");
+            }
+            else {
+                if (before) 
+                    before.classList.remove("toc-active");
+            }
+        }
+        else {
+            if (before) 
+                before.classList.remove("toc-active");
+        }
+    }, false);
+</script>
+
+    
+    
+</div>
+
+
+        </main>
+        <!-- Content End -->
+      
+        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
+    <div class="footer-area footer-small">
+        <div class="uk-container">
+            <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>
+                <div class="tw-element tw-socials tw-no-bg with-hover">
+                    <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/jiyun-lee-b19a02153" target="_blank"><i class="uk-icon-button tw-margin fa fa-linkedin"></i></a>
+                </div>
+                <div class="uk-text-center copyright">
+                    © JIYUN.ME
+                </div>
+                <div class="uk-text-right">
+                    <a href="" data-uk-scroll>Top &nbsp;&nbsp;<i class="ion-ios-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+   
+        <script src="/assets/js/jquery-3.2.0.min.js"></script>
+        <script src="/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="/assets/js/uikit.min.js"></script>
+        <script src="/assets/js/uikit-icons.min.js"></script>
+        <script src="/assets/js/isotope.pkgd.min.js"></script>
+        <script src="/assets/js/owl.carousel.min.js"></script>
+        <script src="/assets/js/theme.js"></script>
+        
+
+        <!-- Google Analytics Start -->
+
+        <!-- Google Analytics End -->
+
+    </body>
+</html>

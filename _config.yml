@@ -1,0 +1,36 @@
+# Setup
+title:          JIYUN.ME
+baseurl:        ""
+url:            "https://jiyun.me"
+
+# Assets
+assets:
+  sources:
+    - assets/css
+    - assets/img
+    - assets/js
+    - assets/fonts
+  compress:
+    css:  true
+    js:   uglifier
+
+# Build settings
+markdown:       kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Permalinks
+permalink:      /:year-:month-:day/:title
+
+# About
+author:
+  name:         JIYUN LEE
+  url:          https://jiyun.me
+  email:        dlwldbs1026@gmail.com
+  github:       llb1026
+
+# Custom vars
+version:        1.0.0
+github:
+  repo:         https://github.com/llb1026/llb1026.github.io

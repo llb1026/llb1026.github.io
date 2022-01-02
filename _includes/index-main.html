@@ -1,0 +1,41 @@
+<style>
+    .img-src {
+        position: fixed;
+        background-position: center;
+        -webkit-background-size: cover;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+    .blurred-img { opacity: 0; }
+</style>
+
+<!-- Main Header Start -->
+<div class="main-container">
+
+    <div class="img-src" style="background-image:url({{ page.header-img }})"></div>
+    <div class="img-src blur" style="background-image:url({{ page.header-blur-img }})"></div>
+
+    <section class="tw-slider tw-slider-fullscreen uk-light" data-uk-height-viewport="offset-top: true">
+        <div class="owl-theme">
+            <div class="slider-item" data-overlay="0.4" data-uk-height-viewport="offset-top: true">
+                <div class="slider-content">
+                    <div class="tw-element uk-text-center tw-heading full" data-uk-scrollspy="target: > *; cls:uk-animation-slide-bottom-medium; delay: 400;">
+                        <h4 class="tw-sub-title"> </h4>
+                        <div class="typing-animation">
+                            <span id="quote" style="font-family: 'Inconsolata', monospace; font-size: 48px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include work-list.html %}
+    {% include activity-list.html %}
+    {% include skill-list.html %}
+
+</div>
+<!-- Main Header End -->

@@ -1,0 +1,74 @@
+<section class="uk-section-small uk-light uk-section-small uk-background-cover" data-overlay="0.5" style="background-color: #000; opacity: 0.7; border-top: 1px solid rgba(255, 255, 255, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+    <div class="uk-container uk-container-small">
+        <div class="uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
+            <div>
+                <div class="tw-element tw-box">
+                    <h4><span class="label-emoji">&#x1F64B;</span>&nbsp; Participated in...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="uk-section-small uk-padding-remove-vertical uk-light" style="opacity: 0.8;">
+    <div class="uk-container uk-container-small">
+        <div data-uk-grid>
+            <div class="uk-width-1-1" data-uk-scrollspy="target: > div > .tw-timeline-block; cls:uk-animation-slide-top; delay: 300">
+                <div class="tw-timeline-container style-2 large">
+
+                    {% for item in site.data.activity-list.third-place %}
+                    <div class="tw-timeline-block">
+                        <div class="tw-timeline-info">
+                            <div class="tw-element tw-heading">
+                                <h4 class="letter-spacing">
+                                    {{ item.date }}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="tw-timeline-circle"></div>
+                        <div class="tw-timeline-content">
+                            <h3 class="uk-text-uppercase">{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for item in site.data.activity-list.second-place %}
+                    <div class="tw-timeline-block">
+                        <div class="tw-timeline-info">
+                            <div class="tw-element tw-heading">
+                                <h4 class="letter-spacing">
+                                    {{ item.date }}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="tw-timeline-circle"></div>
+                        <div class="tw-timeline-content">
+                            <h3 class="uk-text-uppercase">{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for item in site.data.activity-list.first-place %}
+                    <div class="tw-timeline-block">
+                        <div class="tw-timeline-info">
+                            <div class="tw-element tw-heading">
+                                <h4 class="letter-spacing">
+                                    {{ item.date }}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="tw-timeline-circle"></div>
+                        <div class="tw-timeline-content">
+                            <h3 class="uk-text-uppercase">{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

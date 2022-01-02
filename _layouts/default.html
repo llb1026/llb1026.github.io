@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+    {% include head.html %}
+    
+    <body class="loading">
+        {% assign current = page.url | downcase | split: '/' %}
+
+        <!-- NavBar Start -->
+        <div class="tw-preloader">
+            <div data-uk-spinner></div>
+        </div>
+
+        {% if page.text == true %}
+        <div class="header-container tw-header uk-dark">
+        {% else %}
+        <div class="header-container tw-header tw-header-transparent uk-light">
+        {% endif %}
+        
+            <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
+
+                <!-- NavBar Left Logo Start -->
+                <div class="uk-navbar-left">
+                    <div class="tw-logo">
+                        <h3 class="site-name">
+                            <a href="{{ '' | prepend: site.baseurl }}/">JIYUN.ME</a>
+                        </h3>
+                    </div>
+                </div>
+                <!-- NavBar Left Logo End -->
+
+                <!-- NavBar Center Menu Start -->
+                <div class="uk-navbar-center">
+                    <ul class="tw-main-menu uk-visible@m">
+                        <li class="menu-item">
+                            <a href="{{ '' | prepend: site.baseurl }}/" {% if current[1] == "about" or current[1] == "blog" or current[1] == "guestbook" or current[1] == "projects" %} class="normal" {% endif %} class="active">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ '/projects' | prepend: site.baseurl }}" {% if current[1] == "projects" %} class="active"{% endif %} >Projects</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ '/blog' | prepend: site.baseurl }}" {% if current[1] == "blog" %} class="active"{% endif %} >Blog</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ '/guestbook' | prepend: site.baseurl }}" {% if current[1] == "guestbook" %} class="active"{% endif %} >Guestbook</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- NavBar Center Menu End -->
+
+                <!-- NavBar Right Menu Icon Start -->
+                <div class="uk-navbar-right">
+                    <div class="tw-header-meta">
+                        <a class="mobile-menu uk-navbar-toggle uk-hidden@m" href="#" data-uk-toggle="target: #mobile-menu-modal"><i class="ion-navicon-round"></i></a>
+                    </div>
+                </div>
+                <!-- NavBar Right Menu Icon End -->
+
+                <!-- NavBar Right Menu List Start -->
+                <div id="mobile-menu-modal" class="uk-modal-full" data-uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-full" type="button" data-uk-close></button>
+                        <div class="uk-light uk-height-viewport tw-mobile-modal uk-flex uk-flex-middle uk-flex-center" data-uk-scrollspy="target:>ul>li,>div>a; cls:uk-animation-slide-bottom-medium; delay: 150;">
+                            <ul class="uk-nav-default" data-uk-nav>
+                                <li class="uk-nav-default">
+                                    <a href="{{ '' | prepend: site.baseurl }}/" {% if current[1] == "about" or current[1] == "blog" or current[1] == "guestbook" or current[1] == "projects" %} class="normal" {% endif %} class="active">Home</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="{{ '/projects' | prepend: site.baseurl }}" {% if current[1] == "projects" %} class="active"{% endif %} >Projects</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="{{ '/blog' | prepend: site.baseurl }}" {% if current[1] == "blog" %} class="active"{% endif %} >Blog</a>
+                                </li>
+                                <li class="uk-nav-default">
+                                    <a href="{{ '/guestbook' | prepend: site.baseurl }}" {% if current[1] == "guestbook" %} class="active"{% endif %} >Guestbook</a>
+                                </li>
+                            </ul>
+
+                            <div class="tw-socials tw-socials-minimal">
+                                <a href="https://github.com/llb1026" target="_blank"><i class="uk-icon-button tw-margin fa fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/jiyun-lee-b19a02153" target="_blank"><i class="uk-icon-button tw-margin fa fa-linkedin"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- NavBar Right Menu List End -->
+
+            </nav>
+        </div>
+        <!-- NavBar End -->
+    
+        <!-- Content Start -->
+        <main>
+            {{ content }}
+        </main>
+        <!-- Content End -->
+      
+        {% include footer.html %}
+   
+        <script src="{{ site.baseurl }}/assets/js/jquery-3.2.0.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/uikit.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/uikit-icons.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/isotope.pkgd.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/owl.carousel.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
+        {% if page.title == "JIYUN.ME" %}
+        <script src="{{ site.baseurl }}/assets/js/typed.js"></script>
+        <script>
+            $(window).scroll(function() {
+                var s = $(window).scrollTop(),
+                opacityVal = (s / 500.0);
+                $('.blur').css('opacity', opacityVal);
+            });
+        </script>
+        {% endif %}
+
+        <!-- Google Analytics Start -->
+
+        <!-- Google Analytics End -->
+
+    </body>
+</html>

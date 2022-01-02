@@ -1,0 +1,49 @@
+<!-- Header Start -->
+<section class="uk-section uk-text-center uk-flex uk-flex-middle uk-flex-center uk-light uk-background-cover uk-background-top-center"
+data-overlay="0.3" style="background-color: #151515; background-image: url({{ page.header-img }}); height: 500px;">
+    <div class="tw-page-title-container tw-element">
+        <h1 class="tw-page-title uk-text-uppercase">{{ page.title }}</h1>
+    </div>
+</section>
+<!-- Header End -->
+
+<section class="uk-section-normal">
+    <div class="uk-container uk-container-xsmall">
+        <div class="tw-element tw-portfolio tw-isotope-container" id="list" data-isotope-item=".portfolio-item">
+            <div class="tw-portfolio-filter uk-text-center uk-text-uppercase">
+                <ul class="uk-list">
+                    <li><span data-filter="*">All</span></li>
+                    <li><span data-filter=".tech-notes">Tech Notes</span></li>
+                    <li><span data-filter=".book-summary">Book Summary</span></li>
+                    <!-- <li><span data-filter=".etc">Etc</span></li> -->
+                </ul>
+            </div>
+            
+            <div class="isotope-container tw-element tw-blog minimal-blog" data-uk-scrollspy="target: > .portfolio-item; cls:uk-animation-slide-bottom-small; delay: 300;">
+
+                {% assign sorted = site.pages | sort: 'order' | reverse %}
+                {% for page in sorted %}
+                {% if page.blog == true and page.layout == 'post' %}
+
+                <article class="post portfolio-item blog-item {{ page.type }}">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#{{ page.tag }}</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>{{ page.subtitle }}</p>
+                        </div>
+                    </div>
+                </article>
+
+                {% endif %}
+                {% endfor %}
+
+                <div class="grid-sizer"></div>
+            </div>
+        </div>
+    </div>
+</section>
