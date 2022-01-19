@@ -18,7 +18,7 @@
     <meta property="og:title" content="JIYUN.ME | 트랜잭션 & 락">
     
     <!-- description -->
-    <meta property="og:description" content="# 16. 트랜잭션과 락, 2차 캐시 ## 사전지식 트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야 한다..."/>
+    <meta property="og:description" content="# 16. 트랜잭션과 락, 2차 캐시 ## 사전지식 트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. [^1] - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/assets/css/animations.css">
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/toc.css">
     <link rel="stylesheet" href="/assets/js/prettify/skins/github2.css">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CLora:400,400i%7CShadows+Into+Light:400" rel="stylesheet" />
     <link rel="shortcut icon" href="/assets/img/favicon_2.ico">
@@ -61,7 +62,7 @@
                 <!-- NavBar Left Logo End -->
 
                 <!-- NavBar Center Menu Start -->
-                <div class="uk-navbar-center">
+                <div class="uk-navbar-center" id="top">
                     <ul class="tw-main-menu uk-visible@m">
                         <li class="menu-item">
                             <a href="/"  class="normal"  class="active">Home</a>
@@ -159,15 +160,15 @@
 
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
-                                <a href="#">&lt;맨 위로&gt;</a>
-                                <ul><li><a href="#16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</a><ul><li><a href="#사전지식">사전지식</a></li><li><a href="#트랜잭션과-격리-수준">트랜잭션과 격리 수준</a></li><li><a href="#낙관적-lock과-비관적-lock">낙관적 Lock과 비관적 Lock</a></li><li><a href="#version-소개">@Version 소개</a></li><li><a href="#2차-캐시">2차 캐시</a></li><li><a href="#appendix">Appendix</a></li></ul></li></ul>
+                                <a href="#top">&#x1F446; 맨 위로</a>
+                                <ul><li><a href="#16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</a><ul><li><a href="#사전지식">사전지식</a></li><li><a href="#트랜잭션과-격리-수준">트랜잭션과 격리 수준</a></li><li><a href="#낙관적-lock과-비관적-lock">낙관적 Lock과 비관적 Lock</a></li><li><a href="#version-소개">@Version 소개</a></li><li><a href="#appendix">Appendix</a></li></ul></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
                             <h1 id="16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</h1>
 
 <h2 id="사전지식">사전지식</h2>
-<p>트랜잭션은 Atomicity(<em>원자성</em>), Consistency(<em>일관성</em>), Isolation(<em>독립성</em>), Durability(<em>지속성</em>)을 보장해야 한다.</p>
+<p>트랜잭션은 Atomicity(<em>원자성</em>), Consistency(<em>일관성</em>), Isolation(<em>독립성</em>), Durability(<em>지속성</em>)을 보장해야 한다. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <ul>
   <li>원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야 한다 → 트랜잭션 안의 작업들이 부분적으로 실행되다가 중단되지 않는 것을 보장한다는 의미로, 예를 들어 ‘이체’라는 하나의 트랜잭션 안에서 송금만 성공하고 입금은 실패할 수 없어야 한다</li>
@@ -353,10 +354,6 @@
 <blockquote>
   <p>JPA를 사용할 때에는 READ COMMITTED 격리 수준 + 낙관적 버전 관리를 적용하는 것이 일반적이다</p>
 </blockquote>
-
-<hr />
-
-<h2 id="2차-캐시">2차 캐시</h2>
 
 <hr />
 
@@ -1108,10 +1105,6 @@
   
 </script>
 
-<blockquote>
-  <p>사내 스터디에서 발표했던 장표</p>
-</blockquote>
-
 <hr />
 
 <h2 id="appendix">Appendix</h2>
@@ -1120,6 +1113,16 @@
   <li><a href="https://hyunki1019.tistory.com/111">MySQL Isolation Level 종류 및 특징</a></li>
   <li><a href="https://nesoy.github.io/articles/2019-05/Database-Transaction-isolation">트랜잭션의 격리 수준이란</a></li>
 </ul>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>풋노트 샘플 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 
                         </div>

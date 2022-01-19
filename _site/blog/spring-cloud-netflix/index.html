@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/assets/css/animations.css">
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/toc.css">
     <link rel="stylesheet" href="/assets/js/prettify/skins/github2.css">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CLora:400,400i%7CShadows+Into+Light:400" rel="stylesheet" />
     <link rel="shortcut icon" href="/assets/img/favicon_2.ico">
@@ -61,7 +62,7 @@
                 <!-- NavBar Left Logo End -->
 
                 <!-- NavBar Center Menu Start -->
-                <div class="uk-navbar-center">
+                <div class="uk-navbar-center" id="top">
                     <ul class="tw-main-menu uk-visible@m">
                         <li class="menu-item">
                             <a href="/"  class="normal"  class="active">Home</a>
@@ -159,7 +160,7 @@
 
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
-                                <a href="#">&lt;맨 위로&gt;</a>
+                                <a href="#top">&#x1F446; 맨 위로</a>
                                 <ul><li><a href="#spring-cloud-netfix">Spring Cloud Netfix</a><ul><li><a href="#전제조건">전제조건</a></li></ul></li><li><a href="#eureka-as-service-discovery">Eureka as Service Discovery</a><ul><li><a href="#기존의-서비스-디스커버리">기존의 서비스 디스커버리</a></li><li><a href="#클라우드-기반-마이크로서비스-아키텍처에서의-서비스-디스커버리">클라우드 기반 마이크로서비스 아키텍처에서의 서비스 디스커버리</a></li><li><a href="#eureka-server-구성">Eureka Server 구성</a></li><li><a href="#인스턴스-구성">인스턴스 구성</a></li></ul></li><li><a href="#ribbon-as-client-side-load-balancing">Ribbon as Client Side Load Balancing</a><ul><li><a href="#서비스-디스커버리만으로-충분하지-않은-이유">서비스 디스커버리만으로 충분하지 않은 이유</a></li><li><a href="#클라이언트-부하-분산의-역할">클라이언트 부하 분산의 역할</a></li><li><a href="#resttemplate을-사용한-ribbon-구성">RestTemplate을 사용한 Ribbon 구성</a></li></ul></li><li><a href="#zuul-as-api-gateway">Zuul as API Gateway</a><ul><li><a href="#api-게이트웨이의-역할">API 게이트웨이의 역할</a></li><li><a href="#라우터-구성">라우터 구성</a></li><li><a href="#필터-구성">필터 구성</a></li></ul></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->

@@ -30,7 +30,7 @@ carousels:
 # 16. 트랜잭션과 락, 2차 캐시
 
 ## 사전지식
-트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다.
+트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. [^1]
 
 - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야 한다 → 트랜잭션 안의 작업들이 부분적으로 실행되다가 중단되지 않는 것을 보장한다는 의미로, 예를 들어 '이체'라는 하나의 트랜잭션 안에서 송금만 성공하고 입금은 실패할 수 없어야 한다
 - 일관성: 트랜잭션이 실행을 성공적으로 완료하면 언제나 일관성 있는 DB 상태를 유지해야 한다 → DB에서 정한 무결성 제약 조건을 항상 만족해야 하며, 예를 들어 무결성 제약이 '모든 계좌는 잔고가 있어야 한다' 라면 이를 위반하는 트랜잭션은 중단된다
@@ -117,12 +117,7 @@ JPA Lock의 종류는 아래와 같다.
 
 ---
 
-## 2차 캐시
-
----
-
 {% include carousel.html height="55" unit="%" duration="20" number="1" %}
-> 사내 스터디에서 발표했던 장표
 
 ---
 
@@ -130,3 +125,7 @@ JPA Lock의 종류는 아래와 같다.
 - [위키백과 ACID](https://ko.wikipedia.org/wiki/ACID)
 - [MySQL Isolation Level 종류 및 특징](https://hyunki1019.tistory.com/111)
 - [트랜잭션의 격리 수준이란](https://nesoy.github.io/articles/2019-05/Database-Transaction-isolation)
+
+---
+
+[^1]: 풋노트 샘플
