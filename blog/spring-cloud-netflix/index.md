@@ -80,7 +80,7 @@ Eureka Server 어플리케이션을 간단하게 만들어봅니다.
 
 - 의존성 추가 (build.gradle 파일)
 
-```yml
+```
 dependencies {
 	implementation ‘org.springframework.cloud:spring-cloud-starter-netflix-eureka-server’
 }
@@ -114,7 +114,7 @@ eureka.client.serviceUrl.defaultZone=http://${registry.host:localhohst}:${server
 
 - 의존성 추가 (build.gradle 파일)
 
-```yml
+```
 dependencies {
 	implementation ‘org.springframework.cloud:spring-cloud-starter-netflix-eureka-client’
 }
@@ -165,7 +165,7 @@ Spring Cloud 초기에는 Ribbon이 RestTemplate 클래스를 지원했지만, �
 
 - 의존성 추가 (build.gradle 파일)
 
-```yml
+```
 dependencies {
 	implementation ‘org.springframework.cloud:spring-cloud-starter-netflix-ribbon’
 }
@@ -224,7 +224,7 @@ API 호출에 대한 *보안*과 *로깅* 등을 트래킹하기 위해 각 요�
 
 - 의존성 추가 (build.gradle 파일)
 
-```yml
+```
 dependencies {
 	implementation ‘org.springframework.cloud:spring-cloud-starter-netflix-zuul’
 }
@@ -253,4 +253,4 @@ eureka.client.serviceUrl.defaultZone=http://${registry.host:localhohst}:${server
 
 이제 Eureka Server, API Caller 어플리케이션, API Callee 어플리케이션, 그리고 Zuul 어플리케이션을 실행한 후 `localhost:8762/actuator/routes`로 접속해보면 서비스 디스커버리에 의해 zuul이 라우팅할 수 있는 API 목록을 확인할 수 있습니다.
 
-### 필터 구성
+### 필터 구성r
