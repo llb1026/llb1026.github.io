@@ -1,19 +1,20 @@
 fourth-place:
-- name: 현대오토에버 융합모빌리티서비스개발팀
-  role: Software Engineer
+- name: 현대오토에버 융합모빌리티서비스개발팀 / 소프트웨어 엔지니어
+  role: 북미 커넥티드 서비스 운영, <br /> 사내 카쉐어링 & 카풀 & 통근버스 서비스 개발, <br /> EV 충전 서비스 플랫폼 개발
   date: 2019 / 01 - Current
 
 third-place:
-- name: 네이버 메인&미디어플랫폼팀
-  role: Intern Developer
+- name: 네이버 메인&미디어플랫폼팀 / 인턴
+  role: 네이버 뉴스 서비스 재구현
   date: 2018 / 10 - 12
 
 second-place:
-- name: 유한회사 미소 개발팀
-  role: Software Engineer
+- name: 유한회사 미소 개발팀 / 백엔드 개발자
+  role: 관리자웹 기능 개선
   date: 2018 / 07 - 09
 
 first-place:
-- name: 스마일게이트 스토브 백엔드플랫폼개발팀
-  role: Intern Developer
+- name: 스마일게이트 스토브 백엔드플랫폼개발팀 / 인턴
+  role: 테스트 코드 커버리지 보강
   date: 2018 / 01 - 02
+ 
