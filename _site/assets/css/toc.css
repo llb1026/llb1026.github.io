@@ -36,7 +36,7 @@
     font-weight: bold;
     transition: all 0.125s ease-in 0s;
     font-size: 0.9rem;
-    color: #7353F5;
+    color: rgba(56, 29, 168, 0.7);
 }
 .toc ul {
     list-style-type: none;
