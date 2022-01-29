@@ -10,11 +10,12 @@
             <div data-uk-spinner></div>
         </div>
 
-        {% if page.text == true %}
+        <!-- {% if page.text == true %}
         <div class="header-container tw-header uk-dark">
         {% else %}
         <div class="header-container tw-header tw-header-transparent uk-light">
-        {% endif %}
+        {% endif %} -->
+        <div class="header-container tw-header tw-header-transparent uk-dark" style="background-color: rgba(255, 255, 255, 0.25);">
         
             <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
 
@@ -70,9 +71,9 @@
                                 <li class="uk-nav-default">
                                     <a href="{{ '/blog' | prepend: site.baseurl }}" {% if current[1] == "blog" %} class="active"{% endif %} >Blog</a>
                                 </li>
-                                <li class="uk-nav-default">
+                                <!-- <li class="uk-nav-default">
                                     <a href="{{ '/guestbook' | prepend: site.baseurl }}" {% if current[1] == "guestbook" %} class="active"{% endif %} >Guestbook</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="tw-socials tw-socials-minimal">

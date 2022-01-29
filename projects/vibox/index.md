@@ -2,7 +2,7 @@
 order: 5
 layout: post
 title: "VIBOX"
-subtitle: "Video Studio Website & Admin Page"
+subtitle: "Video Studio Portfolio Website & Admin Page"
 description: ""
 type: Freelance
 projects: true

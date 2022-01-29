@@ -22,20 +22,22 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 5. Uikit Override
 6. Background Overlay
 7. Other Helper
+8. Custom CSS
         
 -------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700');
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;700&display=swap');
 
 
 /* Base CSS */
 body {
   display: block;
-  font-family: "Open Sans", arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.72;
-  font-weight: 300;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+  font-weight: 400;
   letter-spacing: 0.025em;
 }
 h1,
@@ -44,7 +46,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   letter-spacing: 0.2em;
   margin: 0 0 10px;
   color: #151515;
@@ -184,15 +186,18 @@ blockquote:after {
   right: 0;
 }
 sup {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   text-transform: none;
   font-weight: 300;
   letter-spacing: 0.025em;
 }
+ul {
+  list-style: square;
+}
 
-::-moz-selection{ color: #fff; background:#000; }
-::-webkit-selection{ color: #fff;    background:#000; }
-::selection{ color: #fff;    background:#000; }
+::-moz-selection{ color: #fff; background:#7353F5; }
+::-webkit-selection{ color: #fff;    background:#7353F5; }
+::selection{ color: #fff;    background:#7353F5; }
 
 /* Top Bar */
 
@@ -280,7 +285,7 @@ sup {
 }
 .tw-header.tw-header-transparent {
   background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
   position: absolute;
   top: 0;
   width: 100%;
@@ -496,7 +501,7 @@ ul.uk-nav-sub{
 
 /* TW Menu */
 .tw-main-menu {
-    font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   display: flex;
   margin: 0;
   padding: 0;
@@ -509,7 +514,8 @@ ul.uk-nav-sub{
   display: flex;
   align-items: center;
   height: 70px;
-  color: #999;
+  /* color: #999; */
+  color: #444;
   padding: 0 15px;
 }
 .tw-main-menu > li > a:hover{
@@ -1776,7 +1782,7 @@ div.entry-tags{
 
 /* Button Styling */
 .uk-button {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   letter-spacing: 0.2em;
   padding: 0 35px;
   font-size: 11px;
@@ -1842,6 +1848,11 @@ div.entry-tags{
   background-color: #151515;
   border: 1px solid transparent;
 }
+.uk-button.uk-button-transparent {
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid transparent;
+}
 .uk-button.uk-button-default.white-button{
   color: #151515 !important;
 }
@@ -1896,14 +1907,14 @@ div.entry-tags{
   border: 1px solid #e6e6e6;
 }
 .uk-table th{
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   letter-spacing: 0.2em;
   color: #151515;
   font-size: 11px;
 }
 .uk-table.style-2 th,
 .uk-table.style-3 th{
-  background: #151515;
+  background: #7353F5;
   color: #fff;
 }
 .uk-table.style-3 th{
@@ -1922,7 +1933,7 @@ div.entry-tags{
 .tw-meta {
   display: block;
   overflow: hidden;
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -2232,7 +2243,7 @@ span.tw-meta {
 }
 .tw-progress.style-3 span {
   font-size: 24px;
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   line-height: 1.2;
   color: #151515;
 }
@@ -2817,7 +2828,7 @@ span.tw-meta {
   opacity: 1;
 }
 .uk-tooltip {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -3949,7 +3960,7 @@ ul.portfolio-single-meta + .portfolio-btn {
 .tw-chart-circle .tw-chart span {
   position: relative;
   z-index: 5;
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 16px;
   letter-spacing: 0.2em;
   color: #151515;
@@ -3967,7 +3978,7 @@ ul.portfolio-single-meta + .portfolio-btn {
   background: #e6e6e6;
 }
 .tw-dropcaps {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 44px;
   margin-right: 20px;
   color: #151515;
@@ -4034,7 +4045,7 @@ ul.portfolio-single-meta + .portfolio-btn {
   left: 6px;
   height: 100%;
   width: 1px;
-  background: #e5e5e5;
+  background: rgba(255, 255, 255, 0.4);
 }
 .tw-timeline-container .tw-timeline-block {
   position: relative;
@@ -4138,7 +4149,7 @@ ul.portfolio-single-meta + .portfolio-btn {
   padding: 20px 0px;
 }
 .tw-job-container .tw-job-title {
-  font-family: "Open Sans", arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 10px;
   letter-spacing: 0.2em;
   color: #fff;
@@ -4314,7 +4325,7 @@ footer.uk-light a {
 .uk-section {
   position: relative;
   padding-top: 70px;
-  padding-bottom: 70px;
+  /* padding-bottom: 70px; */
 }
 .uk-section-xlarge {
   padding-top: 110px;
@@ -4369,7 +4380,7 @@ footer.uk-light a {
 @media (min-width: 960px) {
   .uk-section {
     padding-top: 110px;
-    padding-bottom: 110px;
+    /* padding-bottom: 110px; */
   }
   .uk-section-xlarge {
     padding-top: 220px;
@@ -4592,7 +4603,6 @@ footer.uk-light a {
 .uk-light .tw-heading .description,
 .uk-light .tw-portfolio-demo .portfolio-title a:hover {
   color: #fff;
-
 }
 .uk-light .tw-main-menu > li > a,
 .uk-light .tw-call-action p,
@@ -5698,3 +5708,12 @@ footer.uk-light a {
       z-index: 99;
   }
 }
+
+/* Custom CSS */
+
+.heading-title { text-align: center; }
+.heading-title .title { position: relative; margin-bottom: 15px; display: inline-block; z-index: 9; }
+.heading-title .title:before { content: ""; position: absolute; top: 4px; left: 0px; margin-left: 0; width: 46px; height: 10px; background: rgba(56, 29, 168, 0.2); z-index: -1; transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; }
+.heading-title p { padding: 0 80px; display: block; margin-bottom: 50px; }
+article:hover .heading-title .title:before { width: 98%; }
+.heading-title .title.white { color: #ffffff; }

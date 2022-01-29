@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>트랜잭션 & 락</title>
+    <title>Transaction과 Lock 기본내용 정리</title>
         
     <!-- Post info -->
 
@@ -15,10 +15,10 @@
     <meta property="og:image" content="http://localhost:4000/blog/transaction-and-lock/img/transaction-001.jpeg">
 
     <!-- title -->
-    <meta property="og:title" content="JIYUN.ME | 트랜잭션 & 락">
+    <meta property="og:title" content="JIYUN.ME | Transaction과 Lock 기본내용 정리">
     
     <!-- description -->
-    <meta property="og:description" content="# 16. 트랜잭션과 락, 2차 캐시 ## 사전지식 트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. [^1] - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다 실패해야..."/>
+    <meta property="og:description" content="https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-Transaction # 16. 트랜잭션과 락, 2차 캐시 ## 사전지식 트랜잭션은 Atomicity(*원자성*), Consistency(*일관성*), Isolation(*독립성*), Durability(*지속성*)을 보장해야 한다. [^1] - 원자성: 하나의 트랜잭션 안에서 실행한 일련의 작업들은 전부 다 성공하거나 전부 다..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -46,9 +46,10 @@
             <div data-uk-spinner></div>
         </div>
 
-        
+        <!-- 
         <div class="header-container tw-header uk-dark">
-        
+         -->
+        <div class="header-container tw-header tw-header-transparent uk-dark" style="background-color: rgba(255, 255, 255, 0.25);">
         
             <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
 
@@ -104,9 +105,9 @@
                                 <li class="uk-nav-default">
                                     <a href="/blog"  class="active" >Blog</a>
                                 </li>
-                                <li class="uk-nav-default">
+                                <!-- <li class="uk-nav-default">
                                     <a href="/guestbook"  >Guestbook</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="tw-socials tw-socials-minimal">
@@ -128,7 +129,8 @@
             <div class="main-container">
 
     
-        <section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
+        <br /><br />
+<section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
     <div class="uk-container uk-container-small">
         <div data-uk-grid>
             <div class="content-area uk-width-expand">
@@ -138,11 +140,14 @@
                         <div class="entry-cats tw-meta">
                             <p>tech-notes</p>
                         </div>
-                        <h2 class="entry-title post-title">
-                            <a href="#">트랜잭션 & 락</a>
-                        </h2>
+                        <!-- <h2 class="entry-title post-title">
+                            <a href="#">Transaction과 Lock 기본내용 정리</a>
+                        </h2> -->
+                        <div class="heading-title post-title">
+                            <h2 class="title">Transaction과 Lock 기본내용 정리</h2>
+                        </div>
                         <div class="entry-date tw-meta">
-                            <span>@Version을 써봅시다!</span>
+                            <span>@Version을 써봅시다</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -166,7 +171,9 @@
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <h1 id="16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</h1>
+                            <p>https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-Transaction</p>
+
+<h1 id="16-트랜잭션과-락-2차-캐시">16. 트랜잭션과 락, 2차 캐시</h1>
 
 <h2 id="사전지식">사전지식</h2>
 <p>트랜잭션은 Atomicity(<em>원자성</em>), Consistency(<em>일관성</em>), Isolation(<em>독립성</em>), Durability(<em>지속성</em>)을 보장해야 한다. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
@@ -1140,7 +1147,7 @@
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
             <div class="nav-prev tw-meta">
-                <!-- <a href="4">
+                <!-- <a href="18">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
                 </a> -->
@@ -1242,7 +1249,7 @@
         </main>
         <!-- Content End -->
       
-        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
+        <footer class="uk-section uk-padding-remove-vertical uk-light">
     <div class="footer-area footer-small">
         <div class="uk-container">
             <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>

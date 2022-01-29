@@ -18,7 +18,7 @@
     <meta property="og:title" content="JIYUN.ME | 자바 기반의 마이크로서비스 이해와 아키텍처 구축하기">
     
     <!-- description -->
-    <meta property="og:description" content="## 기본 베이스 지식 - 소프트웨어 아키텍처: 소프트웨어를 구성하는 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것 - 4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것 1. Logic View:..."/>
+    <meta property="og:description" content="## 기본 베이스 지식 - 소프트웨어 아키텍처: 소프트웨어를 **구성하는** 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것 - 4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것 1. Logic View:..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -46,9 +46,10 @@
             <div data-uk-spinner></div>
         </div>
 
-        
+        <!-- 
         <div class="header-container tw-header uk-dark">
-        
+         -->
+        <div class="header-container tw-header tw-header-transparent uk-dark" style="background-color: rgba(255, 255, 255, 0.25);">
         
             <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
 
@@ -104,9 +105,9 @@
                                 <li class="uk-nav-default">
                                     <a href="/blog"  class="active" >Blog</a>
                                 </li>
-                                <li class="uk-nav-default">
+                                <!-- <li class="uk-nav-default">
                                     <a href="/guestbook"  >Guestbook</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="tw-socials tw-socials-minimal">
@@ -128,7 +129,8 @@
             <div class="main-container">
 
     
-        <section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
+        <br /><br />
+<section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
     <div class="uk-container uk-container-small">
         <div data-uk-grid>
             <div class="content-area uk-width-expand">
@@ -136,11 +138,14 @@
                 <article class="single post">
                     <div class="entry-post">
                         <div class="entry-cats tw-meta">
-                            <p>book-summary</p>
+                            <p>tech-notes</p>
                         </div>
-                        <h2 class="entry-title post-title">
+                        <!-- <h2 class="entry-title post-title">
                             <a href="#">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</a>
-                        </h2>
+                        </h2> -->
+                        <div class="heading-title post-title">
+                            <h2 class="title">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</h2>
+                        </div>
                         <div class="entry-date tw-meta">
                             <span>이건 샘플이야</span>
                         </div>
@@ -168,7 +173,7 @@
 
                             <h2 id="기본-베이스-지식">기본 베이스 지식</h2>
 <ul>
-  <li>소프트웨어 아키텍처: 소프트웨어를 구성하는 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것</li>
+  <li>소프트웨어 아키텍처: 소프트웨어를 <strong>구성하는</strong> 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것</li>
   <li>4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것
     <ol>
       <li>Logic View: 소프트웨어를 구성하는 요소들의 관계 구조 표현</li>
@@ -188,7 +193,7 @@
 <h2 id="모놀리식-아키텍처-vs-msa">모놀리식 아키텍처 vs MSA</h2>
 <ul>
   <li>모놀리식 아키텍처: 모든 업무 로직이 하나의 큰 어플리케이션 형태로 패키징되어 서비스됨 (데이터도 한 곳에 모인 데이터를 참조)</li>
-  <li>마이크로서비스 아키텍처: 작은 단위로 동작하는 서비스[^작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고]가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)</li>
+  <li>마이크로서비스 아키텍처: 작은 단위로 동작하는 서비스<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)</li>
   <li>차이점: <em>하나</em>의 어플리케이션 vs 분할된 <em>다수</em>의 서비스와 데이터</li>
 </ul>
 
@@ -218,47 +223,49 @@
   </li>
 </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">구분</th>
-      <th style="text-align: left">MSA</th>
-      <th style="text-align: left">SOA</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">사상</td>
-      <td style="text-align: left">서비스 지향</td>
-      <td style="text-align: left">서비스 지향</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">서비스 오너십</td>
-      <td style="text-align: left">팀 단위 자율성 부여</td>
-      <td style="text-align: left">팀간 협업</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">서비스 크기</td>
-      <td style="text-align: left">SOA 대비 작음</td>
-      <td style="text-align: left">MSA 대비 큼</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">서비스 공유 정보</td>
-      <td style="text-align: left">서비스 간 독립</td>
-      <td style="text-align: left">서비스 공유</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">서비스 공유 방식</td>
-      <td style="text-align: left">API</td>
-      <td style="text-align: left">서비스 공유를 위한 미들웨어</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">서비스 통신 방식</td>
-      <td style="text-align: left">RESTful API 등</td>
-      <td style="text-align: left">SOAP, WSDL, UDDI, ESB 등</td>
-    </tr>
-  </tbody>
-</table>
+<div class="tw-element tw-table">
+	<table class="uk-table-small uk-table style-2 uk-table-striped">
+		<thead>
+			<tr>
+				<th>구분</th>
+				<th>MSA</th>
+				<th>SOA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><em>사상</em></td>
+				<td>서비스 지향</td>
+				<td>서비스 지향</td>
+			</tr>
+			<tr>
+				<td><em>서비스 오너십</em></td>
+				<td>팀 단위 자율성 부여</td>
+				<td>팀간 협업</td>
+			</tr>
+			<tr>
+				<td><em>서비스 크기</em></td>
+				<td>SOA 대비 작음</td>
+				<td>MSA 대비 큼</td>
+			</tr>
+			<tr>
+				<td><em>서비스 공유 정보</em></td>
+				<td>서비스 간 독립</td>
+				<td>서비스 공유</td>
+			</tr>
+			<tr>
+				<td><em>서비스 공유 방식</em></td>
+				<td>API</td>
+				<td>서비스 공유를 위한 미들웨어</td>
+			</tr>
+			<tr>
+				<td><em>서비스 통신 방식</em></td>
+				<td>RESTful API 등</td>
+				<td>SOAP, WSDL, UDDI, ESB 등</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
 <hr />
 
@@ -274,43 +281,29 @@
 <h2 id="왜-클라우드-네이티브인가">왜 클라우드 네이티브인가</h2>
 <ul>
   <li>Scale-out에 유연하고, 서비스 변화 및 장애로 인한 영향을 최소화하도록 설계됨</li>
-  <li>Docker 컨테이너 기반 서비스 운영 &amp;&amp; CI/CD[^카나리 배포, Blue-Green 배포]</li>
+  <li>Docker 컨테이너 기반 서비스 운영 &amp;&amp; CI/CD <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></li>
 </ul>
 
 <hr />
 
 <h2 id="software-as-a-service">Software as a Service</h2>
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>SaaS: 특정 기간</td>
-          <td> </td>
-          <td>기능만 필요한 만큼 구매하여 사용하는 주문형 서비스 형태의 클라우드 네이티브 소프트웨어 (MSA가 SaaS 어플리케이션 개발에 적합)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <ul>
-      <li>12 Factor
-        <ol>
-          <li>코드베이스: 하나의 어플리케이션은 하나의 코드베이스를 가지고 버전으로 관리되어야 함 (Gitlab)</li>
-          <li>종속성: 어플리케이션에 사용된 라이브러리들끼리 명시적으로 선언되지 않은 종속성이 발생하면 안 됨</li>
-          <li>환경 설정: config 정보는 코드와 완전히 분리되어 관리되어야 함</li>
-          <li>백엔드 서비스: DB, 메시지 큐와 같이 연결하거나 분리할 때 코드 수정 없이 독립적으로 수행할 수 있어야 함</li>
-          <li>빌드, 릴리즈, 실행: 코드는 빌드 → 릴리즈 → 실행 단계로 분리되어 운영됨</li>
-          <li>프로세스: 프로세스는 stateless해야 하며, 상태 정보를 보관해야 할 필요가 있다면 DB를 사용해야 함 (e.g. sticky session 지양)</li>
-          <li>포트 바인딩: 포트 바인딩된 독립 서비스들은 다른 서비스의 백엔드 서비스로도 활용될 수 있음</li>
-          <li>동시성: 특정 서비스 시스템에 부하 발생 시 scale-up보다 scale-out할 수 있는 프로세스 모델 형태 필요</li>
-          <li>폐기 가능: graceful shutdown이 보장되어야 함</li>
-          <li>개발, 테스트, 운영환경의 일관성: 각 환경이 최대한 같아야 함</li>
-          <li>로그: 어플리케이션에서 로그 처리/가공/관리에 관여해서는 안 됨 → 스트림 이벤트로 취급하여 흘려보내고, 이를 수집하는 별도 툴을 이용해 관리해야 함</li>
-          <li>일회성 프로세스: 일회성 작업은 구분하여 별도의 프로세스로 구성해야 함 (e.g. 관리자 관련 작업, 유지보수 관련 작업)</li>
-        </ol>
-      </li>
-    </ul>
+  <li>SaaS: 특정 기간 or 기능만 필요한 만큼 구매하여 사용하는 주문형 서비스 형태의 클라우드 네이티브 소프트웨어 (MSA가 SaaS 어플리케이션 개발에 적합)</li>
+  <li>12 Factor
+    <ol>
+      <li>코드베이스: 하나의 어플리케이션은 하나의 코드베이스를 가지고 버전으로 관리되어야 함 (Gitlab)</li>
+      <li>종속성: 어플리케이션에 사용된 라이브러리들끼리 명시적으로 선언되지 않은 종속성이 발생하면 안 됨</li>
+      <li>환경 설정: config 정보는 코드와 완전히 분리되어 관리되어야 함</li>
+      <li>백엔드 서비스: DB, 메시지 큐와 같이 연결하거나 분리할 때 코드 수정 없이 독립적으로 수행할 수 있어야 함</li>
+      <li>빌드, 릴리즈, 실행: 코드는 빌드 → 릴리즈 → 실행 단계로 분리되어 운영됨</li>
+      <li>프로세스: 프로세스는 stateless해야 하며, 상태 정보를 보관해야 할 필요가 있다면 DB를 사용해야 함 (e.g. sticky session 지양)</li>
+      <li>포트 바인딩: 포트 바인딩된 독립 서비스들은 다른 서비스의 백엔드 서비스로도 활용될 수 있음</li>
+      <li>동시성: 특정 서비스 시스템에 부하 발생 시 scale-up보다 scale-out할 수 있는 프로세스 모델 형태 필요</li>
+      <li>폐기 가능: graceful shutdown이 보장되어야 함</li>
+      <li>개발, 테스트, 운영환경의 일관성: 각 환경이 최대한 같아야 함</li>
+      <li>로그: 어플리케이션에서 로그 처리/가공/관리에 관여해서는 안 됨 → 스트림 이벤트로 취급하여 흘려보내고, 이를 수집하는 별도 툴을 이용해 관리해야 함</li>
+      <li>일회성 프로세스: 일회성 작업은 구분하여 별도의 프로세스로 구성해야 함 (e.g. 관리자 관련 작업, 유지보수 관련 작업)</li>
+    </ol>
   </li>
 </ul>
 
@@ -327,7 +320,7 @@
     </ul>
   </li>
   <li>조직 구성, Agile 방법론, DevOps 체계, 인프라(클라우드 네이티브 기술 환경)가 함께 고려되어야 함</li>
-  <li>커피 전문점 예제[^<a href="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6">전체 아키텍처</a>]</li>
+  <li>커피 전문점 예제 <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></li>
 </ul>
 
 <hr />
@@ -355,6 +348,22 @@
   <li><a href="https://www.slideshare.net/stonse/microservices-at-netflix">MicroServices at Netflix - challenges of scale</a></li>
 </ul>
 
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>카나리 배포, Blue-Green 배포 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6">전체 아키텍처 이미지</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
 
                         </div>
                         <!-- Blog Content Start -->
@@ -370,7 +379,7 @@
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
             <div class="nav-prev tw-meta">
-                <!-- <a href="3">
+                <!-- <a href="12">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
                 </a> -->
@@ -472,7 +481,7 @@
         </main>
         <!-- Content End -->
       
-        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
+        <footer class="uk-section uk-padding-remove-vertical uk-light">
     <div class="footer-area footer-small">
         <div class="uk-container">
             <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>

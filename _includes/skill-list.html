@@ -1,4 +1,4 @@
-<section class="uk-section-small uk-light uk-section-small uk-background-cover" data-overlay="0.5" style="background-color: #000; opacity: 0.7; border-top: 1px solid rgba(255, 255, 255, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+<section class="uk-section-small uk-dark uk-section-small uk-background-cover" data-overlay="0.5" style="background-color: rgba(255, 255, 255, 0.25); border-top: 2px solid rgba(255, 255, 255, 0.15); border-bottom: 2px solid rgba(255, 255, 255, 0.15);">
     <div class="uk-container uk-container-small">
         <div class="uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
             <div>
@@ -10,12 +10,12 @@
     </div>
 </section>
 
-<section class="uk-section-small uk-light" style="opacity: 0.8;">
+<section class="uk-section-small uk-dark">
     <div class="uk-container uk-container-small">
         <div data-uk-grid>
             <div class="uk-margin-top">
                 {% for skill in site.data.skill-set %}
-                <a class="uk-button uk-button-default uk-button-radius uk-margin-bottom">{{ skill.name }}</a>
+                <a class="uk-button uk-button-default uk-button-radius uk-margin-bottom uk-button-transparent">{{ skill.name }}</a>
                 {% endfor %}
             </div>
         </div>

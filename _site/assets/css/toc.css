@@ -10,8 +10,8 @@
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     margin-right: 0px;
-    font-size: 0.8rem;
-    border-left: 2px solid #e0d9e7;
+    font-size: 0.75rem;
+    border-left: 2px solid rgba(56, 29, 168, 0.2);
     display: none;
 }
 /* @media (min-width: 75em) {
@@ -35,8 +35,8 @@
 .toc a.toc-active {
     font-weight: bold;
     transition: all 0.125s ease-in 0s;
-    font-size: 0.95rem;
-    color: #9075aa;
+    font-size: 0.9rem;
+    color: #7353F5;
 }
 .toc ul {
     list-style-type: none;
@@ -47,9 +47,9 @@
     padding-left: 0.5rem;
 }
 .toc a {
-    color: #777;
+    color: #888;
     text-decoration: none;
 }
 .toc a:hover {
-    color: #bbb;
+    color: #444;
 }

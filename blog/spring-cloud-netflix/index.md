@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 20
 layout: post
 title: "Spring Cloud Netflix 간단정리"
 subtitle: ""
@@ -184,19 +184,19 @@ RestTemplate restTemplate() {
 - 클라이언트 로드밸런서 어노테이션 추가
 
 ```java
-@SpringBootApplication’=
+@SpringBootApplication
 @EnableDiscoveryClient
-@RibbonClient(name = “apicallee”, configuration = RibbonConfiguration.class)    // 이 부분
+@RibbonClient(name = "apicallee", configuration = RibbonConfiguration.class)    // 이 부분
 public class ApiCallerApplication {
 	...
 	@Autowired
 	RestTemplate restTemplate;
 	
 	...
-	@RequestMapping(“/call/api”)
+	@RequestMapping("/ call/api")
 	public String callApiB() {
 		...
-		this.restTemplate.getForObject(“http://apicallee/answer”, String.class);    // 위 RibbonClient 어노테이션에서 명시한 목적지를 서비스 디스커버리에서 검색 후 요청
+		this.restTemplate.getForObject("http://apicallee/answer", String.class);    // 위 RibbonClient 어노테이션에서 명시한 목적지를 서비스 디스커버리에서 검색 후 요청
 	}
 }
 ```

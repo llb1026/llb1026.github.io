@@ -1,8 +1,8 @@
 ---
-order: 4
+order: 18
 layout: post
-title: "트랜잭션 & 락"
-subtitle: "@Version을 써봅시다!"
+title: "Transaction과 Lock 기본내용 정리"
+subtitle: "@Version을 써봅시다"
 tag: Tech Notes
 type: tech-notes
 blog: true
@@ -26,6 +26,8 @@ carousels:
     - image: /blog/transaction-and-lock/img/transaction-012.jpeg
 
 ---
+
+https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-Transaction
 
 # 16. 트랜잭션과 락, 2차 캐시
 

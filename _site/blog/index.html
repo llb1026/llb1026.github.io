@@ -12,7 +12,7 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog//assets/img/bg6.jpg">
+    <meta property="og:image" content="http://localhost:4000/blog//assets/img/bg11.jpeg">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | Blog">
@@ -46,9 +46,10 @@
             <div data-uk-spinner></div>
         </div>
 
-        
+        <!-- 
         <div class="header-container tw-header tw-header-transparent uk-light">
-        
+         -->
+        <div class="header-container tw-header tw-header-transparent uk-dark" style="background-color: rgba(255, 255, 255, 0.25);">
         
             <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
 
@@ -104,9 +105,9 @@
                                 <li class="uk-nav-default">
                                     <a href="/blog"  class="active" >Blog</a>
                                 </li>
-                                <li class="uk-nav-default">
+                                <!-- <li class="uk-nav-default">
                                     <a href="/guestbook"  >Guestbook</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="tw-socials tw-socials-minimal">
@@ -126,7 +127,7 @@
         <!-- Content Start -->
         <main>
             <!-- Header Start -->
-<section class="uk-section uk-text-center uk-flex uk-flex-middle uk-flex-center uk-light uk-background-cover uk-background-top-center" data-overlay="0.3" style="background-color: #151515; background-image: url(/assets/img/bg6.jpg); height: 500px;">
+<section class="uk-section uk-text-center uk-flex uk-flex-middle uk-flex-center uk-dark uk-background-cover uk-background-top-center" data-overlay="0.3" style="background-color: #fff; background-image: url(/assets/img/bg11.jpeg); height: 400px;">
     <div class="tw-page-title-container tw-element">
         <h1 class="tw-page-title uk-text-uppercase">Blog</h1>
     </div>
@@ -140,17 +141,13 @@
                 <ul class="uk-list">
                     <li><span data-filter="*">All</span></li>
                     <li><span data-filter=".tech-notes">Tech Notes</span></li>
-                    <li><span data-filter=".book-summary">Book Summary</span></li>
-                    <!-- <li><span data-filter=".etc">Etc</span></li> -->
+                    <!-- <li><span data-filter=".book-summary">Book Summary</span></li> -->
+                    <li><span data-filter=".lesson-learned">Lesson Learned</span></li>
                 </ul>
             </div>
             
             <div class="isotope-container tw-element tw-blog minimal-blog" data-uk-scrollspy="target: &gt; .portfolio-item; cls:uk-animation-slide-bottom-small; delay: 300;">
 
-                
-                
-                
-                
                 
                 
                 
@@ -161,7 +158,25 @@
                             <p>#Tech Notes</p>
                         </div>
                         <h2 class="entry-title">
-                            <a href="/blog/mapstruct-intro/">Mapstruct를 써야 하는 이유</a>
+                            <a href="/blog/java-webflux-intro/">Java Webflux 개요</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-mapstruct-intro/">MapStruct를 써야 하는 이유</a>
                         </h2>
                         <div class="entry-content">
                             <p>자주 쓰는 @Mapping 사용법 정리</p>
@@ -173,42 +188,38 @@
                 
                 
 
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/mariadb-sql-mode-oracle/">죽어도 Datetime으로 바뀌지 않는 Date 타입 컬럼</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
                 <article class="post portfolio-item blog-item tech-notes">
                     <div class="entry-post">
                         <div class="entry-cats tw-meta">
                             <p>#Tech Notes</p>
                         </div>
                         <h2 class="entry-title">
-                            <a href="/blog/transaction-and-lock/">트랜잭션 &amp; 락</a>
+                            <a href="/blog/mariadb-spatial-functions/">내가 사용했던 MariaDB 공간함수</a>
                         </h2>
                         <div class="entry-content">
-                            <p>@Version을 써봅시다!</p>
+                            <p></p>
                         </div>
                     </div>
                 </article>
 
-                
-                
-                
-                
-                
-
-                <article class="post portfolio-item blog-item book-summary">
-                    <div class="entry-post">
-                        <div class="entry-cats tw-meta">
-                            <p>#Book Summary</p>
-                        </div>
-                        <h2 class="entry-title">
-                            <a href="/blog/java-microservice/">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</a>
-                        </h2>
-                        <div class="entry-content">
-                            <p>이건 샘플이야</p>
-                        </div>
-                    </div>
-                </article>
-
-                
-                
                 
                 
                 
@@ -230,7 +241,337 @@
                 
                 
                 
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/how-transactional-works/">@Transactional 위치와 동작 차이</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
                 
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/transaction-and-lock/">Transaction과 Lock 기본내용 정리</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>@Version을 써봅시다</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-serializable/">implements Serializable의 의미</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>무지성으로 쓰지 말자</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/etl-vs-elt/">ETL vs ELT</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>히스토리성 로그를 적재하는 방법</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-stream-api/">내가 보려고 정리한 Java Stream API</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/primitive-type-vs-reference-type/">Java 원시타입 vs 참조타입</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/restful-api/">RESTful API와 개발자의 고민</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-microservice/">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>이건 샘플이야</p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/efficient-caching/">캐싱이 효과적일 때와 그렇지 않을 때</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/java-exceptions/">Java Exception 정리</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/naver-intern-epilogue/">네이버 인턴 과정 중 배운 것들</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/backend-performance-test/">혼자 해 본 백엔드 성능테스트</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/client-side-routing/">클라이언트 사이드 라우팅과 단점들</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/server-side-rendering/">서버 사이드 랜더링을 해보자</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+                
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/progressive-web-app/">Progressive Web App 개요</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/http-1.1-vs-2.0/">Http 1.1 vs 2.0</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+                
+                
+                
+                
+
+                <article class="post portfolio-item blog-item lesson-learned">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Lesson Learned</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/nginx-tuning/">혼자 해 본 nginx.conf 분석</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </article>
+
+                
+                
+                
+                
+                
+
+                <article class="post portfolio-item blog-item tech-notes">
+                    <div class="entry-post">
+                        <div class="entry-cats tw-meta">
+                            <p>#Tech Notes</p>
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="/blog/cookie-and-token/">쿠키와 토큰</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p>HTTP가 사용자를 식별하는 방법</p>
+                        </div>
+                    </div>
+                </article>
+
                 
                 
                 
@@ -259,6 +600,8 @@
                 
                 
                 
+                
+                
 
                 <div class="grid-sizer"></div>
             </div>
@@ -269,7 +612,7 @@
         </main>
         <!-- Content End -->
       
-        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
+        <footer class="uk-section uk-padding-remove-vertical uk-light">
     <div class="footer-area footer-small">
         <div class="uk-container">
             <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>

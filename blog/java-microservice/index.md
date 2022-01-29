@@ -1,10 +1,10 @@
 ---
-order: 3
+order: 12
 layout: post
 title: "자바 기반의 마이크로서비스 이해와 아키텍처 구축하기"
 subtitle: "이건 샘플이야"
-tag: Book Summary
-type: book-summary
+tag: Tech Notes
+type: tech-notes
 blog: true
 text: true
 author: JIYUN LEE
@@ -13,7 +13,7 @@ header-img: img/bg.jpg
 ---
 
 ## 기본 베이스 지식
-- 소프트웨어 아키텍처: 소프트웨어를 구성하는 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것
+- 소프트웨어 아키텍처: 소프트웨어를 **구성하는** 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것
 - 4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것
 	1. Logic View: 소프트웨어를 구성하는 요소들의 관계 구조 표현
 	2. Process View: 소프트웨어 간의 동적 흐름, 스레드나 프로세스 등의 동시성 처리 표현
@@ -28,7 +28,7 @@ header-img: img/bg.jpg
 
 ## 모놀리식 아키텍처 vs MSA
 - 모놀리식 아키텍처: 모든 업무 로직이 하나의 큰 어플리케이션 형태로 패키징되어 서비스됨 (데이터도 한 곳에 모인 데이터를 참조)
-- 마이크로서비스 아키텍처: 작은 단위로 동작하는 서비스[^작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고]가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)
+- 마이크로서비스 아키텍처: 작은 단위로 동작하는 서비스[^1]가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)
 - 차이점: *하나*의 어플리케이션 vs 분할된 *다수*의 서비스와 데이터
 
 ---
@@ -42,14 +42,49 @@ header-img: img/bg.jpg
 	4. 트랜잭션: Read용 DB와 Write용 DB 분리 권장 (7:3 규칙)
 	5. 서비스 관리: 서비스 상태 모니터링 및 장애 대응
 
-| 구분 | MSA | SOA |
-|:--|:--|:--|
-| 사상 | 서비스 지향 | 서비스 지향 |
-| 서비스 오너십 | 팀 단위 자율성 부여 | 팀간 협업 |
-| 서비스 크기 | SOA 대비 작음 | MSA 대비 큼 |
-| 서비스 공유 정보 | 서비스 간 독립 | 서비스 공유 |
-| 서비스 공유 방식 | API | 서비스 공유를 위한 미들웨어 |
-| 서비스 통신 방식 | RESTful API 등 | SOAP, WSDL, UDDI, ESB 등 |
+<div class="tw-element tw-table">
+	<table class="uk-table-small uk-table style-2 uk-table-striped">
+		<thead>
+			<tr>
+				<th>구분</th>
+				<th>MSA</th>
+				<th>SOA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><em>사상</em></td>
+				<td>서비스 지향</td>
+				<td>서비스 지향</td>
+			</tr>
+			<tr>
+				<td><em>서비스 오너십</em></td>
+				<td>팀 단위 자율성 부여</td>
+				<td>팀간 협업</td>
+			</tr>
+			<tr>
+				<td><em>서비스 크기</em></td>
+				<td>SOA 대비 작음</td>
+				<td>MSA 대비 큼</td>
+			</tr>
+			<tr>
+				<td><em>서비스 공유 정보</em></td>
+				<td>서비스 간 독립</td>
+				<td>서비스 공유</td>
+			</tr>
+			<tr>
+				<td><em>서비스 공유 방식</em></td>
+				<td>API</td>
+				<td>서비스 공유를 위한 미들웨어</td>
+			</tr>
+			<tr>
+				<td><em>서비스 통신 방식</em></td>
+				<td>RESTful API 등</td>
+				<td>SOAP, WSDL, UDDI, ESB 등</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
 ---
 
@@ -62,13 +97,13 @@ header-img: img/bg.jpg
 
 ## 왜 클라우드 네이티브인가
 - Scale-out에 유연하고, 서비스 변화 및 장애로 인한 영향을 최소화하도록 설계됨
-- Docker 컨테이너 기반 서비스 운영 && CI/CD[^카나리 배포, Blue-Green 배포]
+- Docker 컨테이너 기반 서비스 운영 && CI/CD [^2]
 
 ---
 
 ## Software as a Service
-- SaaS: 특정 기간 || 기능만 필요한 만큼 구매하여 사용하는 주문형 서비스 형태의 클라우드 네이티브 소프트웨어 (MSA가 SaaS 어플리케이션 개발에 적합)
-- - 12 Factor
+- SaaS: 특정 기간 or 기능만 필요한 만큼 구매하여 사용하는 주문형 서비스 형태의 클라우드 네이티브 소프트웨어 (MSA가 SaaS 어플리케이션 개발에 적합)
+- 12 Factor
 	1. 코드베이스: 하나의 어플리케이션은 하나의 코드베이스를 가지고 버전으로 관리되어야 함 (Gitlab)
 	2. 종속성: 어플리케이션에 사용된 라이브러리들끼리 명시적으로 선언되지 않은 종속성이 발생하면 안 됨
 	3. 환경 설정: config 정보는 코드와 완전히 분리되어 관리되어야 함
@@ -91,7 +126,7 @@ header-img: img/bg.jpg
 	- 상향식 접근: 데이터 특성을 고려해 서비스 분할
 	- 점진적 접근: 비즈니스 영향도가 적은 서비스부터 점진적으로 분할
 - 조직 구성, Agile 방법론, DevOps 체계, 인프라(클라우드 네이티브 기술 환경)가 함께 고려되어야 함
-- 커피 전문점 예제[^[전체 아키텍처](https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6)]
+- 커피 전문점 예제 [^3]
 
 ---
 
@@ -110,3 +145,9 @@ header-img: img/bg.jpg
 - [MSA에 대한 이해와 컨테이너 기술의 활용 방안.pdf](https://www.itfind.or.kr/WZIN/jugidong/1887/file2645276227345330267-188702.pdf)
 - [Spring Camp 2018 - MSA 관련 세션 후기](https://gwonsungjun.github.io/articles/2018-04/springCamp2018)
 - [MicroServices at Netflix - challenges of scale](https://www.slideshare.net/stonse/microservices-at-netflix)
+
+---
+
+[^1]: 작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고
+[^2]: 카나리 배포, Blue-Green 배포
+[^3]: [전체 아키텍처 이미지](https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6)

@@ -46,9 +46,10 @@
             <div data-uk-spinner></div>
         </div>
 
-        
+        <!-- 
         <div class="header-container tw-header uk-dark">
-        
+         -->
+        <div class="header-container tw-header tw-header-transparent uk-dark" style="background-color: rgba(255, 255, 255, 0.25);">
         
             <nav class="uk-navbar-container uk-flex-center" data-uk-navbar>
 
@@ -104,9 +105,9 @@
                                 <li class="uk-nav-default">
                                     <a href="/blog"  class="active" >Blog</a>
                                 </li>
-                                <li class="uk-nav-default">
+                                <!-- <li class="uk-nav-default">
                                     <a href="/guestbook"  >Guestbook</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="tw-socials tw-socials-minimal">
@@ -128,7 +129,8 @@
             <div class="main-container">
 
     
-        <section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
+        <br /><br />
+<section class="uk-section-normal uk-section-blog" style="padding-bottom: 0;">
     <div class="uk-container uk-container-small">
         <div data-uk-grid>
             <div class="content-area uk-width-expand">
@@ -138,9 +140,12 @@
                         <div class="entry-cats tw-meta">
                             <p>tech-notes</p>
                         </div>
-                        <h2 class="entry-title post-title">
+                        <!-- <h2 class="entry-title post-title">
                             <a href="#">WebRTC 개요</a>
-                        </h2>
+                        </h2> -->
+                        <div class="heading-title post-title">
+                            <h2 class="title">WebRTC 개요</h2>
+                        </div>
                         <div class="entry-date tw-meta">
                             <span>웹브라우저간의 실시간 통신을 가능하게 하는 WebRTC에 대한 간단한 정리</span>
                         </div>
@@ -285,7 +290,7 @@
         </main>
         <!-- Content End -->
       
-        <footer class="uk-section uk-padding-remove-vertical uk-light" style="background-color: #222222;">
+        <footer class="uk-section uk-padding-remove-vertical uk-light">
     <div class="footer-area footer-small">
         <div class="uk-container">
             <div class="uk-flex-middle uk-child-width-1-3" data-uk-grid>
