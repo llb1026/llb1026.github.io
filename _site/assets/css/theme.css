@@ -5711,9 +5711,16 @@ footer.uk-light a {
 
 /* Custom CSS */
 
-.heading-title { text-align: center; }
-.heading-title .title { position: relative; margin-bottom: 15px; display: inline-block; z-index: 9; }
-.heading-title .title:before { content: ""; position: absolute; top: 4px; left: 0px; margin-left: 0; width: 46px; height: 10px; background: rgba(56, 29, 168, 0.2); z-index: -1; transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; }
-.heading-title p { padding: 0 80px; display: block; margin-bottom: 50px; }
-article:hover .heading-title .title:before { width: 98%; }
-.heading-title .title.white { color: #ffffff; }
+.heading-title-section { text-align: inherit; }
+.heading-title-section .title { position: relative; margin-bottom: 15px; display: inline-block; z-index: 9; }
+.heading-title-section .title:before { content: ""; position: absolute; top: 4px; left: 0px; margin-left: 0; width: 46px; height: 10px; background: rgba(56, 29, 168, 0.2); z-index: -1; transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; }
+.heading-title-section p { padding: 0 80px; display: block; margin-bottom: 50px; }
+section:hover .heading-title-section .title:before { width: 98%; }
+.heading-title-section .title.white { color: #ffffff; }
+
+.heading-title-article { text-align: center; }
+.heading-title-article .title { position: relative; margin-bottom: 15px; display: inline-block; z-index: 9; }
+.heading-title-article .title:before { content: ""; position: absolute; top: 4px; left: 0px; margin-left: 0; width: 46px; height: 10px; background: rgba(56, 29, 168, 0.2); z-index: -1; transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; }
+.heading-title-article p { padding: 0 80px; display: block; margin-bottom: 50px; }
+article:hover .heading-title-article .title:before { width: 98%; }
+.heading-title-article .title.white { color: #ffffff; }

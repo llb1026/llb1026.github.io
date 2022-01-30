@@ -15,6 +15,7 @@ team: "1인 개발"
 tools: "JavaScript, RPG Maker MV"
 date: "2017.01.30 - 04.06"
 link: "https://jiyun.me/game/"
+link-name: "Launch Game"
 carousels:
   - images: 
     - image: /projects/umme/img/umme.png
@@ -24,6 +25,8 @@ carousels:
     - image: /projects/umme/img/umme-9.png
     - image: /projects/umme/img/umme-12.png
 ---
+
+#### Details
 
 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
 

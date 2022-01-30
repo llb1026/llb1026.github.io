@@ -15,6 +15,7 @@ team: "3인 개발"
 tools: "Node.js, WebRTC, AWS"
 date: "2017.08 - 12"
 link: "https://github.com/2dayistheday/magical-chamber"
+link-name: "Github"
 carousels:
   - images: 
     - image: /projects/the-chamber/img/the-chamber-1.png
@@ -33,6 +34,8 @@ carousels:
     - image: /projects/the-chamber/img/the-chamber-14.png
     - image: /projects/the-chamber/img/the-chamber-15.png
 ---
+
+#### Details
 
 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
 

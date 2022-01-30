@@ -15,12 +15,13 @@ team: "1인 개발"
 tools: "Ruby on Rails, SQLite3, AWS"
 date: "2017.02.21 - 07.01"
 link: "https://github.com/llb1026/sgmarket_new"
+link-name: "Github"
 carousels:
   - images: 
     - image: /projects/sg-market/img/sg-market-1.png
 ---
 
-{% include carousel.html height="41" unit="%" duration="7" number="1" %}
+<img src="/projects/sg-market/img/sg-market-1.png">
 
 #### Details
 

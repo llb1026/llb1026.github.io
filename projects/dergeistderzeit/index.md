@@ -15,6 +15,7 @@ team: "1인 개발"
 tools: "HTML5, CSS3, JavaScript, AWS S3"
 date: "2017.04.29 - Current"
 link: "http://dergeistderzeit.com/"
+link-name: "Go to Website"
 carousels:
   - images: 
     - image: /projects/dergeistderzeit/img/dergeistderzeit-1.png
@@ -22,6 +23,8 @@ carousels:
     - image: /projects/dergeistderzeit/img/dergeistderzeit-3.png
     - image: /projects/dergeistderzeit/img/dergeistderzeit-4.png
 ---
+
+#### Details
 
 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
 
