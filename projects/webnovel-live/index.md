@@ -16,6 +16,7 @@ tools: "Node.js, Express.js, Vue.js, AWS EC2"
 date: "2018.05.17 - 18"
 link: "https://github.com/llb1026/webnovel-live"
 link-name: "Github"
+next-link: "../vibox/"
 carousels:
   - images: 
     - image: /projects/webnovel-live/img/webnovel-live-1.png
@@ -24,8 +25,6 @@ carousels:
 ---
 
 #### Details
-
-가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
 
 {% include carousel.html height="50" unit="%" duration="7" number="1" %}
 

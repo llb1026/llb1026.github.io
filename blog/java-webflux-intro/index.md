@@ -10,4 +10,5 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+prev-link: "../java-mapstruct-intro/"
 ---

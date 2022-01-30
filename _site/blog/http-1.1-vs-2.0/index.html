@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Http 1.1 vs 2.0</title>
+    <title>HTTP 1.1 vs 2.0</title>
         
     <!-- Post info -->
 
@@ -12,13 +12,13 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/http-1.1-vs-2.0/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog/http-1.1-vs-2.0/img/01_main.png">
+    <meta property="og:image" content="http://localhost:4000/blog/http-1.1-vs-2.0/img/01_1.png">
 
     <!-- title -->
-    <meta property="og:title" content="JIYUN.ME | Http 1.1 vs 2.0">
+    <meta property="og:title" content="JIYUN.ME | HTTP 1.1 vs 2.0">
     
     <!-- description -->
-    <meta property="og:description" content="https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-HTTP-1.1-vs-2.0"/>
+    <meta property="og:description" content="## HTTP 1.1 HTTP 1.0에서 1.1로 오면서 성능과 기능면에서 아래 목록을 포함한 여러가지 성능/기능 개선이 이루어졌다. - 지속적으로 연결되어 있는 커넥션을 통해 재사용을 가능하게 함 - chunked된 전송 인코딩을 이용하여..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -140,13 +140,13 @@
                             <p>tech-notes</p>
                         </div>
                         <!-- <h2 class="entry-title post-title">
-                            <a href="#">Http 1.1 vs 2.0</a>
+                            <a href="#">HTTP 1.1 vs 2.0</a>
                         </h2> -->
                         <div class="heading-title-article post-title">
-                            <h2 class="title">Http 1.1 vs 2.0</h2>
+                            <h2 class="title">HTTP 1.1 vs 2.0</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span></span>
+                            <span>1.1에서의 한계점과 2.0에서의 개선점</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -155,9 +155,9 @@
                             <!-- Title Image Start -->
                             <div class="entry-media uk-padding-small">
                                 <div class="tw-thumbnail" data-uk-lightbox>
-                                    <img src="img/01_main.png" alt="" />
+                                    <img src="img/01_1.png" alt="" />
                                     <div class="image-overlay">
-                                        <a href="img/01_main.png"></a>
+                                        <a href="img/01_1.png"></a>
                                     </div>
                                 </div>
                             </div>
@@ -166,11 +166,114 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                
+                                <ul><li><a href="#http-11">HTTP 1.1</a><ul><li><a href="#keep-alive-커넥션">Keep-Alive 커넥션</a></li><li><a href="#http-파이프라이닝">HTTP 파이프라이닝</a><ul><li><a href="#한계점">한계점</a></li></ul></li><li><a href="#여러-개의-tcp-커넥션-사용">여러 개의 TCP 커넥션 사용</a><ul><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li></ul></li><li><a href="#도메인-샤딩">도메인 샤딩</a></li></ul></li><li><a href="#http-20">HTTP 2.0</a><ul><li><a href="#바이너리-프레이밍-계층">바이너리 프레이밍 계층</a></li></ul></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <p>https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-HTTP-1.1-vs-2.0</p>
+                            <h2 id="http-11">HTTP 1.1</h2>
+
+<p>HTTP 1.0에서 1.1로 오면서 성능과 기능면에서 아래 목록을 포함한 여러가지 성능/기능 개선이 이루어졌다.</p>
+
+<ul>
+  <li>지속적으로 연결되어 있는 커넥션을 통해 재사용을 가능하게 함</li>
+  <li>chunked된 전송 인코딩을 이용하여 응답 스트리밍을 가능하게 함</li>
+  <li>요청 파이프라인을 이용하여 병렬 요청 처리를 가능하게 함</li>
+  <li>bite serving 기법을 통해 범위를 지정한 리소스 요청을 가능하게 함</li>
+  <li>캐싱 매커니즘을 명확히 정의하고 성능을 향상시킴</li>
+</ul>
+
+<h3 id="keep-alive-커넥션">Keep-Alive 커넥션</h3>
+
+<p>각 TCP 커넥션은 TCP 3-way handshake로 시작되고, 여기에는 클라이언트와 서버 간에 한 번의 왕복 레이턴시가 소요된다. 그 후 HTTP 요청/응답에 발생하는 양방향 전파 지연으로 인해 최소 한 번의 왕복 레이턴시가 더 발생한다.</p>
+
+<p>지속적으로 연결되어 있지 않은 세션에서는 HTTP 요청이 신규 TCP 커넥션을 통해 전달되는 데에 위와 같은 최소 2번의 네트워크 왕복이 고정적으로 발생한다. HTTP Keep-Alive는 기존의 커넥션을 재사용하여 두번째 요청부터 TCP 3-way handshake와 TCP slow start를 제거해 네트워크 왕복 레이턴시를 한 번으로 줄여준다.</p>
+
+<h3 id="http-파이프라이닝">HTTP 파이프라이닝</h3>
+
+<p>클라이언트에서는 요청을 처리할 때 FIFO 방식을 따르는데, 요청을 보내고 응답이 완전히 도착하기를 기다린 다음 클라이언트 큐에 있는 다음 요청을 처리하는 방식이다.</p>
+
+<p>HTTP 파이프라이닝은 이 FIFO 큐를 클라이언트(요청) 쪽에서 서버(응답) 쪽으로 재배치하는 것이다. 클라이언트 측에서 요청을 한꺼번에 보내고, 서버는 여러 요청을 한꺼번에 받아 작업한 후 돌려주게 되면 매 요청마다 걸리는 왕복 레이턴시를 하나로 줄일 수 있다.</p>
+
+<h4 id="한계점">한계점</h4>
+
+<p>이론상으로는 서버에서 파이프라인된 요청을 병렬로 처리해서 돌려주면 응답시간을 더 줄일 수 있을 것이다. 하지만 HTTP 1.x 커넥션에서는 하나의 응답에 대한 모든 바이트가 전송되기 전에는 다음 응답을 전송할 수 없다.</p>
+
+<p>예를 들어, html 파일과 css파일을 요청받아 병렬로 수행하는 작업을 병렬로 처리한다고 하자.</p>
+
+<ol>
+  <li>html과 css 요청 모두 병렬로 수행되지만, html 요청이 더 빠르다고 가정한다.</li>
+  <li>서버는 두 요청을 동시에 처리하기 시작하고, css 요청이 먼저 완료된다.
+3.하지만 html 요청이 먼저 도착했으므로 html 응답을 전송할 때까지 css 응답은 버퍼에 저장된다.</li>
+  <li>html 응답이 전송되고 나면 css 응답이 서버 버퍼에서 비워져 전송된다.</li>
+</ol>
+
+<p>이러한 시나리오는 보통 head-of-line blocking으로 알려져 있으며, 다음과 같은 단점이 있다.</p>
+
+<ul>
+  <li>응답 하나가 느려지면 그 다음에 대기하고 있는 모든 요청이 블로킹되어 계속 기다리게 된다.</li>
+  <li>요청을 병렬로 처리할 때 서버는 파이프라인의 응답들을 버퍼에 저장해야 하므로 서버의 리소스를 소모한다. 한 응답의 크기가 매우 큰 경우는 서버 공격에 이용될 수도 있다.</li>
+  <li>응답이 실패하면 TCP 커넥션을 종료하게 되어 클라이언트가 모든 리소스에 대한 요청을 처음부터 다시 보내야 한다.</li>
+  <li>중계자가 있는 환경에서 파이프라인에 대한 호환성 확인이 어렵다 (어떤 중계자는 파이프라인 자체를 지원하지 않아 커넥션을 취소하기도 하고, 어떤 중계자는 모든 요청을 직렬화시킨다).</li>
+</ul>
+
+<h3 id="여러-개의-tcp-커넥션-사용">여러 개의 TCP 커넥션 사용</h3>
+
+<p>HTTP 1.x에서 멀티플렉싱을 적용하기가 어렵기 때문에, 대신 여러가지 TCP 세션을 병렬로 처리하도록 할 수 있다. 요즘 대부분의 브라우저들은 호스트당 최대 6개의 커넥션을 연다.</p>
+
+<p>호스트당 6개의 독립적인 커넥션이 존재하는 경우, 장점과 단점을 살펴보자.</p>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>클라이언트는 병렬로 최대 6개의 요청을 보낼 수 있다.</li>
+  <li>서버는 병렬로 최대 6개의 요청을 처리할 수 있다.</li>
+  <li>첫 왕복(TCP cwnd)에 전송 가능한 누적 패킷 수도 6배로 늘어난다.</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>소켓 수가 늘어나면서 클라이언트, 서버, 그리고 모든 중계자가 추가 메모리 버퍼와 CPU 오버헤드 등 리소스를 소모하게 된다.</li>
+  <li>병렬 TCP 스트림 간에 대역폭 경쟁이 일어난다.</li>
+  <li>여러 소켓을 동시에 처리하는 작업을 구현하는게 매우 까다로워진다.</li>
+  <li>병렬의 TCP 스트림을 활용한다고 해도 어플리케이션에서는 병렬 작업이 제한적으로 이루어진다.</li>
+</ul>
+
+<h3 id="도메인-샤딩">도메인 샤딩</h3>
+
+<p>HTTP archive에 따르면, 일반적인 페이지는 90개 이상의 리소스로 이루어져 있으며 이는 모두 같은 호스트에 의해 운반된다고 한다. 여기서도 모든 리소스를 하위 도메인으로 쪼개어 각각 리소스를 나누어 요청해 지연을 줄일 수 있다. 더 많은 부분으로 쪼갤수록 병렬성은 높아진다. 하지만 새로운 호스트명마다 추가적으로 DNS 룩업이 필요하고, 소켓이 추가될 대마다 클라이언트와 서버 양쪽의 리소스를 소모해야 하며, 리소스가 어디로 어떻게 쪼개지는가를 개발자가 직접 관리해야 하는 단점이 있다.</p>
+
+<p>도메인 샤딩에서 최적의 샤딩 수는 정해져 있지 않다. 케바케로 개발하는 어플리케이션 특징에 따라 나눠야 한다. 그렇다고 도메인 샤딩을 남용하면 많은 요청들이 TCP slow start를 벗어나지 못해 오히려 사용자 입장에서 느리게 동작할 수도 있다.</p>
+
+<hr />
+
+<h2 id="http-20">HTTP 2.0</h2>
+
+<p>HTTP 1.1에서의 단점을 보완하고 성능을 향상시키기 위해 2009년 구글에서 SPDY라는 프로토콜을 발표했다. SPDY는 웹페이지의 로딩 시간을 50%만큼 향상시키기 위해 기존의 TCP 커넥션을 더 효율적으로 활용하는 방법을 택했다고 한다. 이를 바탕으로 HTTP 2.0 개발이 시작되었다.</p>
+
+<p>HTTP 2.0 선언문에 나와있는 프로토콜의 범위와 핵심 디자인 기준은 다음과 같다.</p>
+
+<ul>
+  <li>TCP를 사용하여 대부분의 경우 HTTP 1.1보다 대폭적으로 사용자단의 레이턴시를 개선해야 한다.</li>
+  <li>HTTP의 문제점인 head of line blocking을 해결해야 한다.</li>
+  <li>병렬화를 위해 서버에 다수의 커넥션을 요구하지 않고, 특히 혼잡 제어에 있어 TCP 사용 효율을 높여야 한다.</li>
+  <li>기존의 스펙 문서를 활용해 HTTP 메소드, 상태 코드, URI, 헤더 필드를 비롯한 HTTP 1.1의 기본 틀은 유지해야 한다.</li>
+  <li>HTTP 2.0이 HTTP 1.x와 어떻게 상호작용을 하는지 명확하게 정의해야 한다.</li>
+</ul>
+
+<p>HTTP 2.0으로 올라가면서 새로운 바이너리 프레이밍 계층을 추가했는데, 이를 이용해 요청과 응답 멀티플렉싱, 우선순위 등을 활성화하고 불필요한 네트워크 레이턴시를 줄이도록 한다. 이 바이너리 프레이밍 계층은 이전의 HTTP 1.x 서버와 클라이언트에는 호환되지 않는다.</p>
+
+<h3 id="바이너리-프레이밍-계층">바이너리 프레이밍 계층</h3>
+
+<p>먼저 주요 용어를 정리하자.</p>
+
+<ul>
+  <li><strong>스트림</strong>: 커넥션 내에 존재하는 가상 채널로서 양방향으로 메시지를 전달한다. 각 스트림은 고유의 정수 식별자를 갖는다.</li>
+  <li><strong>메시지</strong>: 요청/응답과 같은 논리적 HTTP 메시지이며 하나 이상의 프레임을 포함한다.</li>
+  <li><strong>프레임</strong>: HTTP 2.0 커뮤니케이션에서 사용되는 가장 작은 단위로, 각 프레임이 어느 스트림에 속해 있는지 지정하는 프레임 헤더를 포함하여 HTTP 헤더, 페이로드와 같은 특정 형식의 데이터를 운반한다.</li>
+</ul>
+
+<p>모든 HTTP 2.0 커뮤니케이션은 양방향 스트림을 운반할 수 있는 커넥션에서 이루어진다. 각 스트림은 메시지를 이용해 소통하고, 그 메시지는 하나 이상의 프레임으로 이루어져 있으며, 각 프레임은 각각의 헤더 안에 내장된 스트림 지정자를 통하여 이동하거나 재구성될 수 있다.</p>
 
 
                         </div>
@@ -186,23 +289,27 @@
 <section class="uk-section uk-section-small">
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            
             <div class="nav-prev tw-meta">
-                <!-- <a href="4">
+                <a href="../nginx-tuning/">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
-                </a> -->
+                </a>
             </div>
+            
             <div class="nav-link">
                 <a href="/blog">
                     <i class="ion-grid"></i>
                 </a>
             </div>
+            
             <div class="nav-next tw-meta">
-                <!-- <a href="">
+                <a href="../progressive-web-app/">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
-                </a> -->
+                </a>
             </div>
+            
         </div>
     </div>
 </section>

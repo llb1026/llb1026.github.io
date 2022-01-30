@@ -12,13 +12,13 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/client-side-routing/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog/client-side-routing/img/01_main.png">
+    <meta property="og:image" content="http://localhost:4000/blog/client-side-routing/img/01_1.png">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | 클라이언트 사이드 라우팅과 단점들">
     
     <!-- description -->
-    <meta property="og:description" content="https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-Client-Side-Routing"/>
+    <meta property="og:description" content="## 동작 방식 과거에는 유저가 특정 URL을 서버에 요청하면 서버에서 그 URL에 해당하는 결과 페이지를 넘겨주는 단순한 구조였다. 여기에 프론트엔드 프레임워크가 끼면서 요청된 URL에 대해 서버 측과 클라이언트 측 둘..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -137,7 +137,7 @@
                 <article class="single post">
                     <div class="entry-post">
                         <div class="entry-cats tw-meta">
-                            <p>tech-notes</p>
+                            <p>lesson-learned</p>
                         </div>
                         <!-- <h2 class="entry-title post-title">
                             <a href="#">클라이언트 사이드 라우팅과 단점들</a>
@@ -146,7 +146,7 @@
                             <h2 class="title">클라이언트 사이드 라우팅과 단점들</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span></span>
+                            <span>React.js에서 CSR를 구현하며 겪은 삽질과 각 해결방법들</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -155,9 +155,9 @@
                             <!-- Title Image Start -->
                             <div class="entry-media uk-padding-small">
                                 <div class="tw-thumbnail" data-uk-lightbox>
-                                    <img src="img/01_main.png" alt="" />
+                                    <img src="img/01_1.png" alt="" />
                                     <div class="image-overlay">
-                                        <a href="img/01_main.png"></a>
+                                        <a href="img/01_1.png"></a>
                                     </div>
                                 </div>
                             </div>
@@ -166,11 +166,88 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                
+                                <ul><li><a href="#동작-방식">동작 방식</a></li><li><a href="#문제점">문제점</a></li><li><a href="#해결-방법">해결 방법</a><ul><li><a href="#hash-history">Hash History</a><ul><li><a href="#단점">단점</a></li></ul></li><li><a href="#catch-all">Catch-all</a><ul><li><a href="#단점-1">단점</a></li></ul></li><li><a href="#hybrid">Hybrid</a><ul><li><a href="#단점-2">단점</a></li></ul></li><li><a href="#isomorphic">Isomorphic</a><ul><li><a href="#단점-3">단점</a></li></ul></li></ul></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <p>https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-Client-Side-Routing</p>
+                            <h2 id="동작-방식">동작 방식</h2>
+
+<p>과거에는 유저가 특정 URL을 서버에 요청하면 서버에서 그 URL에 해당하는 결과 페이지를 넘겨주는 단순한 구조였다. 여기에 프론트엔드 프레임워크가 끼면서 요청된 URL에 대해 서버 측과 클라이언트 측 둘 다 어떻게 동작할지 알고 있어야 하게 되었다. 따라서 클라이언트 측에도 라우팅이 필요해졌고, React에서는 <strong>React Router</strong>를 이용해 클라이언트 사이드 라우팅을 할 수 있다.</p>
+
+<p>서버 API에 필요한 데이터를 요청보내는 것을 제외하고, static 리소스 페이지에 대해 React Router는 다음과 같이 동작한다.</p>
+
+<ol>
+  <li>맨 처음 요청은 항상 서버로 보내진다.</li>
+  <li>서버로부터 React나 React Router 등을 로드하기 위한 필요한 스크립트를 받는다. 이제 React Router가 어느 URL에서 어떤 뷰를 렌더링할 것인지 결정할 수 있다.</li>
+  <li>사용자가 버튼이나 링크를 통해 <code class="language-plaintext highlighter-rouge">http://example.com/about</code> 페이지에 접근하면 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries">History API</a>를 통해 주소창의 URL이 <em>로컬상에서</em> 바뀐다. 여기서 중요한 점은 서버로 요청이 가는게 아니라, React가 해당 URL에 필요한 뷰를 렌더링해준다.</li>
+</ol>
+
+<h2 id="문제점">문제점</h2>
+
+<p>만약 위의 1, 2번 단계를 생략하고 바로 주소창에 <code class="language-plaintext highlighter-rouge">http://example.com/about</code>를 입력하면 React Router가 동작하기 전이므로, 해당 요청은 서버로 보내질 것이다. 그러면 서버에서는 <code class="language-plaintext highlighter-rouge">/about</code>에 대해 어떤 응답을 보낼지 알지 못하므로 404 에러가 발생한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">/about</code> URL은 React Router로 인해 클라이언트 사이드에서는 제대로 동작하지만, 서버 사이드에서는 서버에 <code class="language-plaintext highlighter-rouge">/about</code>에 대해 어떻게 동작할지 명시해주지 않는 이상 정상적으로 응답하지 못한다.</p>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<h3 id="hash-history">Hash History</h3>
+
+<p>기존의 문제 상황에서는 다음과 같이 React Router를 사용하고 있었다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import {BrowserRouter} from "react-router-dom";
+
+...
+    &lt;BrowserRouter&gt;
+        &lt;/App&gt;
+    &lt;/BrowserRouter&gt;
+...
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">BrowserRouter</code>를 <code class="language-plaintext highlighter-rouge">HashRouter</code>로 바꿔 적용하면 <a href="https://github.com/jintoppy/react-training/blob/master/basic/node_modules/react-router/docs/guides/Histories.md#browserhistory">BrowserHistory</a> 대신 <a href="https://github.com/jintoppy/react-training/blob/master/basic/node_modules/react-router/docs/guides/Histories.md#hashhistory">HashHistory</a>를 사용하게 되어 URL이 <code class="language-plaintext highlighter-rouge">http://example.com/#/about</code>과 같이 바뀐다. 가운데에 들어간 <code class="language-plaintext highlighter-rouge">#</code> 심볼 이후에 오는 URL 부분은 서버로 보내지지 않고, 서버는 <code class="language-plaintext highlighter-rouge">http://example.com/</code>까지만 보고 이에 해당하는 index 페이지를 응답으로 보내준다. 그리고 React Router가 <code class="language-plaintext highlighter-rouge">#/about</code> 부분에 따라 렌더링을 진행한다.</p>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>URL이 못생겨진다.</li>
+  <li>서버 사이드 렌더링이 불가능해진다.</li>
+  <li>production 모드에서는 권장하지 않는 방식이다.</li>
+  <li>SEO 측면에서 최악이다.</li>
+</ul>
+
+<h3 id="catch-all">Catch-all</h3>
+
+<p>BrowserHistory를 사용하되, 서버측에서 <code class="language-plaintext highlighter-rouge">/*</code> 요청에 대해 무조건 index 페이지를 리턴하도록 설정한다. URL이 깔끔해진다.</p>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>Hash History 방법보다 설정하기가 까다롭다.</li>
+  <li>여전히 SEO 측면에서 좋지 않다.</li>
+</ul>
+
+<h3 id="hybrid">Hybrid</h3>
+
+<p>위의 Catch-all 방법을 좀 더 확장한 것으로, 특정 URL에 대해 어떤 페이지를 리턴할 것인지 정의해놓은 스크립트를 추가한다. 이렇게 할 경우 Googlebot이 최소한 해당 페이지에 뭐가 있는지는 파악할 수 있게 된다.</p>
+
+<h4 id="단점-2">단점</h4>
+
+<ul>
+  <li>더 설정하기가 까다롭다.</li>
+  <li>스크립트에 정의해놓은 경로에 대해서만 SEO가 괜찮아진다.</li>
+  <li>페이지 리소스를 로드하는 데에 클라이언트와 서버에서 코드가 중복된다.</li>
+</ul>
+
+<h3 id="isomorphic">Isomorphic</h3>
+
+<p>서버 사이드 렌더링을 하면 된다. <a href="../server-side-rendering/">이전 블로그 글</a>에 자세한 내용을 적었다.</p>
+
+<h4 id="단점-3">단점</h4>
+
+<ul>
+  <li>서버가 javascript를 구동할 수 있어야 한다.</li>
+  <li>서버 사이드에서 <code class="language-plaintext highlighter-rouge">window</code>를 사용하는 경우를 비롯해 개발하기 까다로운 부분이 다수 있다.</li>
+  <li>이제까지의 해결 방법 중에서 러닝 커브가 제일 크다.</li>
+</ul>
 
 
                         </div>
@@ -186,23 +263,27 @@
 <section class="uk-section uk-section-small">
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            
             <div class="nav-prev tw-meta">
-                <!-- <a href="7">
+                <a href="../server-side-rendering/">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
-                </a> -->
+                </a>
             </div>
+            
             <div class="nav-link">
                 <a href="/blog">
                     <i class="ion-grid"></i>
                 </a>
             </div>
+            
             <div class="nav-next tw-meta">
-                <!-- <a href="">
+                <a href="../backend-performance-test/">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
-                </a> -->
+                </a>
             </div>
+            
         </div>
     </div>
 </section>

@@ -10,4 +10,6 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+next-link: "../etl-vs-elt/"
+prev-link: "../primitive-type-vs-reference-type/"
 ---

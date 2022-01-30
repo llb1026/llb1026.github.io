@@ -10,6 +10,8 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/transaction-001.jpeg
+next-link: "../how-transactional-works/"
+prev-link: "../java-serializable/"
 carousels:
   - images: 
     - image: /blog/transaction-and-lock/img/transaction-001.jpeg

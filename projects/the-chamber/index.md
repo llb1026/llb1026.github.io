@@ -16,6 +16,8 @@ tools: "Node.js, WebRTC, AWS"
 date: "2017.08 - 12"
 link: "https://github.com/2dayistheday/magical-chamber"
 link-name: "Github"
+prev-link: "../vibox/"
+next-link: "../dergeistderzeit/"
 carousels:
   - images: 
     - image: /projects/the-chamber/img/the-chamber-1.png
@@ -37,7 +39,9 @@ carousels:
 
 #### Details
 
-가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
+<video controls>
+    <source src="video/demo.mp4" type="video/mp4">
+</video>
 
 {% include carousel.html height="50" unit="%" duration="7" number="1" %}
 

@@ -10,6 +10,8 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/bg.jpg
+next-link: "../restful-api/"
+prev-link: "../efficient-caching/"
 ---
 
 ## 기본 베이스 지식
@@ -46,7 +48,7 @@ header-img: img/bg.jpg
 	<table class="uk-table-small uk-table style-2 uk-table-striped">
 		<thead>
 			<tr>
-				<th>구분</th>
+				<th> \ </th>
 				<th>MSA</th>
 				<th>SOA</th>
 			</tr>
@@ -141,7 +143,7 @@ header-img: img/bg.jpg
 
 ---
 
-## Appendix
+## References
 - [MSA에 대한 이해와 컨테이너 기술의 활용 방안.pdf](https://www.itfind.or.kr/WZIN/jugidong/1887/file2645276227345330267-188702.pdf)
 - [Spring Camp 2018 - MSA 관련 세션 후기](https://gwonsungjun.github.io/articles/2018-04/springCamp2018)
 - [MicroServices at Netflix - challenges of scale](https://www.slideshare.net/stonse/microservices-at-netflix)

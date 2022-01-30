@@ -12,13 +12,13 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/backend-performance-test/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog/backend-performance-test/img/01_main.png">
+    <meta property="og:image" content="http://localhost:4000/blog/backend-performance-test/img/01_1.png">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | 혼자 해 본 백엔드 성능테스트">
     
     <!-- description -->
-    <meta property="og:description" content="https://github.com/llb1026/naver-intern/wiki/%EC%84%B1%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8-Backend"/>
+    <meta property="og:description" content="## 백엔드 성능 테스트 ### 목적과 의미 성능 테스트란 - 오픈할 시스템의 병목을 찾고, - 시스템의 성능 기준을 잡고, - 성능 튜닝의 대상을 찾는데 도움이 되고, - 성능 목표와 관련된..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -146,7 +146,7 @@
                             <h2 class="title">혼자 해 본 백엔드 성능테스트</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span></span>
+                            <span>백엔드 최적화 포인트와 nGrinder를 이용한 성능테스트 결과</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -155,9 +155,9 @@
                             <!-- Title Image Start -->
                             <div class="entry-media uk-padding-small">
                                 <div class="tw-thumbnail" data-uk-lightbox>
-                                    <img src="img/01_main.png" alt="" />
+                                    <img src="img/01_1.png" alt="" />
                                     <div class="image-overlay">
-                                        <a href="img/01_main.png"></a>
+                                        <a href="img/01_1.png"></a>
                                     </div>
                                 </div>
                             </div>
@@ -166,11 +166,342 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                
+                                <ul><li><a href="#백엔드-성능-테스트">백엔드 성능 테스트</a><ul><li><a href="#목적과-의미">목적과 의미</a></li><li><a href="#테스트-절차">테스트 절차</a></li><li><a href="#관련-용어">관련 용어</a></li><li><a href="#관련-공식">관련 공식</a></li></ul></li><li><a href="#최적화-포인트">최적화 포인트</a><ul><li><a href="#비즈니스-로직">비즈니스 로직</a></li><li><a href="#쿼리">쿼리</a></li><li><a href="#웹-서버-세팅">웹 서버 세팅</a><ul><li><a href="#keepalive">keepalive</a><ul><li><a href="#tcp-keepalive-vs-nginx-keepalive">TCP keepalive vs Nginx keepalive</a></li><li><a href="#timeout-설정시-고려할-점">timeout 설정시 고려할 점</a></li></ul></li></ul></li></ul></li><li><a href="#테스트-환경">테스트 환경</a></li><li><a href="#결과">결과</a><ul><li><a href="#redis-없을-때">Redis 없을 때</a></li><li><a href="#redis-있을-때">Redis 있을 때</a></li></ul></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <p>https://github.com/llb1026/naver-intern/wiki/%EC%84%B1%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8-Backend</p>
+                            <h2 id="백엔드-성능-테스트">백엔드 성능 테스트</h2>
+
+<h3 id="목적과-의미">목적과 의미</h3>
+
+<p>성능 테스트란</p>
+
+<ul>
+  <li>오픈할 시스템의 병목을 찾고,</li>
+  <li>시스템의 성능 기준을 잡고,</li>
+  <li>성능 튜닝의 대상을 찾는데 도움이 되고,</li>
+  <li>성능 목표와 관련된 요구사항을 찾고,</li>
+  <li>성능과 관련된 데이터들을 모으고,</li>
+  <li>하드웨어의 최적화된 설정을 잡는 작업이다.</li>
+</ul>
+
+<p>성능 테스트의 주요 관점은</p>
+<ul>
+  <li>응답시간 측정
+    <ul>
+      <li>응답시간은 사용자의 이탈과 밀접한 관련이 있음 → 가장 중요!</li>
+      <li>부하시 응답시간이 어떻게 변화하는지 확인</li>
+    </ul>
+  </li>
+  <li>처리량
+    <ul>
+      <li>단위 시간당 처리할 수 있는 양을 확인</li>
+      <li>일반적으로는 초 단위인 <strong>TPS</strong>(Transaction Per Seconds)를 측정
+        <ul>
+          <li>Transaction을 잡는 기준은 달라질 수 있음 (단순히 하나의 요청에 대한 응답으로 잡을 수도 있고, 규모가 큰 프로젝트인 경우 하나의 비즈니스 로직을 트랜잭션 하나로 잡을 수도 있음)</li>
+        </ul>
+      </li>
+      <li>부하시 처리량이 어떻게 변화하는지 확인</li>
+    </ul>
+  </li>
+  <li>확장성
+    <ul>
+      <li>서버를 추가해야 하는 상황이 발생할 것을 대비해 어떤 서버를 얼마나 추가해야 할지에 대한 사전 확인</li>
+    </ul>
+  </li>
+  <li>부하시 오류 발생 여부 확인
+    <ul>
+      <li>로컬 개발환경에서는 발생하지 않는 오류가 운영 및 부하 상황에서 발생할 확률이 매우 높음</li>
+    </ul>
+  </li>
+  <li>병목지점 도출과 튜닝을 위한 정보 제공
+    <ul>
+      <li>응답시간 및 처리량에 영향을 주는 병목 지점을 찾아 사전에 제거</li>
+      <li>서버의 설정이 최적화되어 있는지에 대한 점검</li>
+      <li>Lock, Resource contention 발생 여부 확인 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<p>서버 성능 테스트의 제외 대상은</p>
+<ul>
+  <li>Front End (Client)의 성능 제외
+    <ul>
+      <li>브라우저에서 script 처리하고 화면 레이아웃 구성하는 시간은 별도의 측정 툴로 봐야 함 → NSPEED</li>
+    </ul>
+  </li>
+  <li>유저의 네트워크 구간 제외
+    <ul>
+      <li>사용자의 요청이 IDC 네트워크 망 안으로 들어왔을 때부터의 시간만 측정 가능함</li>
+      <li>예를 들어 사용자가 모뎀이나 3G 망을 써서 IDC 네트워크 망으로 들어올 때까지의 시간 측정은 불가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="테스트-절차">테스트 절차</h3>
+
+<ol>
+  <li>계획
+    <ul>
+      <li>성능 테스트의 대상과 범위를 결정</li>
+    </ul>
+  </li>
+  <li>준비
+    <ul>
+      <li>부하를 가하는 스크립트 준비</li>
+      <li>대상 시스템을 production 모드로 변경</li>
+      <li>각종 리소스 모니터링 방안 마련</li>
+    </ul>
+  </li>
+  <li>실시
+    <ul>
+      <li>시스템을 모니터링하면서 테스트 실시</li>
+      <li>병목지점을 발견하거나 문제가 발생하면 테스트를 멈추고 원인 파악 및 해결</li>
+    </ul>
+  </li>
+  <li>결과 분석 및 정리
+    <ul>
+      <li>분석한 결과에 문제가 없으면 결과를 정리</li>
+      <li>문제가 있으면 튜닝 및 문제점을 보완한 후 테스트 재실시</li>
+    </ul>
+  </li>
+  <li>결과 공유
+    <ul>
+      <li>서비스의 오픈과 관련된 담당자들에게 결과 공유</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="관련-용어">관련 용어</h3>
+
+<ul>
+  <li><em>Agent</em>: Active 상태인 부하 발생기의 수</li>
+  <li><em>Process</em>: Agent당 부하를 발생시키는 Process의 개수</li>
+  <li><em>Thread</em>: Process당 사용되는 부하 발생 Thread의 개수</li>
+  <li><em>Target Host</em>: 모니터링 대상의 TP</li>
+  <li><em>Simple Interval</em>: 실시간 모니터링 그래프를 나타내기 위한 데이터 수집 간격</li>
+  <li><em>Ignore</em>: 테스트 수행 시작 직후 warm-up을 위해 데이터 수집을 무시할 초(sec) 값</li>
+  <li><em>Expect Vuser</em>: 사용자가 생성하고자 하는 Virtual User 수</li>
+  <li><em>Actual Vuser</em>: Agent, Process, Thread에 의해 생성되는 실제 Vuser 수</li>
+  <li><em>Ran Counts</em>: 각 테스트가 수행되는 횟수 (0으로 설정하면 Duration에서 설정한 시간만큼 수행)</li>
+  <li><em>Duration</em>: 테스트 수행 시간 (Run Count가 1 이상이면 Run Count 값이 우선됨)</li>
+</ul>
+
+<h3 id="관련-공식">관련 공식</h3>
+
+<ul>
+  <li>Little’s Law
+    <ul>
+      <li>Concurrent User = TPS * (Avg. Response Time) + Think Time</li>
+    </ul>
+  </li>
+  <li>Amdahl’s Law
+    <ul>
+      <li>1 / {(1-P) + P/S}, (P = 전체 시스템에서 차지하는 비중, S = 성능 향상 비율)</li>
+      <li>개선 후 실행 시간 = 개선에 의해 영향을 받는 실행 시간 / (성능 향상 비율 + 영향을 받지 않는 실행 시간)</li>
+      <li>예를 들어, 전체 시스템 중 40%에 해당하는 부분의 속도를 2배로 늘렸을 경우 예상되는 최대 성능 향상은 1 / {(1-0.4) + 0.4/2} = 1.25</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="최적화-포인트">최적화 포인트</h2>
+
+<h3 id="비즈니스-로직">비즈니스 로직</h3>
+
+<p>추후 추가 예정</p>
+
+<h3 id="쿼리">쿼리</h3>
+
+<p>추후 추가 예정</p>
+
+<h3 id="웹-서버-세팅">웹 서버 세팅</h3>
+
+<h4 id="keepalive">keepalive</h4>
+
+<p>Nginx upstream을 설정할 때 다음과 같이 Nginx와 WAS간의 세션을 유지하도록 keepalive를 켤 수 있다.</p>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">upstream</span> <span class="n">backend</span> {
+    <span class="n">server</span> <span class="n">example</span>.<span class="n">com</span>:<span class="m">8080</span>;
+    <span class="n">keepalive</span> <span class="m">100</span>;    // <span class="n">keepalive</span>로 유지시키는 최대 커넥션 개수
+}
+</code></pre></div></div>
+
+<p>만약 keepalive가 켜져 있지 않다면 리퀘스트마다 새로운 세션을 만들어 한 번의 요청만 처리한 후 소켓이 끊어진다. 이로 인해 시간이 지날수록 불필요한 TCP handshake가 발생해 응답 속도 지연을 일으킬 수 있다.</p>
+
+<h5 id="tcp-keepalive-vs-nginx-keepalive">TCP keepalive vs Nginx keepalive</h5>
+
+<p>헷갈릴 수 있어서 같이 정리한다.</p>
+
+<p>TCP keepalive와 Nginx keepalive 모두 TCP 세션을 유지하기 위해 사용하지만, 다음과 같은 큰 차이점들이 있다.</p>
+
+<ol>
+  <li>TCP keepalive는 keepalive 유지 및 관리에 대한 작업을 커널이 직접 한다. TCP 계층에서 직접 해당 소켓이 살아있는지 확인하는 반면, Nginx keepalive는 기본적으로 어플리케이션 레벨에서의 keepalive이다.</li>
+  <li>TCP keepalive는 주기적으로 ping-pong을 통해 상대방이 살아있는지 확인해 일정 횟수동안 응답이 없으면 연결을 끊지만, Nginx keepalive는 클라이언트로부터 먼저 FIN을 받지 않는 이상 먼저 연결을 끊지 않고 keepalive time동안 세션을 유지한다 → 반대로 다시 표현하자면, TCP keepalive는 ping-pong에 대한 응답이 온다면 끊지 않고 계속해서 세션을 유지하지만, Nginx keepalive는 설정된 keepalive time이 지나면 클라이언트와의 연결을 능동적으로 끊는다.</li>
+</ol>
+
+<p>둘은 비슷해 보이지만 서로 연관성이 없다. 만약 어플리케이션에서 자체적으로 keepalive 세션을 관리한다면 TCP keepalive 값은 무시해도 된다. (<a href="https://brunch.co.kr/@alden/9">참고</a>)</p>
+
+<h5 id="timeout-설정시-고려할-점">timeout 설정시 고려할 점</h5>
+
+<p>적절하게 설정되지 않은 keepalive는 웹 서버의 스레드 부족 현상을 일으킬 수 있다.</p>
+
+<p>예를 들어, 1000개의 worker가 떠 있는 웹 서버에 1000개의 세션이 keepalive를 켜고 들어오면 1001번째 세션은 처리를 받아줄 worker가 없기 때문에 스레드가 부족해지고, 서비스의 전체적인 응답속도가 저하된다.</p>
+
+<p>따라서 서비스의 트래픽과 요청량에 따라 적절한 값의 keepalive timeout을 설정해야 한다.</p>
+
+<hr />
+
+<h2 id="테스트-환경">테스트 환경</h2>
+
+<ul>
+  <li>기사 수: 12개</li>
+  <li>에이전트: 3</li>
+  <li>에이전트 별 Vuser: 150</li>
+  <li>총 Vuser: 450</li>
+  <li>프로세스: 4</li>
+  <li>스레드: 37</li>
+  <li>테스트 기간: 1시간</li>
+  <li>초기 대기시간: 1000ms</li>
+  <li>테스트 스크립트:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">net</span><span class="o">.</span><span class="na">grinder</span><span class="o">.</span><span class="na">script</span><span class="o">.</span><span class="na">Grinder</span><span class="o">.</span><span class="na">grinder</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">Matchers</span><span class="o">.*</span>
+<span class="kn">import</span> <span class="nn">net.grinder.plugin.http.HTTPRequest</span>
+<span class="kn">import</span> <span class="nn">net.grinder.plugin.http.HTTPPluginControl</span>
+<span class="kn">import</span> <span class="nn">net.grinder.script.GTest</span>
+<span class="kn">import</span> <span class="nn">net.grinder.script.Grinder</span>
+<span class="kn">import</span> <span class="nn">net.grinder.scriptengine.groovy.junit.GrinderRunner</span>
+<span class="kn">import</span> <span class="nn">net.grinder.scriptengine.groovy.junit.annotation.BeforeProcess</span>
+<span class="kn">import</span> <span class="nn">net.grinder.scriptengine.groovy.junit.annotation.BeforeThread</span>
+<span class="c1">// import static net.grinder.util.GrinderUtils.* // You can use this if you're using nGrinder after 3.2.3</span>
+<span class="kn">import</span> <span class="nn">org.junit.Before</span>
+<span class="kn">import</span> <span class="nn">org.junit.BeforeClass</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span>
+
+<span class="kn">import</span> <span class="nn">HTTPClient.Cookie</span>
+<span class="kn">import</span> <span class="nn">HTTPClient.CookieModule</span>
+<span class="kn">import</span> <span class="nn">HTTPClient.HTTPResponse</span>
+<span class="kn">import</span> <span class="nn">HTTPClient.NVPair</span>
+
+<span class="cm">/**
+ * A simple example using the HTTP plugin that shows the retrieval of a
+ * single page via HTTP. 
+ * 
+ * This script is automatically generated by ngrinder.
+ * 
+ * @author 이지윤
+ */</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="nc">GrinderRunner</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">TestRunner</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">GTest</span> <span class="n">test</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">GTest</span> <span class="n">testSection</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">GTest</span> <span class="n">testArticle</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">HTTPRequest</span> <span class="n">request</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">NVPair</span><span class="o">[]</span> <span class="n">headers</span> <span class="o">=</span> <span class="o">[]</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">NVPair</span><span class="o">[]</span> <span class="n">params</span> <span class="o">=</span> <span class="o">[]</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">Cookie</span><span class="o">[]</span> <span class="n">cookies</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="no">HOST</span> <span class="o">=</span> <span class="s">""</span>
+
+	<span class="nd">@BeforeProcess</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">beforeProcess</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">HTTPPluginControl</span><span class="o">.</span><span class="na">getConnectionDefaults</span><span class="o">().</span><span class="na">timeout</span> <span class="o">=</span> <span class="mi">6000</span>
+		<span class="n">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GTest</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="no">HOST</span><span class="o">)</span>
+		<span class="n">testSection</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GTest</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="no">HOST</span><span class="o">)</span>
+		<span class="n">testArticle</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GTest</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="no">HOST</span><span class="o">)</span>
+		<span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HTTPRequest</span><span class="o">()</span>
+		<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"before process."</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@BeforeThread</span> 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeThread</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">test</span><span class="o">.</span><span class="na">record</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"test"</span><span class="o">)</span>
+		<span class="n">testSection</span><span class="o">.</span><span class="na">record</span><span class="o">(</span><span class="n">request</span><span class="o">)</span>
+		<span class="n">testArticle</span><span class="o">.</span><span class="na">record</span><span class="o">(</span><span class="n">request</span><span class="o">)</span>
+		<span class="n">grinder</span><span class="o">.</span><span class="na">statistics</span><span class="o">.</span><span class="na">delayReports</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+		<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"before thread."</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">request</span><span class="o">.</span><span class="na">setHeaders</span><span class="o">(</span><span class="n">headers</span><span class="o">)</span>
+		<span class="n">cookies</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span> <span class="nc">CookieModule</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">it</span><span class="o">,</span> <span class="nc">HTTPPluginControl</span><span class="o">.</span><span class="na">getThreadHTTPClientContext</span><span class="o">())</span> <span class="o">}</span>
+		<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"before thread. init headers and cookies"</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(){</span>
+		<span class="nc">HTTPResponse</span> <span class="n">result</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">GET</span><span class="o">(</span><span class="no">HOST</span><span class="o">,</span> <span class="n">params</span><span class="o">)</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">301</span> <span class="o">||</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">302</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"Warning. The response may not be correct. The response code was {}."</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">);</span> 
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="n">assertThat</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSection</span><span class="o">()</span> <span class="o">{</span>
+		<span class="c1">// 섹션별 기사 목록</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">section</span> <span class="o">=</span> <span class="o">[</span><span class="s">"news"</span><span class="o">,</span> <span class="s">"entertain"</span><span class="o">,</span> <span class="s">"sports"</span><span class="o">];</span>
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">section</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">HTTPResponse</span> <span class="n">result</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">GET</span><span class="o">(</span><span class="no">HOST</span> <span class="o">+</span> <span class="n">section</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">"/0"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+			
+			<span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">301</span> <span class="o">||</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">302</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"Warning. The response may not be correct. The response code was {}."</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">);</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="n">assertThat</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testArticle</span><span class="o">()</span> <span class="o">{</span>
+		<span class="c1">// 기사 상세보기</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">oid</span> <span class="o">=</span> <span class="o">[</span><span class="s">"011"</span><span class="o">,</span> <span class="s">"055"</span><span class="o">,</span> <span class="s">"015"</span><span class="o">,</span> <span class="s">"052"</span><span class="o">,</span> <span class="s">"003"</span><span class="o">,</span> <span class="s">"311"</span><span class="o">,</span> <span class="s">"213"</span><span class="o">,</span> <span class="s">"112"</span><span class="o">,</span> <span class="s">"011"</span><span class="o">,</span> <span class="s">"018"</span><span class="o">,</span> <span class="s">"047"</span><span class="o">,</span> <span class="s">"436"</span><span class="o">];</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">aid</span> <span class="o">=</span> <span class="o">[</span><span class="s">"0003461916"</span><span class="o">,</span> <span class="s">"0000695140"</span><span class="o">,</span> <span class="s">"0004059512"</span><span class="o">,</span> <span class="s">"0001227035"</span><span class="o">,</span> <span class="s">"0008954639"</span><span class="o">,</span> <span class="s">"0000931431"</span><span class="o">,</span> <span class="s">"0001075192"</span><span class="o">,</span> <span class="s">"0003107268"</span><span class="o">,</span> <span class="s">"0003461852"</span><span class="o">,</span> <span class="s">"0004269678"</span><span class="o">,</span> <span class="s">"0002211348"</span><span class="o">,</span> <span class="s">"0000030345"</span><span class="o">];</span>
+		
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">oid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">HTTPResponse</span> <span class="n">result</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">GET</span><span class="o">(</span><span class="no">HOST</span> <span class="o">+</span> <span class="n">oid</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">aid</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">"/"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+			
+			<span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">301</span> <span class="o">||</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">302</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">grinder</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"Warning. The response may not be correct. The response code was {}."</span><span class="o">,</span> <span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">);</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="n">assertThat</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">statusCode</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="결과">결과</h2>
+
+<h3 id="redis-없을-때">Redis 없을 때</h3>
+
+<ul>
+  <li>평균 TPS: <em>439.1</em></li>
+  <li>최고 TPS: <em>516.5</em></li>
+  <li>평균 테스트 시간: 1,010.3ms</li>
+</ul>
+
+<h3 id="redis-있을-때">Redis 있을 때</h3>
+
+<ul>
+  <li>평균 TPS: <em>1,756</em></li>
+  <li>최고 TPS: <em>1,943</em></li>
+  <li>평균 테스트 시간: 252.6ms</li>
+</ul>
 
 
                         </div>
@@ -186,23 +517,27 @@
 <section class="uk-section uk-section-small">
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            
             <div class="nav-prev tw-meta">
-                <!-- <a href="8">
+                <a href="../client-side-routing/">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
-                </a> -->
+                </a>
             </div>
+            
             <div class="nav-link">
                 <a href="/blog">
                     <i class="ion-grid"></i>
                 </a>
             </div>
+            
             <div class="nav-next tw-meta">
-                <!-- <a href="">
+                <a href="../naver-intern-epilogue/">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
-                </a> -->
+                </a>
             </div>
+            
         </div>
     </div>
 </section>

@@ -51,23 +51,41 @@
 <section class="uk-section uk-section-small">
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            {% if page.prev-link != nil %}
             <div class="nav-prev tw-meta">
-                <!-- <a href="{{ page.order ==  }}">
+                <a href="{{ page.prev-link }}">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
-                </a> -->
+                </a>
             </div>
+            {% else %}
+            <div class="nav-prev tw-meta" style="visibility: hidden">
+                <a href="#">
+                    <i class="ion-ios-arrow-left"></i>
+                    <span>Prev</span>
+                </a>
+            </div>
+            {% endif %}
             <div class="nav-link">
                 <a href="{{ '/projects' | prepend: site.baseurl }}">
                     <i class="ion-grid"></i>
                 </a>
             </div>
+            {% if page.next-link != nil %}
             <div class="nav-next tw-meta">
-                <!-- <a href="{{  }}">
+                <a href="{{ page.next-link }}">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
-                </a> -->
+                </a>
             </div>
+            {% else %}
+            <div class="nav-next tw-meta" style="visibility: hidden">
+                <a href="#">
+                    <span>Next</span>
+                    <i class="ion-ios-arrow-right"></i>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>

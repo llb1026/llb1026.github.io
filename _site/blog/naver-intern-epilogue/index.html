@@ -12,13 +12,13 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/naver-intern-epilogue/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog/naver-intern-epilogue/img/01_main.png">
+    <meta property="og:image" content="http://localhost:4000/blog/naver-intern-epilogue/img/01_1.png">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | 네이버 인턴 과정 중 배운 것들">
     
     <!-- description -->
-    <meta property="og:description" content="## 스스로 고민했던 것들 - 기사 내용에 대한 캐시 데이터에도 TTL을 꼭 달아줘야 할까? - 서비스 운영 측면에서 캐시를 사용하는 이유를 다시 생각해보자. 캐시는 **짧은 단위시간**동안 많은 cache hit를 올리면..."/>
+    <meta property="og:description" content="## 스스로 고민했던 것들 - 기사 내용에 대한 캐시 데이터에도 TTL을 꼭 달아줘야 할까? - 서비스 운영 측면에서 캐시를 사용하는 이유를 다시 생각해보자. 캐시는 *짧은 단위시간*동안 많은 cache hit를 올리면..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -146,7 +146,7 @@
                             <h2 class="title">네이버 인턴 과정 중 배운 것들</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span></span>
+                            <span>스스로 고민했던 것들, 질문했던 것들, 받았던 조언과 팁</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -155,9 +155,9 @@
                             <!-- Title Image Start -->
                             <div class="entry-media uk-padding-small">
                                 <div class="tw-thumbnail" data-uk-lightbox>
-                                    <img src="img/01_main.png" alt="" />
+                                    <img src="img/01_1.png" alt="" />
                                     <div class="image-overlay">
-                                        <a href="img/01_main.png"></a>
+                                        <a href="img/01_1.png"></a>
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +175,14 @@
 <ul>
   <li>기사 내용에 대한 캐시 데이터에도 TTL을 꼭 달아줘야 할까?
     <ul>
-      <li>서비스 운영 측면에서 캐시를 사용하는 이유를 다시 생각해보자. 캐시는 <strong>짧은 단위시간</strong>동안 많은 cache hit를 올리면 성공한 거.</li>
+      <li>서비스 운영 측면에서 캐시를 사용하는 이유를 다시 생각해보자. 캐시는 <em>짧은 단위시간</em>동안 많은 cache hit를 올리면 성공한 거.</li>
       <li>단위시간을 길게 잡아도 평상시의 보통 작업에서는 큰 문제가 없을지도 모르나, 돌발적으로 단위시간이 채 끝나기 전에 기사 데이터가 삭제되거나 업데이트될 수 있다. 이럴 경우 남은 단위시간이 끝날 때까지 변경된 내용이 사용자에게 반영되지 않는다.</li>
       <li>그래서 캐시를 할 때 TTL 주기, 저장소 용량, 원본 데이터의 업데이트 빈도를 충분히 고려해야 한다.</li>
     </ul>
   </li>
   <li>백엔드 튜닝
     <ul>
-      <li>안정성 → 죽지 않는 서비스
+      <li><em>안정성</em> → 죽지 않는 서비스
         <ul>
           <li>부하 테스트
             <ul>
@@ -230,7 +230,7 @@
           </li>
         </ul>
       </li>
-      <li>성능 향상 → 빠른 서비스
+      <li><em>성능 향상</em> → 빠른 서비스
         <ul>
           <li>비즈니스 로직 최적화
             <ul>
@@ -285,7 +285,7 @@
   </li>
   <li>브라우저가 HTTP 2.0을 지원하지 않으면 그냥 HTTP 1.1로 돌리면 될까요?
     <ul>
-      <li>ㅁ</li>
+      <li>직접 찾아보자.</li>
     </ul>
   </li>
   <li>log 데이터는 차지하는 용량에 비해 의미있는 데이터가 적을 것 같은데, 어떻게 쌓아두고 관리하는지 궁금합니다.
@@ -340,13 +340,13 @@
 
 <ul>
   <li><strong>가장 안 좋은 건 이유 없이 그냥 쓰는 것</strong>. 어떤 요소를 쓴다면 왜 쓰는지, 기술적으로 어떤 이점이 있는지 (구체적인 수치와 함께), 이외에 다른 대안은 없는지 등에 대해 자세하고 명확한 이유가 있어야 한다.</li>
-  <li>명확한 단위에 대한 감이 있어야 한다. TPS, OPS와 같은 수치에 익숙해지도록 하자</li>
+  <li><strong>명확한 단위에 대한 감이 있어야 한다</strong>. TPS, OPS와 같은 수치에 익숙해지도록 하자</li>
   <li>프로젝트 설계할 때에는 가능한 모든 케이스를 고려해서 촘촘하게 설계해야 한다. Best case보다는 Worst case부터 발생할 수 있는 모든 예외 상황을 고려하는 방향으로 가야 한다.</li>
   <li>뻔한 구조도는 그리나 마나. 구체적으로 각 파트마다 수행하는 작업과 작업의 흐름이 보이도록 프로젝트 구조를 짜야 한다.</li>
-  <li>새로운 걸 익힐 때에는 공식 문서를 먼저 보자.</li>
+  <li>새로운 걸 익힐 때에는 <strong>공식 문서를 먼저 보자</strong>.</li>
   <li>프레임워크가 제공하는 기능에 대해 얼마나 많이 잘 알고 잘 써먹을 줄 아는지가 생산성에 큰 영향을 미친다. 먼저 잘 쓰는 방법을 익히고, 어떻게 이게 만들어졌고 왜 이런 방향으로 발전했는지 고민.</li>
   <li>스터디 문서를 작성할 때에는 책에 있는 내용처럼 원론적인 걸 기록하고 끝나지 말고, 실제로 이걸 이용해 개발했을 때의 이야기를 좀 더 넣자.</li>
-  <li>사소하다고 생각할 수 있지만, 코딩 컨벤션 꼭 유념하자.</li>
+  <li>사소하다고 생각할 수 있지만, <strong>코딩 컨벤션 꼭 유념하자</strong>.</li>
 </ul>
 
 
@@ -363,23 +363,27 @@
 <section class="uk-section uk-section-small">
     <div class="uk-container uk-container-small">
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
+            
             <div class="nav-prev tw-meta">
-                <!-- <a href="9">
+                <a href="../backend-performance-test/">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
-                </a> -->
+                </a>
             </div>
+            
             <div class="nav-link">
                 <a href="/blog">
                     <i class="ion-grid"></i>
                 </a>
             </div>
+            
             <div class="nav-next tw-meta">
-                <!-- <a href="">
+                <a href="../java-exceptions/">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
-                </a> -->
+                </a>
             </div>
+            
         </div>
     </div>
 </section>

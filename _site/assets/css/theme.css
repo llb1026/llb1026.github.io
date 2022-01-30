@@ -190,6 +190,7 @@ sup {
   text-transform: none;
   font-weight: 300;
   letter-spacing: 0.025em;
+  opacity: 70%;
 }
 ul {
   list-style: square;

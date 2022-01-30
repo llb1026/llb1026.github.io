@@ -16,6 +16,8 @@ tools: "JavaScript, RPG Maker MV"
 date: "2017.01.30 - 04.06"
 link: "https://jiyun.me/game/"
 link-name: "Launch Game"
+prev-link: "../dergeistderzeit/"
+next-link: "../sg-market/"
 carousels:
   - images: 
     - image: /projects/umme/img/umme.png
@@ -27,7 +29,5 @@ carousels:
 ---
 
 #### Details
-
-가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사
 
 {% include carousel.html height="50" unit="%" duration="7" number="1" %}

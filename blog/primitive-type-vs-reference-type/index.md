@@ -10,6 +10,8 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+next-link: "../java-stream-api/"
+prev-link: "../restful-api/"
 ---
 
 Boxing & Unboxing cost

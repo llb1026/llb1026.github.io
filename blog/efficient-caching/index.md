@@ -10,4 +10,6 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+next-link: "../java-microservice/"
+prev-link: "../java-exceptions/"
 ---

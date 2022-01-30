@@ -2,14 +2,96 @@
 order: 13
 layout: post
 title: "RESTful API와 개발자의 고민"
-subtitle: ""
+subtitle: "원칙과 실무의 괴리, 그리고 다양한 타협 경험들"
 tag: Lesson Learned
 type: lesson-learned
 blog: true
 text: true
 author: JIYUN LEE
 post-header: true
-header-img: img/01_main.png
+header-img: img/01_1.png
+next-link: "../primitive-type-vs-reference-type/"
+prev-link: "../java-microservice/"
 ---
 
-https://github.com/llb1026/naver-intern/wiki/%EC%8A%A4%ED%84%B0%EB%94%94-RESTful-API
+## HTTP 메소드
+
+- `GET`: 서버에서 클라이언트로 지정한 리소스를 보내라
+- `POST`: 클라이언트 데이터를 서버 게이트웨이 어플리케이션으로 보내라
+- `PUT`: 클라이언트에서 서버로 보낸 데이터를 지정한 이름의 리소스로 저장하라
+- `DELETE`: 지정한 리소스를 서버에서 삭제하라
+- `HEAD`: 지정한 리소스에 대한 응답에서 HTTP 헤더 부분만 보내라
+
+### GET vs POST
+
+대략적으로 다음과 같은 단편적인 차이점들이 있다.
+
+- GET은 뒤로가기 버튼 및 페이지 리로드가 자유롭지만, POST는 데이터가 재전송된다
+- GET은 북마크가 가능하지만, POST는 불가능하다
+- GET 파라미터는 브라우저 기록에 남지만, POST 파라미터는 남지 않는다
+- GET으로 전송된 데이터는 URL에 표시되지만, POST로 전송된 데이터는 표시되지 않는다
+
+좀 더 자세히 특징을 살펴보자.
+
+#### GET
+
+URL에 요청 파라미터를 붙여서 전송한다. 따라서 대용량 데이터를 전송하기 어렵다. 또한 파라미터를 사용자가 쉽게 눈으로 확인할 수 있다.
+
+HTTP/1.1 스펙에 따르면 GET은 정보를 조회하기 위한 메소드라고 되어 있다. 따라서 GET을 통해 서버 요청 후 응답을 받게 되면 브라우저에서 해당 요청에 대한 응답을 캐싱해 향후 중복되는 추가 네트워크 이용을 줄여 빠르게 조회할 수 있게 한다.
+
+#### POST
+
+서버로 데이터를 전송하기 위해 설계되었다. GET과 달리 파라미터가 URL로 넘어가지 않고 HTTP 패킷의 Body에 담겨 전송된다. 따라서 URL 파라미터와 달리 전송 길이 제한이 없어 대용량 데이터를 전송하는 데에 적합하다.
+
+POST로 요청할 때 Request Header의 Content-Type에 해당 데이터 타입이 표현되며, 전송하고자 하는 데이터 타입을 적어줘야 한다. 따로 명시하지 않았을 경우 서버에서 컨텐츠의 내용이나 확장자 이름 등으로 타입을 유추한다. 알 수 없는 경우에는 `application/octet-stream`으로 처리한다.
+
+데이터가 Body에 담겨 전송되기 때문에 GET보다 보안 측면에서 안전하긴 하지만, POST도 Fiddler와 같은 툴로 내용을 까볼 수 있기 때문에 반드시 암호화하여 전송해야 한다.
+
+### 그냥 다 GET을/POST를 쓰면 안 되는 이유
+
+GET은 같은 URL을 서버에게 여러 번 요청해도 동일한 응답이 돌아오도록 설계되었다. 하지만 POST는 그렇지 않다.
+
+이러한 GET의 설계 원칙에 따라 서버의 데이터나 상태를 변경시키지 않아야 하기 때문에 주로 조회를 할 때 사용된다. 웹페이지를 열어보거나 게시글을 읽는 등의 행위는 GET으로 요청하게 된다.
+
+조회에 GET이 사용되는 또다른 이유는 웹페이지 조회 시 원하는 페이지로 바로 이동하기 위해서 해당 링크 정보가 필요한데, POST는 파라미터가 HTTP 패킷의 Body에 있기 때문에 링크 정보를 가져올 수 없다.
+
+GET은 URL에 파라미터를 갖고 있기 때문에 링크를 걸 때 해당 파라미터를 붙여주면 추가적인 정보를 붙여 더 상세한 링크를 걸 수 있다.
+
+데이터베이스 정보를 수정할 때 GET을 사용하는 것은 가능하기야 하지만, 데이터 전송 양에 한계가 있으며 데이터가 노출되기 때문에 보안상 좋지 않고, Google Accelerator 사건과 같은 일이 발생할 수 있다 ([관련](http://interconnection.tistory.com/72))
+
+---
+
+## RESTful API
+
+### 정의
+
+REST API는 자원(URI), 행위(HTTP 메소드), 그리고 표현으로 이루어진다. URI는 정보의 자원을 표현해야 하고, 자원에 대한 행위는 HTTP 메소드들로 표현한다. 자원의 이름은 동사보다는 명사를 사용한다.
+
+### 특징
+
+- Uniform(유니폼 인터페이스): URI로 지정한 자원에 대한 조작을 통일되고 한정적인 인터페이스로 수행하는 아키텍처 스타일을 말한다.
+- Stateless(무상태성): 세션이나 쿠키 정보를 별도로 저장/관리하지 않기 때문에 API 서버는 단순히 들어오는 요청만 처리하면 된다. 때문에 서비스의 자유도가 높아지고 서버에서 불필요한 정보를 관리하지 않음으로써 구현이 단순해진다.
+- Cacheable(캐시 가능): REST는 HTTP라는 기존 웹표준을 그대로 사용하기 때문에 웹에서 사용하는 인프라를 그대로 활용할 수 있다. 따라서 HTTP의 캐싱 기능을 적용할 수 있다.
+- Self-descriptiveness(자체 표현 구조): REST API 메시지만 보고도 이를 쉽게 이해할 수 있다.
+- Client-Server 구조: REST 서버는 API 제공, 클라이언트는 사용자 인증이나 세션, 로그인 정보 등을 직접 관리하는 구조로 각각의 역할이 확실히 구분되어서 둘의 개발 내용이 명확해지고, 서로간의 의존성이 줄어든다.
+- 계층형 구조: REST 서버는 다중 계층으로 구성될 수 있으며 보안, 로드 밸런싱, 암호화 계층을 추가해 구조상의 유연성을 둘 수 있고, 프록시나 게이트웨이같은 네트워크 기반의 중간 매체를 사용할 수 있다.
+
+### 한계
+
+이론상으로는 RESTful한 API가 좋지만, 실무에서 처리해야 하는 다양한 상황들에 적합하지 않은 경우도 있다.
+
+예를 들어, 하나의 URL로 한 개의 데이터를 가져오는 것을 RESTful하게 만들어보자면 `article/oid/aid`와 같은 형태가 될 것이다. 그런데 만약 하나의 URL로 여러 개의 데이터를 가져와야 한다면 RESTful한 방법으로는 어렵다.
+
+만약 하나의 URL로 복수 개의 oid, aid 쌍을 가져와야 한다면 다음과 같이 설계할 수 있다.
+
+1. POST로 request body에 일정한 양식의 oid, aid 쌍들에 대한 정보를 넣어 받아온다.
+2. request body를 파싱해 oid, aid들을 뽑아내고 각자 필요한 API를 호출한다.
+
+RESTful하지는 않지만, 동작할 것이다.
+
+---
+
+## References
+
+- [그런 Web API로 괜찮은가](http://viewoss.navercorp.com/mhyeon-lee/yobi-rest-api/master/docs/%EA%B7%B8%EB%9F%B0%20Web%20API%EB%A1%9C%20%EA%B4%9C%EC%B0%AE%EC%9D%80%EA%B0%80.html#68) → 재밌게 잘 설명된 발표자료
+- [Web API 개발 교육자료](https://oss.navercorp.com/tech-share/web-api-dev)

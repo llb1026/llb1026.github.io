@@ -10,6 +10,8 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+next-link: "../mariadb-spatial-functions/"
+prev-link: "../how-transactional-works/"
 ---
 
 ## Spring Cloud Netfix

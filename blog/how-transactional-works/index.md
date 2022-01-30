@@ -10,4 +10,6 @@ text: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_main.png
+next-link: "../spring-cloud-netflix/"
+prev-link: "../transaction-and-lock/"
 ---
