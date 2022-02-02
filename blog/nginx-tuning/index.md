@@ -14,9 +14,9 @@ next-link: "../http-1.1-vs-2.0/"
 prev-link: "../cookie-and-token/"
 ---
 
-## 프론트엔드 최적화 포인트
+## 1. 프론트엔드 최적화 포인트
 
-### Static한 콘텐츠 캐싱
+### 1-1. Static한 콘텐츠 캐싱
 
 Nginx에서의 캐싱은 아래와 같이 동작한다.
 
@@ -28,7 +28,7 @@ Nginx에서의 캐싱은 아래와 같이 동작한다.
 6. 응답을 디스크에 저장해 캐싱
 7. 다음번부터 같은 URL로 요청이 들어오면 캐시 hit, 해당 요청은 WAS로 전달되지 않고 Nginx가 대신 응답을 돌려줌
 
-### Nginx as reverse proxy
+### 1-2. Nginx as reverse proxy
 
 Nginx가 reverse proxy로 동작하는 경우, static 리소스는 Nginx에서 캐싱해서 제공하고 dynamic 리소스는 proxy_pass를 통해 받은 요청을 upstream에 정의된 WAS로 넘긴다. 이렇게 구성할 경우 이점은 다음과 같다.
 
@@ -42,7 +42,7 @@ Nginx가 reverse proxy로 동작하는 경우, static 리소스는 Nginx에서 �
     - Nginx나 Apache같은 전용 웹서버는 파일 읽기 연산에 최적화되어 있어서 WAS가 수행하는 것보다 빠르고 효율적으로 동작한다.
     - static 리소스와 dynamic 리소스를 분리해 처리함으로써 최적화가 쉬워진다.
 
-### Nginx micro caching
+### 1-3. Nginx micro caching
 
 micro caching은 WAS로 요청하는 dynamic 리소스에 대해 아주 짧은 시간동안 캐싱을 해서 WAS로 보내는 요청을 줄이는 방법이다. 사실 dynamic 리소스라고 하더라도 초단위로 페이지가 업데이트되는 경우는 드물어서, 1초라도 캐싱을 해 두면 많은 트래픽의 요청을 효과적으로 처리할 수 있게 된다.
 
@@ -78,7 +78,7 @@ server {
 - dynamic 리소스를 캐싱을 통해 제공하는 것보다 WAS에서 받는 것이 더 빠른 경우도 있다. 이러면 micro caching이 오히려 더 낮은 성능을 내는 요인이 될 수 있다.
 - dynamic 리소스가 1초(혹은 개별적으로 정한 micro 단위시간)동안 캐싱되어서 내용이 변경되지 않아도 서비스에 영향이 없는지 확실한 검증이 필요하다.
 
-### gzip
+### 1-4. gzip
 
 - `gzip_comp_level`: 1~9까지 설정 가능, 숫자가 클수록 압축률은 올라가지만 압축 속도는 느려짐
 - `gzip_min_length`: 압축을 적용할 컨텐츠의 최소 사이즈 지정, 이보다 작은 파일은 압축하지 않음
@@ -90,7 +90,7 @@ server {
     - `no-store`: 요청 header에 Cache-Control이 있고 no-store일 경우에만 압축
     - `any`: 항상 압축
 
-### 최종 nginx.conf
+### 1-5. 최종 nginx.conf
 
 ```conf
 user nginx;
@@ -221,18 +221,18 @@ http {
 
 ---
 
-## 성능테스트
+## 2. 성능테스트
 
 네이버 사내 프론트엔드 테스트 툴을 사용해 개발한 어플리케이션 성능테스트를 돌려보았다.
 
-### 테스트 환경
+### 2-1. 테스트 환경
 
 - 기사 수: 12개
 - 캐시: off
 - 에이전트: Chrome_WIN10_I7
 - 네트워크 환경: FTTH(100M) - 2ms, 91Mbps, 94Mbps
 
-### 결과
+### 2-2. 결과
 
 <table class="uk-table-small uk-table style-2 uk-table-striped uk-text-center">
     <thead>

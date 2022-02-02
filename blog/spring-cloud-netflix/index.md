@@ -2,14 +2,14 @@
 order: 20
 layout: post
 title: "Spring Cloud Netflix 간단정리"
-subtitle: ""
+subtitle: "팀 내 전파를 위해 정리했던 문서"
 tag: Tech Notes
 type: tech-notes
 blog: true
 text: true
 author: JIYUN LEE
 post-header: true
-header-img: img/01_main.png
+header-img: img/01_1.png
 next-link: "../mariadb-spatial-functions/"
 prev-link: "../how-transactional-works/"
 ---

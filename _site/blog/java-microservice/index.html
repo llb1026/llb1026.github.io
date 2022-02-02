@@ -13,13 +13,13 @@
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/blog/java-microservice/" />
     
-    <meta property="og:image" content="http://localhost:4000/blog/java-microservice/img/bg.jpg">
+    <meta property="og:image" content="http://localhost:4000/blog/java-microservice/img/01-1.png">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | 자바 기반의 마이크로서비스 이해와 아키텍처 구축하기">
     
     <!-- description -->
-    <meta property="og:description" content="## 기본 베이스 지식 - 소프트웨어 아키텍처: 소프트웨어를 **구성하는** 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것 - 4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것 1. Logic View:..."/>
+    <meta property="og:description" content="## 1. 기본 베이스 지식 - 소프트웨어 아키텍처: 소프트웨어를 구성하는 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것 - 4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것 1. Logic..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -158,7 +158,7 @@
                             <h2 class="title">자바 기반의 마이크로서비스 이해와 아키텍처 구축하기</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span>이건 샘플이야</span>
+                            <span>책 내용 정리 및 실무 적용을 위한 조건들</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -167,9 +167,9 @@
                             <!-- Title Image Start -->
                             <div class="entry-media uk-padding-small">
                                 <div class="tw-thumbnail" data-uk-lightbox>
-                                    <img src="img/bg.jpg" alt="" />
+                                    <img src="img/01-1.png" alt="" />
                                     <div class="image-overlay">
-                                        <a href="img/bg.jpg"></a>
+                                        <a href="img/01-1.png"></a>
                                     </div>
                                 </div>
                             </div>
@@ -178,13 +178,14 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                <ul><li><a href="#기본-베이스-지식">기본 베이스 지식</a></li><li><a href="#모놀리식-아키텍처-vs-msa">모놀리식 아키텍처 vs MSA</a></li><li><a href="#soa-vs-msa">SOA vs MSA</a></li><li><a href="#왜-msa인가">왜 MSA인가</a></li><li><a href="#왜-클라우드-네이티브인가">왜 클라우드 네이티브인가</a></li><li><a href="#software-as-a-service">Software as a Service</a></li><li><a href="#마이크로서비스로의-전환">마이크로서비스로의 전환</a></li><li><a href="#현실은">현실은</a></li><li><a href="#references">References</a></li></ul>
+                                <ul><li><a href="#1-기본-베이스-지식">1. 기본 베이스 지식</a></li><li><a href="#2-모놀리식-아키텍처-vs-msa">2. 모놀리식 아키텍처 vs MSA</a></li><li><a href="#3-soa-vs-msa">3. SOA vs MSA</a></li><li><a href="#4-왜-msa인가">4. 왜 MSA인가</a></li><li><a href="#5-왜-클라우드-네이티브인가">5. 왜 클라우드 네이티브인가</a></li><li><a href="#6-software-as-a-service">6. Software as a Service</a></li><li><a href="#7-마이크로서비스로의-전환">7. 마이크로서비스로의 전환</a></li><li><a href="#8-현실은">8. 현실은</a></li><li><a href="#references">References</a></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <h2 id="기본-베이스-지식">기본 베이스 지식</h2>
+                            <h2 id="1-기본-베이스-지식">1. 기본 베이스 지식</h2>
+
 <ul>
-  <li>소프트웨어 아키텍처: 소프트웨어를 <strong>구성하는</strong> 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것</li>
+  <li>소프트웨어 아키텍처: 소프트웨어를 구성하는 요소들, 그리고 각 요소간의 관계를 정의해 그려놓은 것</li>
   <li>4+1 View: 아키텍처의 표현을 5가지 관점에서 접근해 표현한 것
     <ol>
       <li>Logic View: 소프트웨어를 구성하는 요소들의 관계 구조 표현</li>
@@ -201,16 +202,18 @@
 
 <hr />
 
-<h2 id="모놀리식-아키텍처-vs-msa">모놀리식 아키텍처 vs MSA</h2>
+<h2 id="2-모놀리식-아키텍처-vs-msa">2. 모놀리식 아키텍처 vs MSA</h2>
+
 <ul>
-  <li>모놀리식 아키텍처: 모든 업무 로직이 하나의 큰 어플리케이션 형태로 패키징되어 서비스됨 (데이터도 한 곳에 모인 데이터를 참조)</li>
-  <li>마이크로서비스 아키텍처: 작은 단위로 동작하는 서비스<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)</li>
+  <li><strong>모놀리식 아키텍처</strong>: 모든 업무 로직이 하나의 큰 어플리케이션 형태로 패키징되어 서비스됨 (데이터도 한 곳에 모인 데이터를 참조)</li>
+  <li><strong>마이크로서비스 아키텍처</strong>: 작은 단위로 동작하는 서비스(작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고)가 구동되도록 시스템 및 소프트웨어의 구성과 구성 요소 간의 관계를 정의하고 설계하는 방식 (어플리케이션 기능 뿐만 아니라 데이터도 분리)</li>
   <li>차이점: <em>하나</em>의 어플리케이션 vs 분할된 <em>다수</em>의 서비스와 데이터</li>
 </ul>
 
 <hr />
 
-<h2 id="soa-vs-msa">SOA vs MSA</h2>
+<h2 id="3-soa-vs-msa">3. SOA vs MSA</h2>
+
 <ul>
   <li>SOA(Service Oriented Architecture): 전체 시스템을 데이터 중심이 아닌 서비스 중심으로 설계하는 스타일</li>
   <li>SOA의 특징
@@ -280,7 +283,8 @@
 
 <hr />
 
-<h2 id="왜-msa인가">왜 MSA인가</h2>
+<h2 id="4-왜-msa인가">4. 왜 MSA인가</h2>
+
 <ul>
   <li><em>독립적</em>으로 실행되면서 다른 서비스에 영향을 주지 않기 때문 → loose coupling, high cohesion을 서비스/시스템 레벨에서 구현</li>
   <li>구현, 배포, 실행, 장애 발생에서 각 서비스가 독립적 → 장애 확산 방지, 빠른 장애 대응, 유연한 확장, 잦은 변경 배포에 용이</li>
@@ -289,15 +293,17 @@
 
 <hr />
 
-<h2 id="왜-클라우드-네이티브인가">왜 클라우드 네이티브인가</h2>
+<h2 id="5-왜-클라우드-네이티브인가">5. 왜 클라우드 네이티브인가</h2>
+
 <ul>
   <li>Scale-out에 유연하고, 서비스 변화 및 장애로 인한 영향을 최소화하도록 설계됨</li>
-  <li>Docker 컨테이너 기반 서비스 운영 &amp;&amp; CI/CD <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></li>
+  <li>Docker 컨테이너 기반 서비스 운영 &amp;&amp; CI/CD (ex. 카나리 배포, Blue-Green 배포)</li>
 </ul>
 
 <hr />
 
-<h2 id="software-as-a-service">Software as a Service</h2>
+<h2 id="6-software-as-a-service">6. Software as a Service</h2>
+
 <ul>
   <li>SaaS: 특정 기간 or 기능만 필요한 만큼 구매하여 사용하는 주문형 서비스 형태의 클라우드 네이티브 소프트웨어 (MSA가 SaaS 어플리케이션 개발에 적합)</li>
   <li>12 Factor
@@ -320,7 +326,8 @@
 
 <hr />
 
-<h2 id="마이크로서비스로의-전환">마이크로서비스로의 전환</h2>
+<h2 id="7-마이크로서비스로의-전환">7. 마이크로서비스로의 전환</h2>
+
 <ul>
   <li>도메인에 따라 서비스 경계를 식별/평가해야 함 (e.g. 조직을 기준으로 서비스를 구성, 서비스 중요도 기준으로 서비스의 경계를 구분)</li>
   <li>서비스 분할
@@ -331,12 +338,13 @@
     </ul>
   </li>
   <li>조직 구성, Agile 방법론, DevOps 체계, 인프라(클라우드 네이티브 기술 환경)가 함께 고려되어야 함</li>
-  <li>커피 전문점 예제 <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></li>
+  <li>커피 전문점 예제 (<a href="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6">전체 아키텍처 이미지</a>)</li>
 </ul>
 
 <hr />
 
-<h2 id="현실은">현실은</h2>
+<h2 id="8-현실은">8. 현실은</h2>
+
 <ul>
   <li>짧은 구글링 결과, MSA를 도입한 후기에서 아래와 같은 공통 허들 발견
     <ul>
@@ -345,7 +353,7 @@
       <li>기존 SI나 프로젝트 성격의 개발 후 서비스 담당멤버를 운영인력으로 교체하는 방식에는 매우 적합하지 않음</li>
       <li>서비스 별로 다른 기술 스택을 가져갈 수 있는 MSA 특성으로 인해 운영 관점에서 여러 기술을 동시에 다뤄야 함 (장점으로 볼 수도 있음)</li>
       <li>서비스 간 일정 관리가 복잡해짐</li>
-      <li>장애 관리가 더 어려워지는 경우 발생 (e.g. dependency 이슈[^MicroServices does not automatically mean better availability - Unless you have Fault Tolerant Architecture])</li>
+      <li>장애 관리가 더 어려워지는 경우 발생 (e.g. dependency 이슈 <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/resilient-high-availability-microservices">Resiliency and high availability in microservices</a>)</li>
     </ul>
   </li>
 </ul>
@@ -358,22 +366,6 @@
   <li><a href="https://gwonsungjun.github.io/articles/2018-04/springCamp2018">Spring Camp 2018 - MSA 관련 세션 후기</a></li>
   <li><a href="https://www.slideshare.net/stonse/microservices-at-netflix">MicroServices at Netflix - challenges of scale</a></li>
 </ul>
-
-<hr />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>작은 서비스를 식별하기 위한 이론은 Domain Driven Design 참고 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2" role="doc-endnote">
-      <p>카나리 배포, Blue-Green 배포 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3" role="doc-endnote">
-      <p><a href="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F993002505C89B48D0DE0B6">전체 아키텍처 이미지</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 
 
                         </div>

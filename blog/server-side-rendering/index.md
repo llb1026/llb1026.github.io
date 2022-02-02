@@ -14,13 +14,13 @@ next-link: "../client-side-routing/"
 prev-link: "../progressive-web-app/"
 ---
 
-## 렌더링 주체
+## 1. 렌더링 주체
 
-### 서버 사이드 렌더링
-
-<img src="img/01_2.png">
+### 1-1. 서버 사이드 렌더링
 
 전통적인 방식에서의 웹 페이지 구동 방식이다. 페이지 요청이 있을 때마다 서버에 요청을 보내고, 서버에서 HTML을 비롯한 View를 만들어서 응답한다.
+
+<img src="img/01_2.png">
 
 다음과 같은 조건이라면 서버 사이드 렌더링을 고려할 수 있다.
 
@@ -31,11 +31,11 @@ prev-link: "../progressive-web-app/"
 
 이후 점차 웹에서 제공되는 정보량이 많아지면서 전통적인 방식과는 다른 SPA(Single Page Application) 방식이 나왔다.
 
-### 클라이언트 사이드 렌더링
-
-<img src="img/01_3.png">
+### 1-2. 클라이언트 사이드 렌더링
 
 서버 측에서는 맨 처음에 하나의 빈 페이지만 제공하고, View에 대해서는 클라이언트 측에서 JavaScript를 통해 렌더링하는 방식이다. SPA에서 이 방식을 사용한다.
+
+<img src="img/01_3.png">
 
 다음과 같은 조건이라면 클라이언트 사이드 렌더링을 고려할 수 있다.
 
@@ -44,7 +44,7 @@ prev-link: "../progressive-web-app/"
 - 데이터 첫 로드까지 걸리는 시간이 길다
 - 메인 스크립트 파일이 작고 빨리 로드된다
 
-### 각각의 장단점
+### 1-3. 각각의 장단점
 
 주요한 차이점은 *초기 View 로딩 속도*와 *SEO*이다.
 
@@ -68,9 +68,9 @@ prev-link: "../progressive-web-app/"
 
 ---
 
-## React와 서버 사이드 렌더링
+## 2. React와 서버 사이드 렌더링
 
-### Isomorphic
+### 2-1. Isomorphic
 
 Isomorphic은 같은 모양과 형태를 공유한다는 뜻으로, 서버 사이드와 클라이언트 사이드가 같은 코드를 사용해서 개발하는 것이다.
 
@@ -78,20 +78,18 @@ Isomorphic은 같은 모양과 형태를 공유한다는 뜻으로, 서버 사�
 
 ---
 
-## Spring에서 서버 사이드 렌더링
+## 3. Spring에서 서버 사이드 렌더링
 
-### Nashorn
-
-#### 동작 원리
+### 3-1. Nashorn의 동작 원리
 
 Nashorn은 *Java8 버전부터 JVM의 공식 JavaScript 엔진*이다. Nashorn은 런타임동안 JavaScript를 Java 바이트 코드로 컴파일한다. 따라서 Java와 JavaScript끼리 상호 운용이 원활하지만, 속도가 느리다.
 
-#### 대체재
+### 3-2. 대체재
 
 - *Rhino*: Rhino는 mozilla에서 개발한 JavaScript 엔진이다 Java 7버전까지는 이걸 주로 사용했다. JVM이 발전해가면서 Rhino도 많은 성능 개선이 이루어졌지만, WebKit의 JavaScript Core나 구글의 V8도 내부적으로 JavaScript를 컴파일하기 때문에 Rhino가 가지는 성능상의 이점은 없다 (사실상 더 느리다). Nashorn은 오래된 Rhino를 대체해 나온 새로운(당시엔..) JavaScript 엔진이다.
 - *Handlebars*: 추후 내용 추가 예정
 
-#### 한계점
+### 3.3 한계점
 
 - 구글 V8과 비교해서 확연한 성능 차이가 있다. 내부적으로 벤치마킹을 한 결과 V8이 동일한 작업에서 Nashorn보다 10-30% 더 나은 성능을 보였다고 한다. ([링크](https://www.quora.com/How-does-Nashorn-compare-to-V8))
 - 글로벌 바인딩을 하는 부분에서 thread safe하지 않을 수 있다. ([링크1](https://stackoverflow.com/questions/30140103/should-i-use-a-separate-scriptengine-and-compiledscript-instances-per-each-threa/30159424#30159424), [링크2](https://kazkn.com/post/2017/spring-boot-nashorn-react-ssr/) 좀 더 이해 필요)
@@ -114,16 +112,16 @@ Nashorn은 *Java8 버전부터 JVM의 공식 JavaScript 엔진*이다. Nashorn�
     - Binary and octal literals
 - *[Nashorn is deprecated in Java 11](https://openjdk.java.net/jeps/335)!* ES6의 발전속도를 따라잡기 힘들어서 포기한다고 한다.
 
-### Node.js
+### 3-4. Node.js
 
 JVM 위에 JavaScript용 엔진을 올려서 쓸 수 없다면 어쩔 수 없이 백엔드에 요소를 하나 더 둬야 한다. Spring 서버는 단순히 API 서버로만 두고, React와의 사이에 Node.js를 둬서 API 콜 한 결과와 함께 첫 페이지 렌더링을 해서 돌려주는 역할을 수행하도록 할 수 있다.
 
 React와 Node.js의 조합은 아주 레퍼런스가 많고, Isomorphic하기 때문에 개발은 훨씬 간단해질 수 있다. 그러나 개발에 신경써야 할 요소가 하나 더 늘어나고, 네트워크 딜레이가 한 단계 더 생긴다.
 
-### Spring-React 조합이 드문 이유
+### 3-5. Spring-React 조합이 드문 이유
 
 가장 큰 이유는 Spring과 React로 isomorphism을 만족시키기 어렵기 때문인 것 같다. isomorphic해야 하는 이유는 isomorphic하게 개발해야 서버에서 ViewTemplate을 그릴 때 썼던 코드 그대로 클라이언트에서 컴포넌트나 이벤트를 재활용할 수 있기 때문이다. Spring에서 Nashorn같은 Script 엔진을 새로 만들지 않는다면, 앞으로 중간에 Node.js를 끼지 않고 온전히 Spring과 React만 사용해서 서버 사이드 렌더링을 구현하는 것은 어려울 것 같다. 단, 지금처럼 클라이언트 사이드 렌더링은 충분히 가능하다.
 
-### React와 SSR을 위한 추천 조합
+### 3-6. React와 SSR을 위한 추천 조합
 
-Node.js로 서버를 만들면 쉬워진다. 최근까지 활발하게 업데이트가 이루어지고 있는 [react-ssr](https://www.npmjs.com/package/react-ssr)이나 [react-node-ssr](https://www.npmjs.com/package/react-node-ssr) 같은 패키지들이 있다.
+Node.js로 서버를 만들면 쉬워진다. 최근까지 활발하게 업데이트가 이루어지고 있는 [react-ssr](https://www.npmjs.com/package/react-ssr)이나 [react-node-ssr](https://www.npmjs.com/package/react-node-ssr) 같은 패키지들이 있다. 자세한 내용은 나중에 직접 해보고 추가해야지..

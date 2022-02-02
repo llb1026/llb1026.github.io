@@ -2,14 +2,14 @@
 order: 21
 layout: post
 title: "내가 사용했던 MariaDB 공간함수"
-subtitle: ""
+subtitle: "나중에 보려고 정리한 공간함수들과 사용 예시들"
 tag: Tech Notes
 type: tech-notes
 blog: true
 text: true
 author: JIYUN LEE
 post-header: true
-header-img: img/01_main.png
+header-img: img/01_1.png
 next-link: "../mariadb-sql-mode-oracle/"
 prev-link: "../spring-cloud-netflix/"
 ---
@@ -19,12 +19,16 @@ prev-link: "../spring-cloud-netflix/"
     "WHERE MBR_Contains(ST_GeomFromText('" + ":wkt" + "'), point)", 
     nativeQuery = true)
 List<StationEntity> findByAreaMbr(String wkt);
+```
 
+```java
 @Query(value = "SELECT * from station " + 
     "WHERE ST_DISTANCE_SPHERE(ST_GeomFromText(CONCAT('Point(', :lon, ' ', :lat, ')')), point) <= :range", 
     nativeQuery = true)
 List<StationEntity> findByAreaDistance(double range, double lon, double lat);
+```
 
+```java
 @Query(value = "SELECT *, ST_DISTANCE_SPHERE(Point(:lon, :lat), point) AS distance FROM station " + 
     "WHERE name = :#{#station.name()} " + 
     "HAVING distance <= :range " + 

@@ -9,7 +9,7 @@ blog: true
 text: true
 author: JIYUN LEE
 post-header: true
-header-img: img/01_main.png
+header-img: img/01_1.png
 next-link: "../transaction-and-lock/"
 prev-link: "../etl-vs-elt/"
 ---

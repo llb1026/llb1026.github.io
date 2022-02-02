@@ -14,9 +14,7 @@ next-link: "../naver-intern-epilogue/"
 prev-link: "../client-side-routing/"
 ---
 
-## 백엔드 성능 테스트
-
-### 목적과 의미
+## 1. 백엔드 성능 테스트
 
 성능 테스트란
 
@@ -27,32 +25,34 @@ prev-link: "../client-side-routing/"
 - 성능과 관련된 데이터들을 모으고,
 - 하드웨어의 최적화된 설정을 잡는 작업이다.
 
-성능 테스트의 주요 관점은 
-- 응답시간 측정
+### 1-1. 성능 테스트의 주요 관점
+
+- **응답시간 측정**
     - 응답시간은 사용자의 이탈과 밀접한 관련이 있음 → 가장 중요!
     - 부하시 응답시간이 어떻게 변화하는지 확인
-- 처리량
+- **처리량**
     - 단위 시간당 처리할 수 있는 양을 확인
     - 일반적으로는 초 단위인 **TPS**(Transaction Per Seconds)를 측정
         - Transaction을 잡는 기준은 달라질 수 있음 (단순히 하나의 요청에 대한 응답으로 잡을 수도 있고, 규모가 큰 프로젝트인 경우 하나의 비즈니스 로직을 트랜잭션 하나로 잡을 수도 있음)
     - 부하시 처리량이 어떻게 변화하는지 확인
-- 확장성
+- **확장성**
     - 서버를 추가해야 하는 상황이 발생할 것을 대비해 어떤 서버를 얼마나 추가해야 할지에 대한 사전 확인
-- 부하시 오류 발생 여부 확인
+- **부하시 오류 발생 여부 확인**
     - 로컬 개발환경에서는 발생하지 않는 오류가 운영 및 부하 상황에서 발생할 확률이 매우 높음
-- 병목지점 도출과 튜닝을 위한 정보 제공
+- **병목지점 도출과 튜닝을 위한 정보 제공**
     - 응답시간 및 처리량에 영향을 주는 병목 지점을 찾아 사전에 제거
     - 서버의 설정이 최적화되어 있는지에 대한 점검
     - Lock, Resource contention 발생 여부 확인 가능
 
-서버 성능 테스트의 제외 대상은
+### 1-2. 서버 성능 테스트 시 제외 대상
+
 - Front End (Client)의 성능 제외
     - 브라우저에서 script 처리하고 화면 레이아웃 구성하는 시간은 별도의 측정 툴로 봐야 함 → NSPEED
 - 유저의 네트워크 구간 제외
     - 사용자의 요청이 IDC 네트워크 망 안으로 들어왔을 때부터의 시간만 측정 가능함
     - 예를 들어 사용자가 모뎀이나 3G 망을 써서 IDC 네트워크 망으로 들어올 때까지의 시간 측정은 불가능
 
-### 테스트 절차
+### 1-3. 테스트 절차
 
 1. 계획
     - 성능 테스트의 대상과 범위를 결정
@@ -69,7 +69,7 @@ prev-link: "../client-side-routing/"
 5. 결과 공유
     - 서비스의 오픈과 관련된 담당자들에게 결과 공유
 
-### 관련 용어
+### 1-4. 관련 용어
 
 - *Agent*: Active 상태인 부하 발생기의 수
 - *Process*: Agent당 부하를 발생시키는 Process의 개수
@@ -82,7 +82,7 @@ prev-link: "../client-side-routing/"
 - *Ran Counts*: 각 테스트가 수행되는 횟수 (0으로 설정하면 Duration에서 설정한 시간만큼 수행)
 - *Duration*: 테스트 수행 시간 (Run Count가 1 이상이면 Run Count 값이 우선됨)
 
-### 관련 공식
+### 1-5. 관련 공식
 
 - Little's Law
     - Concurrent User = TPS * (Avg. Response Time) + Think Time
@@ -93,19 +93,19 @@ prev-link: "../client-side-routing/"
 
 ---
 
-## 최적화 포인트
+## 2. 최적화 포인트
 
-### 비즈니스 로직
-
-추후 추가 예정
-
-### 쿼리
+### 2-1. 비즈니스 로직
 
 추후 추가 예정
 
-### 웹 서버 세팅
+### 2-2. 쿼리
 
-#### keepalive
+추후 추가 예정
+
+### 2-3. 웹 서버 세팅
+
+#### 2-3-1. keepalive
 
 Nginx upstream을 설정할 때 다음과 같이 Nginx와 WAS간의 세션을 유지하도록 keepalive를 켤 수 있다.
 
@@ -118,18 +118,18 @@ upstream backend {
 
 만약 keepalive가 켜져 있지 않다면 리퀘스트마다 새로운 세션을 만들어 한 번의 요청만 처리한 후 소켓이 끊어진다. 이로 인해 시간이 지날수록 불필요한 TCP handshake가 발생해 응답 속도 지연을 일으킬 수 있다.
 
-##### TCP keepalive vs Nginx keepalive
+#### 2-3-2. TCP keepalive vs Nginx keepalive
 
 헷갈릴 수 있어서 같이 정리한다.
 
-TCP keepalive와 Nginx keepalive 모두 TCP 세션을 유지하기 위해 사용하지만, 다음과 같은 큰 차이점들이 있다.
+*TCP* keepalive와 *Nginx* keepalive 모두 TCP 세션을 유지하기 위해 사용하지만, 다음과 같은 큰 차이점들이 있다.
 
 1. TCP keepalive는 keepalive 유지 및 관리에 대한 작업을 커널이 직접 한다. TCP 계층에서 직접 해당 소켓이 살아있는지 확인하는 반면, Nginx keepalive는 기본적으로 어플리케이션 레벨에서의 keepalive이다.
 2. TCP keepalive는 주기적으로 ping-pong을 통해 상대방이 살아있는지 확인해 일정 횟수동안 응답이 없으면 연결을 끊지만, Nginx keepalive는 클라이언트로부터 먼저 FIN을 받지 않는 이상 먼저 연결을 끊지 않고 keepalive time동안 세션을 유지한다 → 반대로 다시 표현하자면, TCP keepalive는 ping-pong에 대한 응답이 온다면 끊지 않고 계속해서 세션을 유지하지만, Nginx keepalive는 설정된 keepalive time이 지나면 클라이언트와의 연결을 능동적으로 끊는다.
 
 둘은 비슷해 보이지만 서로 연관성이 없다. 만약 어플리케이션에서 자체적으로 keepalive 세션을 관리한다면 TCP keepalive 값은 무시해도 된다. ([참고](https://brunch.co.kr/@alden/9))
 
-##### timeout 설정시 고려할 점
+#### 2-3-3. timeout 설정시 고려할 점
 
 적절하게 설정되지 않은 keepalive는 웹 서버의 스레드 부족 현상을 일으킬 수 있다. 
 
@@ -139,7 +139,7 @@ TCP keepalive와 Nginx keepalive 모두 TCP 세션을 유지하기 위해 사용
 
 ---
 
-## 테스트 환경
+## 3. 테스트 환경
 
 - 기사 수: 12개
 - 에이전트: 3
@@ -270,15 +270,15 @@ class TestRunner {
 
 ---
 
-## 결과
+## 4. 결과
 
-### Redis 없을 때
+### 4-1. Redis 없을 때
 
 - 평균 TPS: *439.1*
 - 최고 TPS: *516.5*
 - 평균 테스트 시간: 1,010.3ms
 
-### Redis 있을 때
+### 4-2. Redis 있을 때
 
 - 평균 TPS: *1,756*
 - 최고 TPS: *1,943*

@@ -19,7 +19,7 @@
     <meta property="og:title" content="JIYUN.ME | Progressive Web App 개요">
     
     <!-- description -->
-    <meta property="og:description" content="## PWA란 Progressive Web App은 사용자의 이용에 따라 쌓여가는 캐시를 통한 *점진적인* 개선을 통해 만들어지며, 다음과 같은 점에서 *앱처럼* 동작하는 웹이라고 할 수 있다. - 오프라인 상태, 불안정한 네트워크 상태에서도..."/>
+    <meta property="og:description" content="## 1. PWA란 Progressive Web App은 사용자의 이용에 따라 쌓여가는 캐시를 통한 *점진적인* 개선을 통해 만들어지며, 다음과 같은 점에서 *앱처럼* 동작하는 웹이라고 할 수 있다. - 오프라인 상태, 불안정한 네트워크..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -178,11 +178,11 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                <ul><li><a href="#pwa란">PWA란</a><ul><li><a href="#이점">이점</a><ul><li><a href="#로컬-캐싱으로-충분하지-않은-이유">로컬 캐싱으로 충분하지 않은 이유</a></li></ul></li><li><a href="#단점">단점</a><ul><li><a href="#네이티브-앱에-비해-제한된-기능">네이티브 앱에 비해 제한된 기능</a></li><li><a href="#ios브라우저-지원-이슈">iOS/브라우저 지원 이슈</a></li></ul></li></ul></li><li><a href="#instant-loading">Instant Loading</a><ul><li><a href="#service-worker의-생명주기">Service Worker의 생명주기</a><ul><li><a href="#등록-registration-">등록<sup> Registration </sup></a></li><li><a href="#설치-installation-">설치<sup> Installation </sup></a></li><li><a href="#활성-activation-">활성<sup> Activation </sup></a></li></ul></li><li><a href="#정적동적-데이터-로딩">정적/동적 데이터 로딩</a></li><li><a href="#디버깅">디버깅</a></li></ul></li><li><a href="#백그라운드-프로세싱">백그라운드 프로세싱</a><ul><li><a href="#background-sync">Background Sync</a></li><li><a href="#push-notification">Push Notification</a></li></ul></li><li><a href="#manifest로-pwa-환경설정">Manifest로 PWA 환경설정</a><ul><li><a href="#installable-web-app">Installable Web App</a></li></ul></li><li><a href="#references">References</a></li></ul>
+                                <ul><li><a href="#1-pwa란">1. PWA란</a><ul><li><a href="#1-1-장점">1-1. 장점</a></li><li><a href="#1-2-로컬-캐싱만으로는-충분하지-않은-이유">1-2. 로컬 캐싱만으로는 충분하지 않은 이유</a></li><li><a href="#1-3-단점">1-3. 단점</a><ul><li><a href="#1-3-1-네이티브-앱에-비해-제한된-기능">1-3-1. 네이티브 앱에 비해 제한된 기능</a></li><li><a href="#1-3-2-ios브라우저-지원-이슈">1-3-2. iOS/브라우저 지원 이슈</a></li></ul></li></ul></li><li><a href="#2-instant-loading">2. Instant Loading</a><ul><li><a href="#2-1-service-worker의-생명주기">2-1. Service Worker의 생명주기</a><ul><li><a href="#2-1-1-등록-registration-">2-1-1. 등록<sup> Registration </sup></a></li><li><a href="#2-1-2-설치-installation-">2-1-2. 설치<sup> Installation </sup></a></li><li><a href="#2-1-3-활성-activation-">2-1-3. 활성<sup> Activation </sup></a></li></ul></li><li><a href="#2-2-정적동적-데이터-로딩">2-2. 정적/동적 데이터 로딩</a></li><li><a href="#2-3-디버깅">2-3. 디버깅</a></li></ul></li><li><a href="#3-백그라운드-프로세싱">3. 백그라운드 프로세싱</a><ul><li><a href="#3-1-background-sync">3-1. Background Sync</a></li><li><a href="#3-2-push-notification">3-2. Push Notification</a></li></ul></li><li><a href="#4-manifest로-pwa-설정하기">4. Manifest로 PWA 설정하기</a><ul><li><a href="#4-1-installable-web-app">4-1. Installable Web App</a></li></ul></li><li><a href="#references">References</a></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <h2 id="pwa란">PWA란</h2>
+                            <h2 id="1-pwa란">1. PWA란</h2>
 
 <p>Progressive Web App은 사용자의 이용에 따라 쌓여가는 캐시를 통한 <em>점진적인</em> 개선을 통해 만들어지며, 다음과 같은 점에서 <em>앱처럼</em> 동작하는 웹이라고 할 수 있다.</p>
 
@@ -192,7 +192,7 @@
   <li>푸시 알림을 보낼 수 있다 → <strong>Push API, Notification API</strong></li>
 </ul>
 
-<h3 id="이점">이점</h3>
+<h3 id="1-1-장점">1-1. 장점</h3>
 
 <p>PWA의 가장 중요한 요소는 <em>오프라인 캐싱</em>인데, 이로 인해 다음과 같은 이점을 얻을 수 있기 때문이다.</p>
 
@@ -201,7 +201,7 @@
   <li>네트워크를 통해 데이터를 요청받는 것보다 캐시를 통해 요청받는 것이 훨씬 빠르므로 성능 향상을 가져다준다.</li>
 </ul>
 
-<h4 id="로컬-캐싱으로-충분하지-않은-이유">로컬 캐싱으로 충분하지 않은 이유</h4>
+<h3 id="1-2-로컬-캐싱만으로는-충분하지-않은-이유">1-2. 로컬 캐싱만으로는 충분하지 않은 이유</h3>
 
 <p>사실 캐싱으로 인한 성능 향상은 PWA에서 처음 등장한 얘기가 아니다. 웹 브라우저는 이미 로컬 스토리지에 캐싱을 하고 있었다.
 하지만 로컬 캐시된 데이터는 오프라인 상태에서 사용할 수 없고, 온라인 상태라 하더라도 캐시된 데이터를 제대로 활용하지 못하는 경우가 많다.</p>
@@ -216,9 +216,9 @@
 
 <p>따라서 기존의 로컬 스토리지 캐싱 방식으로는 PWA의 오프라인 캐싱을 대체할 수 없다.</p>
 
-<h3 id="단점">단점</h3>
+<h3 id="1-3-단점">1-3. 단점</h3>
 
-<h4 id="네이티브-앱에-비해-제한된-기능">네이티브 앱에 비해 제한된 기능</h4>
+<h4 id="1-3-1-네이티브-앱에-비해-제한된-기능">1-3-1. 네이티브 앱에 비해 제한된 기능</h4>
 
 <p>PWA가 네이티브 앱을 완전히 대체할 수도 있겠다는 생각이 들겠지만, PWA는 네이티브 앱과 비교했을 때 다음과 같은 제약사항이 있다.</p>
 
@@ -234,7 +234,7 @@
   </li>
 </ul>
 
-<h4 id="ios브라우저-지원-이슈">iOS/브라우저 지원 이슈</h4>
+<h4 id="1-3-2-ios브라우저-지원-이슈">1-3-2. iOS/브라우저 지원 이슈</h4>
 
 <p>아직 브라우저별 지원이 완벽하진 않다. 최근 iOS 11.3 이상 버전과 Safari에서 Service Worker를 정식 지원하기 시작했지만 Push Notification은 지원하지 않는다. Chrome과 Firefox에서는 모든 PWA 요소를 정식 지원하고 있고, Edge에서는 현재 개발단계에 있으며 IE에서는 지원하지 않는다.</p>
 
@@ -261,7 +261,7 @@
 
 <hr />
 
-<h2 id="instant-loading">Instant Loading</h2>
+<h2 id="2-instant-loading">2. Instant Loading</h2>
 
 <p><em>Service Worker</em>는 브라우저 백그라운드에서 실행되는 스크립트로, 웹페이지 또는 사용자 인터랙션과 별개로 작동한다. 어떻게 보면 사용자 측에서 동작하는 프록시와 유사하다고 할 수 있다.</p>
 
@@ -282,7 +282,7 @@
   </li>
 </ul>
 
-<h3 id="service-worker의-생명주기">Service Worker의 생명주기</h3>
+<h3 id="2-1-service-worker의-생명주기">2-1. Service Worker의 생명주기</h3>
 
 <p>Service Worker는  <em>등록</em>, <em>설치</em>, <em>활성</em>의 세 단계의 라이프 사이클을 거친다.</p>
 
@@ -290,7 +290,7 @@
 
 <p>다시 기억할 점은 Service Worker의 life cycle은 웹페이지와는 완전히 별개라는 것이다.</p>
 
-<h4 id="등록-registration-">등록<sup> Registration </sup></h4>
+<h4 id="2-1-1-등록-registration-">2-1-1. 등록<sup> Registration </sup></h4>
 
 <p>맨 처음 등록 단계에서 하는 일은 static 데이터들을 캐싱하는 작업이다. 모든 파일이 성공적으로 캐싱되면 Service Worker가 설치된다. 만약 파일 다운로드 및 캐싱에 실패하면 등록 단계는 실패하고, Service Worker가 비활성화되어 설치되지 않는다. 실패한 작업은 이후에 재시도된다.</p>
 
@@ -308,7 +308,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="설치-installation-">설치<sup> Installation </sup></h4>
+<h4 id="2-1-2-설치-installation-">2-1-2. 설치<sup> Installation </sup></h4>
 
 <p>설치 단계에서는 <code class="language-plaintext highlighter-rouge">sw.js</code>가 존재하지 않거나 업데이트가 필요한 경우 이를 설치하는 작업을 진행한다.</p>
 
@@ -326,7 +326,7 @@
 <span class="p">});</span>
 </code></pre></div></div>
 
-<h4 id="활성-activation-">활성<sup> Activation </sup></h4>
+<h4 id="2-1-3-활성-activation-">2-1-3. 활성<sup> Activation </sup></h4>
 
 <p>설치가 완료되면 활성 단계가 진행되는데, 이 단계에서는 필요한 이벤트를 처리하거나 오래된 캐시를 관리할 수 있다.</p>
 
@@ -345,19 +345,19 @@
 <span class="p">});</span>
 </code></pre></div></div>
 
-<h3 id="정적동적-데이터-로딩">정적/동적 데이터 로딩</h3>
+<h3 id="2-2-정적동적-데이터-로딩">2-2. 정적/동적 데이터 로딩</h3>
 
 <p>static 데이터를 캐시에서 먼저 받아와 보여주고, 네트워크 응답 후 dynamic 데이터, 캐시와 함께 페이지를 갱신하는 방법으로 설계할 수 있다.</p>
 
-<h3 id="디버깅">디버깅</h3>
+<h3 id="2-3-디버깅">2-3. 디버깅</h3>
 
 <p>Chrome 브라우저의 개발자도구 → Application → Service Workers 탭에서 Service Worker를 업데이트, register 취소, 정지할 수 있다. 또한 Push 버튼으로 푸시 알림을 보내거나 Sync 버튼으로 백그라운드 동기화 이벤트를 실행시킬 수 있다.</p>
 
 <hr />
 
-<h2 id="백그라운드-프로세싱">백그라운드 프로세싱</h2>
+<h2 id="3-백그라운드-프로세싱">3. 백그라운드 프로세싱</h2>
 
-<h3 id="background-sync">Background Sync</h3>
+<h3 id="3-1-background-sync">3-1. Background Sync</h3>
 
 <p><em>Background Sync</em>는 네트워크 연결이 안정화될 때까지 작업을 지연시킬 수 있는 웹 API이다.</p>
 
@@ -378,7 +378,7 @@
 
 <p>위와 같은 방식으로 Service Worker는 Background Sync API를 이용해 불안정한 네트워크 상태에서도 정상적으로 어플리케이션을 동작시킨다.</p>
 
-<h3 id="push-notification">Push Notification</h3>
+<h3 id="3-2-push-notification">3-2. Push Notification</h3>
 
 <p><em>Push Notification</em> 이벤트는 서버로부터 받은 푸시 알림 처리한다. 아래는 예시 코드이다.</p>
 
@@ -394,11 +394,11 @@
 
 <hr />
 
-<h2 id="manifest로-pwa-환경설정">Manifest로 PWA 환경설정</h2>
+<h2 id="4-manifest로-pwa-설정하기">4. Manifest로 PWA 설정하기</h2>
 
 <p>웹 어플리케이션 manifest는 웹 페이지를 나타내는 방식을 개발자가 제어하고, 사용자가 시작할 수 있는 항목을 지시하고, 시작 시의 모습을 정의할 수 있도록 하는 JSON 파일이다. 웹 어플리케이션 manifest는 모든 사이트에서 사용될 수 있으며, PWA에서는 필수이다.</p>
 
-<h3 id="installable-web-app">Installable Web App</h3>
+<h3 id="4-1-installable-web-app">4-1. Installable Web App</h3>
 
 <p>PWA에서 manifest의 가장 주요한 기능은 홈 스크린에 아이콘으로 웹 페이지의 북마크를 저장하고, 이렇게 생성된 아이콘을 통해 웹 페이지를 실행시켰을 때 화면에 보여지는 부분을 설정하는 것이다.</p>
 
