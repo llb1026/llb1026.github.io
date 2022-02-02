@@ -36,6 +36,8 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CLora:400,400i%7CShadows+Into+Light:400" rel="stylesheet" />
     <link rel="shortcut icon" href="/assets/img/favicon_2.ico">
     
+    <link rel="stylesheet" href="/assets/css/typed.css">
+    
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96635380-1"></script>
@@ -409,10 +411,15 @@
         <script src="/assets/js/owl.carousel.min.js"></script>
         <script src="/assets/js/theme.js"></script>
         
-
-        <!-- Google Analytics Start -->
-
-        <!-- Google Analytics End -->
+        <script src="/assets/js/typed.js"></script>
+        <script>
+            $(window).scroll(function() {
+                var s = $(window).scrollTop(),
+                opacityVal = (s / 500.0);
+                $('.blur').css('opacity', opacityVal);
+            });
+        </script>
+        
 
     </body>
 </html>
