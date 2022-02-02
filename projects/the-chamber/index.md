@@ -37,14 +37,6 @@ carousels:
     - image: /projects/the-chamber/img/the-chamber-15.png
 ---
 
-#### Details
-
-프로젝트의 핵심 기술은 브라우저 간의 실시간 통신을 가능하게 하는 API인 WebRTC였습니다. 처음 다뤄본 라이브러리였기 때문에 실제 구현 과정에서 브라우저 별 대응 이슈부터 미디어 서버 설계까지 많은 시행착오를 겪었습니다.
-
-프로젝트가 끝난 이후, 개발과정에서 WebRTC에 대해 공부하고 실험했던 내용을 정리해 개인적으로 [논문](http://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=b6dbcdce95d0b4d07ecd42904f0c5d65&keyword=)을 작성했고, 2018 한국컴퓨터 종합 학술대회에서 포스터세션 발표를 했습니다.
-
----
-
 #### Demo
 
 <video controls>
@@ -56,3 +48,9 @@ carousels:
 #### Presentation
 
 {% include carousel.html height="50" unit="%" duration="7" number="1" %}
+
+---
+
+#### Appendix
+
+- 프로젝트가 끝난 이후, 개발과정에서 WebRTC에 대해 공부하고 실험했던 내용을 정리해 개인적으로 [논문](http://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&control_no=b6dbcdce95d0b4d07ecd42904f0c5d65&keyword=)을 작성했고, 2018 한국컴퓨터 종합 학술대회에서 포스터세션 발표를 했습니다.
