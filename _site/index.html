@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    
     <title>JIYUN.ME</title>
+    
         
     <!-- Post info -->
-
     <meta property="og:site_name" content="JIYUN.ME">
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="http://localhost:4000/" />
     
-    <meta property="og:image" content="http://localhost:4000/assets/img/share-img.jpg">
+    <meta property="og:image" content="http://localhost:4000/assets/img/share-img.png">
 
     <!-- title -->
-    <meta property="og:title" content="JIYUN.ME | JIYUN.ME">
+    <meta property="og:title" content="JIYUN.ME | ">
     
     <!-- description -->
-    <meta property="og:description" content="JIYUN.ME"/>
+    <meta property="og:description" content=""/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -35,8 +36,17 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CLora:400,400i%7CShadows+Into+Light:400" rel="stylesheet" />
     <link rel="shortcut icon" href="/assets/img/favicon_2.ico">
     
-    <link rel="stylesheet" href="/assets/css/typed.css">
-    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96635380-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-96635380-1');
+    </script>
+
 </head>
 
     
@@ -398,15 +408,6 @@
         <script src="/assets/js/isotope.pkgd.min.js"></script>
         <script src="/assets/js/owl.carousel.min.js"></script>
         <script src="/assets/js/theme.js"></script>
-        
-        <script src="/assets/js/typed.js"></script>
-        <script>
-            $(window).scroll(function() {
-                var s = $(window).scrollTop(),
-                opacityVal = (s / 500.0);
-                $('.blur').css('opacity', opacityVal);
-            });
-        </script>
         
 
         <!-- Google Analytics Start -->

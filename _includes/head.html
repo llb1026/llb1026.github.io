@@ -2,15 +2,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ page.title }}</title>
+    {% if page.title != nil %}
+    <title>JIYUN.ME | {{ page.title }}</title>
+    {% else %}
+    <title>JIYUN.ME</title>
+    {% endif %}
         
     <!-- Post info -->
-
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:type" content="website" /> 
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
     
-    <meta property="og:image" content="{% if page.post-header == true or page.project-header == true %}{{ site.url }}{{ page.url }}{{ page.header-img }}{% else %}{{ site.url }}{{ '/assets/img/share-img.jpg'}}{% endif %}">
+    <meta property="og:image" content="{% if page.post-header == true or page.project-header == true %}{{ site.url }}{{ page.url }}{{ page.header-img }}{% else %}{{ site.url }}{{ '/assets/img/share-img.png'}}{% endif %}">
 
     <!-- title -->
     <meta property="og:title" content="JIYUN.ME | {% if page.url == '/' %}{{ page.subtitle}}{% else %}{{ page.title }}{% endif %}">
@@ -35,4 +38,15 @@
     {% if page.title == "JIYUN.ME" %}
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/typed.css">
     {% endif %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96635380-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-96635380-1');
+    </script>
+
 </head>

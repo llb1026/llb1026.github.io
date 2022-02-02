@@ -12,7 +12,7 @@ post-header: true
 header-img: img/dergeistderzeit.png
 main-img: img/dergeistderzeit.png
 team: "1인 개발"
-tools: "HTML5, CSS3, JavaScript, AWS S3, AWS Route53"
+tools: "HTML5, CSS3, JavaScript, AWS Route53, AWS S3"
 date: "2017.04.29 - Current"
 link: "http://dergeistderzeit.com/"
 link-name: "Go to Website"
@@ -25,5 +25,7 @@ carousels:
     - image: /projects/dergeistderzeit/img/dergeistderzeit-3.png
     - image: /projects/dergeistderzeit/img/dergeistderzeit-4.png
 ---
+
+#### Demo
 
 {% include carousel.html height="50" unit="%" duration="7" number="1" %}

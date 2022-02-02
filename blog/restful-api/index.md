@@ -2,7 +2,7 @@
 order: 13
 layout: post
 title: "RESTful API와 개발자의 고민"
-subtitle: "원칙과 실무의 괴리, 그리고 다양한 타협 경험들"
+subtitle: "원칙과 실무의 괴리, 그리고 타협"
 tag: Lesson Learned
 type: lesson-learned
 blog: true
