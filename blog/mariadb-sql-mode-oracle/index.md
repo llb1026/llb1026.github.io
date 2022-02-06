@@ -1,5 +1,5 @@
 ---
-order: 22
+order: 18
 layout: post
 title: "죽어도 Datetime으로 바뀌지 않는 Date 타입 컬럼"
 subtitle: "믿었던 인프라팀의 배신..?"
@@ -7,6 +7,7 @@ tag: Lesson Learned
 type: lesson-learned
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_1.png
@@ -24,7 +25,7 @@ prev-link: "../mariadb-spatial-functions/"
 
 ## 2. 범인은 SQL_MODE
 
-아무리 구글링을 해 봐도 답을 찾지 못했고, 검증계에 MariaDB를 설치한 인프라 팀에 문의했다. 그리고 인프라 팀에서 추후 Oracle DB로 마이그레이션할 가능성을 미리 고려하여 추가한 `SET SQL_MODE='ORACLE';`이 문제의 원인이라는 것을 찾을 수 있었다.
+아무리 구글링을 해 봐도 답을 찾지 못했고, 검증계에 MariaDB를 설치한 인프라 팀에 문의했다. 그리고 인프라 팀에서 추후 Oracle DB와의 마이그레이션할 가능성을 미리 고려하여 추가한 `SET SQL_MODE='ORACLE';`이 문제의 원인이라는 것을 찾을 수 있었다.
 
 MariaDB 버전 10.3 이후부터 MariaDB에서 Oracle 문법을 쓸 수 있게 하는 옵션이 추가되었고 ([공식문서](https://mariadb.com/kb/en/sql_modeoracle/)), Oracle에서는 `DATE` 타입이 MariaDB에서의 `DATETIME`과 같이 시간값도 포함하고 있어 애초에 `DATETIME` 타입이 없으므로 `DATETIME` 타입의 컬럼을 자동으로 `DATE` 타입으로 변환한 것이다.
 

@@ -1,5 +1,5 @@
 ---
-order: 18
+order: 15
 layout: post
 title: "Transaction과 Lock 기본내용 정리"
 subtitle: "@Version을 써봅시다"
@@ -7,11 +7,12 @@ tag: Tech Notes
 type: tech-notes
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01-1.png
-next-link: "../how-transactional-works/"
-prev-link: "../java-serializable/"
+next-link: "../spring-cloud-netflix/"
+prev-link: "../restful-api/"
 carousels:
   - images: 
     - image: /blog/transaction-and-lock/img/transaction-001.jpeg

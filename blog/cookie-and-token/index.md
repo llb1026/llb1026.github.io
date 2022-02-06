@@ -7,6 +7,7 @@ tag: Tech Notes
 type: tech-notes
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_2.png

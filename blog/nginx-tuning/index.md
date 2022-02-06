@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 3
 layout: post
 title: "혼자 해 본 nginx.conf 튜닝"
 subtitle: "프론트엔드 최적화 포인트와 간단한 성능테스트 결과"
@@ -7,6 +7,7 @@ tag: Lesson Learned
 type: lesson-learned
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_1.png

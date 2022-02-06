@@ -158,7 +158,7 @@
                             <h2 class="title">죽어도 Datetime으로 바뀌지 않는 Date 타입 컬럼</h2>
                         </div>
                         <div class="entry-date tw-meta">
-                            <span>믿었던 인프라팀의 배신</span>
+                            <span>믿었던 인프라팀의 배신..?</span>
                         </div>
 
                         <!-- Blog Content Start -->
@@ -192,7 +192,7 @@
 
 <h2 id="2-범인은-sql_mode">2. 범인은 SQL_MODE</h2>
 
-<p>아무리 구글링을 해 봐도 답을 찾지 못했고, 검증계에 MariaDB를 설치한 인프라 팀에 문의했다. 그리고 인프라 팀에서 추후 Oracle DB로 마이그레이션할 가능성을 미리 고려하여 추가한 <code class="language-plaintext highlighter-rouge">SET SQL_MODE='ORACLE';</code>이 문제의 원인이라는 것을 찾을 수 있었다.</p>
+<p>아무리 구글링을 해 봐도 답을 찾지 못했고, 검증계에 MariaDB를 설치한 인프라 팀에 문의했다. 그리고 인프라 팀에서 추후 Oracle DB와의 마이그레이션할 가능성을 미리 고려하여 추가한 <code class="language-plaintext highlighter-rouge">SET SQL_MODE='ORACLE';</code>이 문제의 원인이라는 것을 찾을 수 있었다.</p>
 
 <p>MariaDB 버전 10.3 이후부터 MariaDB에서 Oracle 문법을 쓸 수 있게 하는 옵션이 추가되었고 (<a href="https://mariadb.com/kb/en/sql_modeoracle/">공식문서</a>), Oracle에서는 <code class="language-plaintext highlighter-rouge">DATE</code> 타입이 MariaDB에서의 <code class="language-plaintext highlighter-rouge">DATETIME</code>과 같이 시간값도 포함하고 있어 애초에 <code class="language-plaintext highlighter-rouge">DATETIME</code> 타입이 없으므로 <code class="language-plaintext highlighter-rouge">DATETIME</code> 타입의 컬럼을 자동으로 <code class="language-plaintext highlighter-rouge">DATE</code> 타입으로 변환한 것이다.</p>
 

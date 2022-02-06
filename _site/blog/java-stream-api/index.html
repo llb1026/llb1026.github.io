@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <title>JIYUN.ME | 내가 보려고 정리한 Java Stream API</title>
+    <title>JIYUN.ME | Java Stream API 사용 모음집</title>
     
         
     <!-- Post info -->
@@ -16,10 +16,10 @@
     <meta property="og:image" content="http://localhost:4000/blog/java-stream-api/img/01_1.png">
 
     <!-- title -->
-    <meta property="og:title" content="JIYUN.ME | 내가 보려고 정리한 Java Stream API">
+    <meta property="og:title" content="JIYUN.ME | Java Stream API 사용 모음집">
     
     <!-- description -->
-    <meta property="og:description" content=""/>
+    <meta property="og:description" content="## 1. filter() if문처럼 특정 조건에 맞는 것들만 걸러낼 때 사용한다. ```java List result = tempRepository.findAll() .stream().filter(temp -> temp.getDistance() < 100) .collect(Collectors.toList()); ``` ## 2. map() 스트림 안의 각 항목들에..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -152,10 +152,10 @@
                             <p>tech-notes</p>
                         </div>
                         <!-- <h2 class="entry-title post-title">
-                            <a href="#">내가 보려고 정리한 Java Stream API</a>
+                            <a href="#">Java Stream API 사용 모음집</a>
                         </h2> -->
                         <div class="heading-title-article post-title">
-                            <h2 class="title">내가 보려고 정리한 Java Stream API</h2>
+                            <h2 class="title">Java Stream API 사용 모음집</h2>
                         </div>
                         <div class="entry-date tw-meta">
                             <span>자주 쓰는 메소드들 정리</span>
@@ -178,11 +178,58 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                
+                                <ul><li><a href="#1-filter">1. filter()</a></li><li><a href="#2-map">2. map()</a></li><li><a href="#3-distinct">3. distinct()</a></li><li><a href="#7-foreach">7. forEach()</a></li><li><a href="#4-sorted">4. sorted()</a></li><li><a href="#5-peek">5. peek()</a></li><li><a href="#6-limit">6. limit()</a></li><li><a href="#8-reduce">8. reduce()</a></li><li><a href="#9-collect">9. collect()</a></li><li><a href="#10-min-max">10. min(), max()</a></li><li><a href="#11-count-empty">11. count(), empty()</a></li><li><a href="#12-match">12. ~Match()</a></li><li><a href="#13-find">13. find~()</a></li><li><a href="#14-of">14. of()</a></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            
+                            <h2 id="1-filter">1. filter()</h2>
+
+<p>if문처럼 특정 조건에 맞는 것들만 걸러낼 때 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">TempEntity</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tempRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">temp</span> <span class="o">-&gt;</span> <span class="n">temp</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div></div>
+
+<h2 id="2-map">2. map()</h2>
+
+<p>스트림 안의 각 항목들에 특정 함수를 적용시킨다. 주로 형 변환 시 자주 쓴다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">TempEntity</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tempRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">temp</span> <span class="o">-&gt;</span> <span class="n">tempMapper</span><span class="o">.</span><span class="na">toDto</span><span class="o">(</span><span class="n">temp</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div></div>
+
+<h2 id="3-distinct">3. distinct()</h2>
+
+<p>중복된 항목을 제거할 때 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">TempEntity</span><span class="o">&gt;</span> <span class="n">duplicateList</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="cm">/* 생략 */</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">TempEntity</span><span class="o">&gt;</span> <span class="n">distinctList</span> <span class="o">=</span> <span class="n">duplicateList</span>
+    <span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">distinct</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div></div>
+
+<h2 id="7-foreach">7. forEach()</h2>
+
+<h2 id="4-sorted">4. sorted()</h2>
+
+<h2 id="5-peek">5. peek()</h2>
+
+<h2 id="6-limit">6. limit()</h2>
+
+<h2 id="8-reduce">8. reduce()</h2>
+
+<h2 id="9-collect">9. collect()</h2>
+
+<h2 id="10-min-max">10. min(), max()</h2>
+
+<h2 id="11-count-empty">11. count(), empty()</h2>
+
+<h2 id="12-match">12. ~Match()</h2>
+
+<h2 id="13-find">13. find~()</h2>
+
+<h2 id="14-of">14. of()</h2>
 
 
                         </div>
@@ -200,7 +247,7 @@
         <div class="tw-portfolio-nav uk-flex uk-flex-between uk-flex-middle">
             
             <div class="nav-prev tw-meta">
-                <a href="../primitive-type-vs-reference-type/">
+                <a href="../restful-api/">
                     <i class="ion-ios-arrow-left"></i>
                     <span>Prev</span>
                 </a>
@@ -213,7 +260,7 @@
             </div>
             
             <div class="nav-next tw-meta">
-                <a href="../etl-vs-elt/">
+                <a href="../java-serializable/">
                     <span>Next</span>
                     <i class="ion-ios-arrow-right"></i>
                 </a>

@@ -1,16 +1,17 @@
 ---
-order: 13
+order: 12
 layout: post
 title: "RESTful API와 개발자의 고민"
-subtitle: "원칙과 실무의 괴리, 그리고 타협"
+subtitle: "원리와 실무의 괴리, 그리고 타협"
 tag: Lesson Learned
 type: lesson-learned
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_1.png
-next-link: "../primitive-type-vs-reference-type/"
+next-link: "../transaction-and-lock/"
 prev-link: "../java-microservice/"
 ---
 

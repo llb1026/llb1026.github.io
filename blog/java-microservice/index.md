@@ -1,5 +1,5 @@
 ---
-order: 12
+order: 11
 layout: post
 title: "자바 기반의 마이크로서비스 이해와 아키텍처 구축하기"
 subtitle: "책 내용 정리 및 실무 적용을 위한 조건들"
@@ -7,11 +7,12 @@ tag: Tech Notes
 type: tech-notes
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01-1.png
 next-link: "../restful-api/"
-prev-link: "../efficient-caching/"
+prev-link: "../naver-intern-epilogue/"
 ---
 
 ## 1. 기본 베이스 지식

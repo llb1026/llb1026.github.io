@@ -23,7 +23,7 @@ data-overlay="0.3" style="background-color: #fff; background-image: url({{ page.
 
                 {% assign sorted = site.pages | sort: 'order' | reverse %}
                 {% for page in sorted %}
-                {% if page.blog == true and page.layout == 'post' %}
+                {% if page.blog == true and page.layout == 'post' and page.visible == true %}
 
                 <article class="post portfolio-item blog-item {{ page.type }}">
                     <div class="entry-post">

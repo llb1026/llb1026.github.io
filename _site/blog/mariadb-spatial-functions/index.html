@@ -19,7 +19,7 @@
     <meta property="og:title" content="JIYUN.ME | 내가 사용했던 MariaDB 공간함수">
     
     <!-- description -->
-    <meta property="og:description" content="```java @Query(value = "SELECT * FROM station " + "WHERE MBR_Contains(ST_GeomFromText('" + ":wkt" + "'), point)", nativeQuery = true) List findByAreaMbr(String wkt); ``` ```java @Query(value = "SELECT * from station..."/>
+    <meta property="og:description" content="## 1. 구현 조건 카풀 서비스를 개발하면서 라이더(탑승자)가 출근 시 자신의 집과 가까운 카풀 탑승 장소를, 퇴근 시 자신의 집과 가까운 카풀 하차 장소를 찾는 기능을 구현하게 되었다. 라이더의 집..."/>
         
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/uikit.min.css">
@@ -178,15 +178,65 @@
                             <!-- Scroll Spy TOC Start -->
                             <div class="toc">
                                 <a href="#top">&#x1F446; 맨 위로</a>
-                                
+                                <ul><li><a href="#1-구현-조건">1. 구현 조건</a></li><li><a href="#2-mbr_contains">2. MBR_Contains()</a></li><li><a href="#3-st_distance_sphere">3. ST_DISTANCE_SPHERE()</a></li><li><a href="#references">References</a></li></ul>
                             </div>
                             <!-- Scroll Spy TOC End -->
 
-                            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"SELECT * FROM station "</span> <span class="o">+</span> 
+                            <h2 id="1-구현-조건">1. 구현 조건</h2>
+
+<p>카풀 서비스를 개발하면서 라이더(탑승자)가 출근 시 자신의 집과 가까운 카풀 탑승 장소를, 퇴근 시 자신의 집과 가까운 카풀 하차 장소를 찾는 기능을 구현하게 되었다.</p>
+
+<p>라이더의 집 주소, 회사 주소, 탑승 및 하차 가능한 모든 카풀 장소는 DB에 저장되어 있고, 앱에서 검색 필터로 반경 몇 미터 내의 카풀장소를 검색할 것인지에 대한 숫자값이 넘어온다고 했을 때 아래의 2가지 방법으로 접근해보기로 했다.</p>
+
+<ol>
+  <li>라이더의 좌표를 중심으로 반경 N 미터의 폴리곤을 그리고, 해당 폴리곤 범위 내에 속한 카풀 장소를 골라낸다</li>
+  <li>각 카풀 장소와 라이더의 좌표 사이의 거리를 재고, 해당 거리가 N미터 이하인 카풀 장소를 골라낸다</li>
+</ol>
+
+<p>1번 방식을 <code class="language-plaintext highlighter-rouge">MBR_Contains()</code>로, 2번 방식을 <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>로 구현해보았다.</p>
+
+<hr />
+
+<h2 id="2-mbr_contains">2. MBR_Contains()</h2>
+
+<p><strong>MBR</strong><sup> Minimum Bounding Rectangle </sup>이란 ‘요소를 포함하는 가장 작은 사각형’이라는 뜻이다. MariaDB에서는 공간 검색 시 MBR들의 그룹을 더 큰 MBR이 묶고, 이런 그룹들을 또다시 더 큰 MBR로 묶는 R-Tree 구조의 인덱스를 사용한다.</p>
+
+<p>R-Tree 인덱스를 사용하는 이유는 아래와 같다고 한다.</p>
+
+<ul>
+  <li>X좌표값, Y좌표값 2개 컬럼으로 B-Tree composite 인덱스를 걸면 Left-most 특성땜에 특정 영역 범위 검색 시 한 쪽밖에 인덱스를 타지 못 함 (데이터 분포에 따라 거의 풀 스캔을 해야 할 수 있음)</li>
+  <li>위치 정보 검색 시 R-Tree 인덱스가 B-Tree와 비교해서 전반적으로 검색이 빠름 (단, 검색영역이 너무 넓으면 느림)</li>
+</ul>
+
+<p>아래 예시 코드에서 <code class="language-plaintext highlighter-rouge">wkt</code>는  Well Known Text의 약자로, 쉽게 이해할 수 있는 문자열로 데이터를 표현하는 방식이다. 예시로 <code class="language-plaintext highlighter-rouge">'POLYGON((175 150, 20 40, 50 60, 125 100, 175 150))'</code> 이런 식의 스트링 값이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"SELECT * FROM station "</span> <span class="o">+</span> 
     <span class="s">"WHERE MBR_Contains(ST_GeomFromText('"</span> <span class="o">+</span> <span class="s">":wkt"</span> <span class="o">+</span> <span class="s">"'), point)"</span><span class="o">,</span> 
     <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
 <span class="nc">List</span><span class="o">&lt;</span><span class="nc">StationEntity</span><span class="o">&gt;</span> <span class="nf">findByAreaMbr</span><span class="o">(</span><span class="nc">String</span> <span class="n">wkt</span><span class="o">);</span>
 </code></pre></div></div>
+
+<hr />
+
+<h2 id="3-st_distance_sphere">3. ST_DISTANCE_SPHERE()</h2>
+
+<p><code class="language-plaintext highlighter-rouge">MBR_Contains()</code>로 몇 번 테스트를 돌려보았는데, 반경 폴리곤을 그리고 포함여부를 체크하는 데에 cost가 큰지 처리속도가 느린 것 같았다. 이에 2번 방식을 시도했으나, 개발할 당시 프로젝트가 사용하고 있던 MariaDB 버전은 <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>가 없었다 (10.2.38 버전부터 공식 지원한다고 한다 (<a href="https://mariadb.com/kb/en/st_distance_sphere/">링크</a>)).</p>
+
+<p>따라서 직접 MySQL의 함수를 가져다 MariaDB에 만들어 사용했다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="nv">`st_distance_sphere`</span><span class="p">(</span><span class="nv">`pt1`</span> <span class="n">POINT</span><span class="p">,</span> <span class="nv">`pt2`</span> <span class="n">POINT</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">BEGIN</span>
+    <span class="k">return</span> <span class="mi">6371000</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ASIN</span><span class="p">(</span><span class="n">SQRT</span><span class="p">(</span>
+       <span class="n">POWER</span><span class="p">(</span><span class="n">SIN</span><span class="p">((</span><span class="n">ST_Y</span><span class="p">(</span><span class="n">pt2</span><span class="p">)</span> <span class="o">-</span> <span class="n">ST_Y</span><span class="p">(</span><span class="n">pt1</span><span class="p">))</span> <span class="o">*</span> <span class="n">pi</span><span class="p">()</span><span class="o">/</span><span class="mi">180</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+       <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">COS</span><span class="p">(</span><span class="n">ST_Y</span><span class="p">(</span><span class="n">pt1</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span><span class="p">()</span><span class="o">/</span><span class="mi">180</span> <span class="p">)</span> <span class="o">*</span> <span class="n">COS</span><span class="p">(</span><span class="n">ST_Y</span><span class="p">(</span><span class="n">pt2</span><span class="p">)</span> <span class="o">*</span>
+       <span class="n">pi</span><span class="p">()</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">*</span> <span class="n">POWER</span><span class="p">(</span><span class="n">SIN</span><span class="p">((</span><span class="n">ST_X</span><span class="p">(</span><span class="n">pt2</span><span class="p">)</span> <span class="o">-</span> <span class="n">ST_X</span><span class="p">(</span><span class="n">pt1</span><span class="p">))</span> <span class="o">*</span>
+       <span class="n">pi</span><span class="p">()</span><span class="o">/</span><span class="mi">180</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="p">));</span>
+    <span class="k">END</span>
+</code></pre></div></div>
+
+<p>참고로 <code class="language-plaintext highlighter-rouge">ST_DISTANCE()</code>는 평면 거리를 재는 함수이기 때문에, 우리가 살고 있는 구체의 지구에서 잰 거리와는 다른 값을 뱉는다.</p>
+
+<p>사용 예시는 아래와 같다.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"SELECT * from station "</span> <span class="o">+</span> 
     <span class="s">"WHERE ST_DISTANCE_SPHERE(ST_GeomFromText(CONCAT('Point(', :lon, ' ', :lat, ')')), point) &lt;= :range"</span><span class="o">,</span> 
@@ -202,6 +252,15 @@
     <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
 <span class="nc">List</span><span class="o">&lt;</span><span class="nc">StationEntity</span><span class="o">&gt;</span> <span class="nf">findByDistance</span><span class="o">(</span><span class="kt">double</span> <span class="n">range</span><span class="o">,</span> <span class="n">rouble</span> <span class="n">lon</span><span class="o">,</span> <span class="kt">double</span> <span class="n">lat</span><span class="o">,</span> <span class="nc">StationObject</span> <span class="n">station</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">);</span>
 </code></pre></div></div>
+
+<hr />
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://jangjunha.github.io/blog/mysql-mariadb-spatial-index/">R-Tree 인덱스</a></li>
+  <li><a href="https://stackoverflow.com/questions/44409012/function-st-distance-sphere-does-not-exist-in-mariadb">ST_DISTANCE_SPHERE 함수 생성 쿼리</a></li>
+</ul>
 
 
                         </div>

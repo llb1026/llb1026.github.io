@@ -7,10 +7,11 @@ tag: Lesson Learned
 type: lesson-learned
 blog: true
 text: true
+visible: true
 author: JIYUN LEE
 post-header: true
 header-img: img/01_1.png
-next-link: "../java-exceptions/"
+next-link: "../java-microservice/"
 prev-link: "../backend-performance-test/"
 ---
 
