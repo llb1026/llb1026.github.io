@@ -94,3 +94,5 @@ List<StationEntity> findByDistance(double range, rouble lon, double lat, Station
 
 - [R-Tree 인덱스](https://jangjunha.github.io/blog/mysql-mariadb-spatial-index/)
 - [ST_DISTANCE_SPHERE 함수 생성 쿼리](https://stackoverflow.com/questions/44409012/function-st-distance-sphere-does-not-exist-in-mariadb)
+- [StackOverflow - Spatial Index not being used](https://stackoverflow.com/questions/35093608/spatial-index-not-being-used)
+- [가장 가까운 시설물 조회 - 두 좌표 사이 거리 계산](https://purumae.tistory.com/198)
