@@ -50,9 +50,11 @@ List<StationEntity> findByAreaMbr(String wkt);
 
 ## 3. ST_DISTANCE_SPHERE()
 
-`MBR_Contains()`로 몇 번 테스트를 돌려보았는데, 반경 폴리곤을 그리고 포함여부를 체크하는 데에 cost가 큰지 처리속도가 느린 것 같았다. 이에 2번 방식을 시도했으나, 개발할 당시 프로젝트가 사용하고 있던 MariaDB 버전은 `ST_DISTANCE_SPHERE()`가 없었다 (10.2.38 버전부터 공식 지원한다고 한다 ([링크](https://mariadb.com/kb/en/st_distance_sphere/))). 
+`MBR_Contains()`로 몇 번 테스트를 돌려보았는데, 실행 속도가 그렇게 빠르다고 느껴지지 않았다. 이에 2번 방식을 시도했으나, 개발할 당시 프로젝트가 사용하고 있던 MariaDB 버전은 `ST_DISTANCE_SPHERE()`가 없었다 (10.2.38 버전부터 공식 지원한다고 한다 ([링크](https://mariadb.com/kb/en/st_distance_sphere/))). 
 
 따라서 직접 MySQL의 함수를 가져다 MariaDB에 만들어 사용했다.
+
+정확히는 `MBR_Contains()`가 spatial index를 타고, `ST_DISTANCE_SPHERE()`는 풀스캔을 하기 때문에 함수 자체로만 놓고 보면 `MBR_Contains()`가 빠르게 처리되는 것이 맞다. 제대로 된 비교를 위해서는 나머지 소스들은 동일하게 가져가고 사용하는 함수만 갈아끼워 테스트 했어야 했는데, `MBR_Contains()`에서 `ST_DISTANCE_SPHERE()`로 변경하며 spatial index를 태운 범위필터링을 앞단에 한 번 추가로 거쳤고, 쿼리 전후의 Java단 로직이 변경되어 제대로 된 비교가 되지 않았다. 개발계의 테스트용 더미데이터가 적었던 것도 하나의 원인이었던 것 같다.
 
 ```sql
 CREATE FUNCTION `st_distance_sphere`(`pt1` POINT, `pt2` POINT) RETURNS decimal(10,2)

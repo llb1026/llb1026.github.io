@@ -25,4 +25,5 @@ prev-link: "../restful-api/"
 
 ## References
 
+- [티스토리 블로그](https://devlog-wjdrbs96.tistory.com/268)
 - [우아한형제들 기술블로그](https://techblog.woowahan.com/2551/)

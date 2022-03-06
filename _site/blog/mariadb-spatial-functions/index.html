@@ -220,9 +220,11 @@
 
 <h2 id="3-st_distance_sphere">3. ST_DISTANCE_SPHERE()</h2>
 
-<p><code class="language-plaintext highlighter-rouge">MBR_Contains()</code>로 몇 번 테스트를 돌려보았는데, 반경 폴리곤을 그리고 포함여부를 체크하는 데에 cost가 큰지 처리속도가 느린 것 같았다. 이에 2번 방식을 시도했으나, 개발할 당시 프로젝트가 사용하고 있던 MariaDB 버전은 <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>가 없었다 (10.2.38 버전부터 공식 지원한다고 한다 (<a href="https://mariadb.com/kb/en/st_distance_sphere/">링크</a>)).</p>
+<p><code class="language-plaintext highlighter-rouge">MBR_Contains()</code>로 몇 번 테스트를 돌려보았는데, 실행 속도가 그렇게 빠르다고 느껴지지 않았다. 이에 2번 방식을 시도했으나, 개발할 당시 프로젝트가 사용하고 있던 MariaDB 버전은 <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>가 없었다 (10.2.38 버전부터 공식 지원한다고 한다 (<a href="https://mariadb.com/kb/en/st_distance_sphere/">링크</a>)).</p>
 
 <p>따라서 직접 MySQL의 함수를 가져다 MariaDB에 만들어 사용했다.</p>
+
+<p>정확히는 <code class="language-plaintext highlighter-rouge">MBR_Contains()</code>가 spatial index를 타고, <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>는 풀스캔을 하기 때문에 함수 자체로만 놓고 보면 <code class="language-plaintext highlighter-rouge">MBR_Contains()</code>가 빠르게 처리되는 것이 맞다. 제대로 된 비교를 위해서는 나머지 소스들은 동일하게 가져가고 사용하는 함수만 갈아끼워 테스트 했어야 했는데, <code class="language-plaintext highlighter-rouge">MBR_Contains()</code>에서 <code class="language-plaintext highlighter-rouge">ST_DISTANCE_SPHERE()</code>로 변경하며 spatial index를 태운 범위필터링을 앞단에 한 번 추가로 거쳤고, 쿼리 전후의 Java단 로직이 변경되어 제대로 된 비교가 되지 않았다. 개발계의 테스트용 더미데이터가 적었던 것도 하나의 원인이었던 것 같다.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="nv">`st_distance_sphere`</span><span class="p">(</span><span class="nv">`pt1`</span> <span class="n">POINT</span><span class="p">,</span> <span class="nv">`pt2`</span> <span class="n">POINT</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">BEGIN</span>
