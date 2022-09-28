@@ -16,6 +16,23 @@
             <div class="uk-width-1-1" data-uk-scrollspy="target: > div > .tw-timeline-block; cls:uk-animation-slide-top; delay: 300">
                 <div class="tw-timeline-container style-2 large">
 
+                    {% for item in site.data.work-list.fifth-place %}
+                    <div class="tw-timeline-block">
+                        <div class="tw-timeline-info">
+                            <div class="tw-element tw-heading">
+                                <h4 class="letter-spacing">
+                                    {{ item.date }}
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="tw-timeline-circle"></div>
+                        <div class="tw-timeline-content">
+                            <h3 class="uk-text-uppercase">{{ item.name }}</h3>
+                            <p>{{ item.role }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
                     {% for item in site.data.work-list.fourth-place %}
                     <div class="tw-timeline-block">
                         <div class="tw-timeline-info">
