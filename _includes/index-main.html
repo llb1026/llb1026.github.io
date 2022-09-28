@@ -13,11 +13,23 @@
         opacity: 0; 
     }
     .scroll-section {
-        height: 10vh;
+        /* height: 100vh;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-        position: relative;
+        position: relative; */
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        margin-left: -16px;
+        display: block;
+        animation: fadeIn 3s;
+        animation-delay: 5s;
+        animation-fill-mode: forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
     button.scroll_down {
         position: absolute;
@@ -29,7 +41,7 @@
         width: 30px;
         bottom: 60px;
         background-color: transparent;
-        border: 2px solid white;
+        border: 2px solid #333;
         border-radius: 20px;
         cursor: pointer;
         outline: none;
