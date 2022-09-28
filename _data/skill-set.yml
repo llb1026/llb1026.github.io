@@ -1,5 +1,6 @@
-- name: Java 8+
+- name: Java 11+
 - name: String Boot
 - name: JPA
 - name: Spring Cloud Netflix
+- name: Mobility Industry
 - name: Business English
