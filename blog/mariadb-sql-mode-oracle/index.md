@@ -2,7 +2,7 @@
 order: 18
 layout: post
 title: "죽어도 Datetime으로 바뀌지 않는 Date 타입 컬럼"
-subtitle: "믿었던 인프라팀의 배신..?"
+subtitle: "뭐가 됐든 지금 쓰고 있는 버전과 특이사항은 제대로 파악하자"
 tag: Lesson Learned
 type: lesson-learned
 blog: true
