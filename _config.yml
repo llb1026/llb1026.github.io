@@ -1,6 +1,6 @@
 # Setup
 title:          JIYUN.ME
-baseurl:        ""
+baseurl:        "jiyun.me"
 url:            "https://jiyun.me"
 
 # Assets

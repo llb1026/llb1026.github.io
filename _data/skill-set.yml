@@ -1,6 +1,6 @@
 - name: Java 11+
 - name: String Boot
 - name: JPA
-- name: Spring Cloud Netflix
+- name: MSA
 - name: Mobility Industry
 - name: Business English
